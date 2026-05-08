@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  activity-service:
+    build:
+      context: ./services/activity-service
+      dockerfile: Dockerfile
+    container_name: activity-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/activity-service/app:/app/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres-activity
+    restart: unless-stopped
+
+  # ====================== Отдельный Postgres для activity-service ======================
+  postgres-activity:
+    image: postgis/postgis:16-3.5
+    container_name: postgres-activity
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: activity_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"          # Можно поменять на 5433, если будет конфликт
+    volumes:
+      - activity_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  activity_postgres_data:

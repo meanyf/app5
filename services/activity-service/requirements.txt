@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+
+# База данных
+sqlalchemy[asyncio]>=2.0.0
+asyncpg
+psycopg2-binary   # на всякий случай
+
+# Опционально
+alembic
+
+geoalchemy2
+
+shapely
