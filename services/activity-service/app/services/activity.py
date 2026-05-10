@@ -35,6 +35,7 @@ class ActivityService:
 			location=location,
 			starts_at=data.starts_at,
 			expires_at=data.expires_at,
+			max_participants=data.max_participants,
 		)
 		self.db.add(activity)
 		await self.db.commit()

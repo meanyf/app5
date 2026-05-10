@@ -3,7 +3,7 @@
 from datetime import datetime
 import uuid
 
-from sqlalchemy import Column, String, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from geoalchemy2 import Geography
 from geoalchemy2.shape import to_shape
@@ -22,6 +22,9 @@ class Activity(Base):
     location = Column(Geography("POINT", srid=4326), nullable=False)
     starts_at = Column(DateTime, nullable=False)
     expires_at = Column(DateTime, nullable=False)
+
+    max_participants = Column(Integer, nullable=True)
+
 
     @property
     def latitude(self) -> float:

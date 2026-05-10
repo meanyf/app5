@@ -1,6 +1,7 @@
 version: '3.9'
 
 services:
+  # ====================== Activity Service ======================
   activity-service:
     build:
       context: ./services/activity-service
@@ -16,7 +17,6 @@ services:
       - postgres-activity
     restart: unless-stopped
 
-  # ====================== Отдельный Postgres для activity-service ======================
   postgres-activity:
     image: postgis/postgis:16-3.5
     container_name: postgres-activity
@@ -26,7 +26,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
     ports:
-      - "5432:5432"          # Можно поменять на 5433, если будет конфликт
+      - "5432:5432"
     volumes:
       - activity_postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -35,5 +35,40 @@ services:
       timeout: 5s
       retries: 5
 
+  # ====================== Chat Service ======================
+  chat-service:
+    build:
+      context: ./services/chat-service
+      dockerfile: Dockerfile
+    container_name: chat-service
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./services/chat-service/app:/app/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres-chat
+    restart: unless-stopped
+
+  postgres-chat:
+    image: postgis/postgis:16-3.5
+    container_name: postgres-chat
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chat_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5433:5432"
+    volumes:
+      - chat_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   activity_postgres_data:
+  chat_postgres_data:

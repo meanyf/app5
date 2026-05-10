@@ -4,6 +4,8 @@ docker compose up --build
 # Обычный запуск после изменений
 docker compose up
 
+docker compose exec chat-service alembic upgrade head
+
 ## Мобильное приложение для быстрого обмена событиями и встречами
 Общая идея
 Мобильное приложение объединяет карту локальных событий и инструмент для организации встреч между людьми. Основная идея — дать пользователям возможность видеть, что происходит вокруг, и находить людей для совместных действий, общения и решения задач.
@@ -80,7 +82,12 @@ notification-service
 Брокер сообщений
 Kafka в режиме KRaft
 Основные топики:
-ТопикПроизводительПотребительactivity.createdactivity-servicemoderation-service, notification-serviceactivity.moderatedmoderation-serviceactivity-servicemedia.video.uploadedmedia-servicevideo-workermeeting.request.updatedactivity-servicenotification-servicechat.message.sentchat-servicenotification-service
+Топик	Производитель	Потребитель
+activity.created	activity-service	moderation-service, notification-service
+activity.moderated	moderation-service	activity-service
+media.video.uploaded	media-service	video-worker
+meeting.request.updated	activity-service	notification-service
+chat.message.sent	chat-service	notification-service
 Для визуального мониторинга топиков и сообщений используется Kafka UI.
 
 Хранилища данных
