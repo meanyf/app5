@@ -185,6 +185,38 @@ class _ActivitySheetState extends State<ActivitySheet> {
                             ),
                           ],
 
+                          // медиа
+                          if (widget.activity.media.isNotEmpty) ...[
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              height: 200,
+                              child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.activity.media.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(width: 8),
+                                itemBuilder: (_, i) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    widget.activity.media[i].url,
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, __, ___) => Container(
+                                      width: 200,
+                                      height: 200,
+                                      color: Colors.grey[200],
+                                      child: const Icon(
+                                        Icons.broken_image,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+
                           const SizedBox(height: 16),
                           const Divider(height: 1),
                           const SizedBox(height: 12),

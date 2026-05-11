@@ -7,11 +7,28 @@ from typing import Literal, Optional
 
 
 def _to_naive_utc(dt: datetime) -> datetime:
-    """Конвертирует aware datetime в naive UTC, naive оставляет как есть."""
     if dt.tzinfo is not None:
         return dt.astimezone(timezone.utc).replace(tzinfo=None)
     return dt
 
+
+# ── медиа ─────────────────────────────────────────────────────────────────────
+
+class MediaItem(BaseModel):
+    url: str
+    type: Literal["photo", "video"]
+
+
+class MediaItemRead(BaseModel):
+    id: UUID
+    url: str
+    type: Literal["photo", "video"]
+
+    class Config:
+        from_attributes = True
+
+
+# ── активность ────────────────────────────────────────────────────────────────
 
 class ActivityCreate(BaseModel):
     type: Literal["event", "meeting"]
@@ -21,9 +38,8 @@ class ActivityCreate(BaseModel):
     longitude: float
     starts_at: datetime
     expires_at: datetime
-
     max_participants: Optional[int] = None
-
+    media: list[MediaItem] = []  # список {url, type} которые вернул media-service
 
     @field_validator("starts_at", "expires_at", mode="after")
     @classmethod
@@ -38,9 +54,7 @@ class ActivityUpdate(BaseModel):
     longitude: Optional[float] = None
     starts_at: Optional[datetime] = None
     expires_at: Optional[datetime] = None
-
     max_participants: Optional[int] = None
-
 
     @field_validator("starts_at", "expires_at", mode="after")
     @classmethod
@@ -68,9 +82,8 @@ class ActivityRead(BaseModel):
     longitude: float
     starts_at: datetime
     expires_at: datetime
-
     max_participants: Optional[int] = None
-
+    media: list[MediaItemRead] = []
 
     class Config:
         from_attributes = True

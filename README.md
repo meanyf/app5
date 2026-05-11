@@ -2,9 +2,13 @@
 docker compose up --build
 
 # Обычный запуск после изменений
-docker compose up
+docker compose up -d && docker compose logs -f media-service activity-service chat-service
+docker compose up -d
+docker compose logs -f media-service activity-service chat-service
 
 docker compose exec chat-service alembic upgrade head
+
+docker compose exec postgres-activity psql -U postgres -d activity_db -c "UPDATE activities SET status = 'published';"
 
 ## Мобильное приложение для быстрого обмена событиями и встречами
 Общая идея
@@ -141,7 +145,6 @@ app5
 │   │   │   │   │   │   └──io
 │   │   │   │   │   │   │   └──flutter
 │   │   │   │   │   │   │   │   └──plugins
-│   │   │   │   │   │   │   │   │   └──GeneratedPluginRegistrant.java
 │   │   │   │   │   ├──kotlin
 │   │   │   │   │   │   └──com
 │   │   │   │   │   │   │   └──example
@@ -181,13 +184,12 @@ app5
 │   │   ├──settings.gradle.kts
 │   │   └──.gitignore
 │   ├──assets
+│   │   ├──meeting.png
 │   │   └──pin.png
 │   ├──ios
 │   │   ├──Flutter
 │   │   │   ├──AppFrameworkInfo.plist
 │   │   │   ├──Debug.xcconfig
-│   │   │   ├──flutter_export_environment.sh
-│   │   │   ├──Generated.xcconfig
 │   │   │   └──Release.xcconfig
 │   │   ├──Runner
 │   │   │   ├──Assets.xcassets
@@ -218,8 +220,6 @@ app5
 │   │   │   │   ├──LaunchScreen.storyboard
 │   │   │   │   └──Main.storyboard
 │   │   │   ├──AppDelegate.swift
-│   │   │   ├──GeneratedPluginRegistrant.h
-│   │   │   ├──GeneratedPluginRegistrant.m
 │   │   │   ├──Info.plist
 │   │   │   ├──Runner-Bridging-Header.h
 │   │   │   └──SceneDelegate.swift
@@ -242,13 +242,19 @@ app5
 │   │   │   └──RunnerTests.swift
 │   │   └──.gitignore
 │   ├──lib
+│   │   ├──map
+│   │   │   ├──activity_service.dart
+│   │   │   ├──activity_sheet.dart
+│   │   │   ├──activity_widgets.dart
+│   │   │   ├──activity.dart
+│   │   │   ├──comment_service.dart
+│   │   │   ├──comment.dart
+│   │   │   ├──create_activity_sheet.dart
+│   │   │   └──map_screen.dart
 │   │   └──main.dart
 │   ├──linux
 │   │   ├──flutter
-│   │   │   ├──CMakeLists.txt
-│   │   │   ├──generated_plugin_registrant.cc
-│   │   │   ├──generated_plugin_registrant.h
-│   │   │   └──generated_plugins.cmake
+│   │   │   └──CMakeLists.txt
 │   │   ├──runner
 │   │   │   ├──CMakeLists.txt
 │   │   │   ├──main.cc
@@ -259,8 +265,7 @@ app5
 │   ├──macos
 │   │   ├──Flutter
 │   │   │   ├──Flutter-Debug.xcconfig
-│   │   │   ├──Flutter-Release.xcconfig
-│   │   │   └──GeneratedPluginRegistrant.swift
+│   │   │   └──Flutter-Release.xcconfig
 │   │   ├──Runner
 │   │   │   ├──Assets.xcassets
 │   │   │   │   └──AppIcon.appiconset
@@ -312,10 +317,7 @@ app5
 │   │   └──manifest.json
 │   ├──windows
 │   │   ├──flutter
-│   │   │   ├──CMakeLists.txt
-│   │   │   ├──generated_plugin_registrant.cc
-│   │   │   ├──generated_plugin_registrant.h
-│   │   │   └──generated_plugins.cmake
+│   │   │   └──CMakeLists.txt
 │   │   ├──runner
 │   │   │   ├──resources
 │   │   │   │   └──app_icon.ico
@@ -339,6 +341,13 @@ app5
 │   └──.metadata
 ├──services
 │   ├──activity-service
+│   │   ├──alembic
+│   │   │   ├──versions
+│   │   │   │   ├──ac7af778082d_create_activities_table.py
+│   │   │   │   └──second_migration.py
+│   │   │   ├──env.py
+│   │   │   ├──README
+│   │   │   └──script.py.mako
 │   │   ├──app
 │   │   │   ├──db
 │   │   │   │   ├──__init__.py
@@ -358,8 +367,7 @@ app5
 │   │   │   │   └──meetings.py
 │   │   │   ├──schemas
 │   │   │   │   ├──__init__.py
-│   │   │   │   ├──activity.py
-│   │   │   │   └──meeting.py
+│   │   │   │   └──activity.py
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──activity.py
@@ -369,14 +377,9 @@ app5
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
-│   │   ├──migrations
-│   │   │   ├──versions
-│   │   │   │   └──.gitkeep
-│   │   │   ├──alembic.ini
-│   │   │   ├──env.py
-│   │   │   └──script.py.mako
 │   │   ├──tests
 │   │   │   └──__init__.py
+│   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──api-gateway
@@ -433,6 +436,12 @@ app5
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──chat-service
+│   │   ├──alembic
+│   │   │   ├──versions
+│   │   │   │   ├──001_create_comments_table.py
+│   │   │   │   └──.gitkeep
+│   │   │   ├──env.py
+│   │   │   └──script.py.mako
 │   │   ├──app
 │   │   │   ├──db
 │   │   │   │   ├──__init__.py
@@ -460,14 +469,9 @@ app5
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
-│   │   ├──migrations
-│   │   │   ├──versions
-│   │   │   │   └──.gitkeep
-│   │   │   ├──alembic.ini
-│   │   │   ├──env.py
-│   │   │   └──script.py.mako
 │   │   ├──tests
 │   │   │   └──__init__.py
+│   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──media-service

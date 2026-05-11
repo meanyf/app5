@@ -1,4 +1,10 @@
+// lib/map/create_activity_sheet.dart
+
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'activity.dart';
+import 'activity_service.dart';
 import 'activity_widgets.dart';
 
 class CreateActivitySheet extends StatefulWidget {
@@ -29,12 +35,55 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
   bool _submitting = false;
   String? _submitError;
 
+  // медиа
+  final List<File> _selectedFiles = [];
+  final List<MediaItem> _uploadedMedia = [];
+  bool _uploadingMedia = false;
+
   @override
   void dispose() {
     _titleController.dispose();
     _descController.dispose();
     _maxParticipantsController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 85,
+    );
+    if (picked == null) return;
+
+    final file = File(picked.path);
+    setState(() {
+      _selectedFiles.add(file);
+      _uploadingMedia = true;
+    });
+
+    try {
+      final item = await ActivityService.uploadMedia(file);
+      if (mounted) {
+        setState(() => _uploadedMedia.add(item));
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _selectedFiles.remove(file));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка загрузки: $e')));
+      }
+    } finally {
+      if (mounted) setState(() => _uploadingMedia = false);
+    }
+  }
+
+  void _removeMedia(int index) {
+    setState(() {
+      _selectedFiles.removeAt(index);
+      _uploadedMedia.removeAt(index);
+    });
   }
 
   Future<DateTime?> _pickDateTime(DateTime initial) async {
@@ -79,6 +128,7 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
         'longitude': widget.longitude,
         'starts_at': _startsAt.toUtc().toIso8601String(),
         'expires_at': _expiresAt.toUtc().toIso8601String(),
+        'media': _uploadedMedia.map((m) => m.toJson()).toList(),
       };
 
       if (_type == 'meeting' &&
@@ -143,7 +193,8 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
               ),
               const SizedBox(height: 4),
               Text(
-                '${widget.latitude.toStringAsFixed(5)}, ${widget.longitude.toStringAsFixed(5)}',
+                '${widget.latitude.toStringAsFixed(5)}, '
+                '${widget.longitude.toStringAsFixed(5)}',
                 style: TextStyle(fontSize: 12, color: Colors.grey[500]),
               ),
               const SizedBox(height: 20),
@@ -230,6 +281,85 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
                 const SizedBox(height: 12),
               ],
 
+              // ── медиа ──────────────────────────────────────────────────
+              Row(
+                children: [
+                  Text(
+                    'Фото',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  const Spacer(),
+                  if (_uploadingMedia)
+                    const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  else if (_selectedFiles.length < 5)
+                    TextButton.icon(
+                      onPressed: _pickImage,
+                      icon: Icon(
+                        Icons.add_photo_alternate,
+                        color: activeColor,
+                        size: 18,
+                      ),
+                      label: Text(
+                        'Добавить',
+                        style: TextStyle(color: activeColor, fontSize: 13),
+                      ),
+                    ),
+                ],
+              ),
+
+              if (_selectedFiles.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                SizedBox(
+                  height: 90,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _selectedFiles.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    itemBuilder: (_, i) => Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            _selectedFiles[i],
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: 2,
+                          right: 2,
+                          child: GestureDetector(
+                            onTap: () => _removeMedia(i),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.black54,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.close,
+                                size: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+
+              const SizedBox(height: 12),
+
               // даты
               Row(
                 children: [
@@ -285,7 +415,7 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
 
               // кнопка
               FilledButton(
-                onPressed: _submitting ? null : _submit,
+                onPressed: (_submitting || _uploadingMedia) ? null : _submit,
                 style: FilledButton.styleFrom(
                   backgroundColor: activeColor,
                   padding: const EdgeInsets.symmetric(vertical: 14),

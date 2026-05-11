@@ -13,3 +13,5 @@ alembic
 geoalchemy2
 
 shapely
+
+aiokafka

@@ -1,3 +1,17 @@
+// lib/map/activity.dart
+
+class MediaItem {
+  final String url;
+  final String type; // "photo" | "video"
+
+  const MediaItem({required this.url, required this.type});
+
+  factory MediaItem.fromJson(Map<String, dynamic> json) =>
+      MediaItem(url: json['url'] as String, type: json['type'] as String);
+
+  Map<String, dynamic> toJson() => {'url': url, 'type': type};
+}
+
 class Activity {
   final String id;
   final String type;
@@ -8,7 +22,7 @@ class Activity {
   final DateTime startsAt;
   final DateTime expiresAt;
   final int? maxParticipants;
-
+  final List<MediaItem> media;
 
   const Activity({
     required this.id,
@@ -20,6 +34,7 @@ class Activity {
     required this.longitude,
     required this.startsAt,
     required this.expiresAt,
+    this.media = const [],
   });
 
   factory Activity.fromJson(Map<String, dynamic> json) => Activity(
@@ -32,5 +47,8 @@ class Activity {
     startsAt: DateTime.parse(json['starts_at'] as String),
     expiresAt: DateTime.parse(json['expires_at'] as String),
     maxParticipants: json['max_participants'] as int?,
+    media: (json['media'] as List<dynamic>? ?? [])
+        .map((e) => MediaItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
