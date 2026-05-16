@@ -1,6 +1,79 @@
 version: '3.9'
 
 services:
+  # ====================== API Gateway ======================
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./services/api-gateway/app:/app/app
+      - ./services/shared:/app/app/shared
+    env_file:
+      - .env
+    depends_on:
+      - auth-service
+      - activity-service
+      - chat-service
+      - media-service
+    restart: unless-stopped
+
+  # ====================== Auth Service ======================
+  auth-service:
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./services/auth-service/app:/app/app
+      - ./services/shared:/app/app/shared
+    env_file:
+      - .env
+    depends_on:
+      postgres-auth:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres-auth:
+    image: postgres:16
+    container_name: postgres-auth
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5434:5432"
+    volumes:
+      - auth_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ====================== Redis ======================
+  redis:
+    image: redis:7-alpine
+    container_name: redis-app
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
   # ====================== Activity Service ======================
   activity-service:
     build:
@@ -11,6 +84,7 @@ services:
       - "8000:8000"
     volumes:
       - ./services/activity-service/app:/app/app
+      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -48,6 +122,7 @@ services:
       - "8001:8000"
     volumes:
       - ./services/chat-service/app:/app/app
+      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -85,6 +160,7 @@ services:
       - "8002:8000"
     volumes:
       - ./services/media-service/app:/app/app
+      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -99,8 +175,8 @@ services:
     image: minio/minio:latest
     container_name: minio-app
     ports:
-      - "9000:9000"   # API
-      - "9001:9001"   # Web UI
+      - "9000:9000"
+      - "9001:9001"
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
@@ -149,7 +225,7 @@ services:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
@@ -159,7 +235,10 @@ services:
     restart: unless-stopped
 
 volumes:
+  auth_postgres_data:
   activity_postgres_data:
   chat_postgres_data:
   kafka_data:
   minio_data:
+  redis_data:
+  

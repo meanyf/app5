@@ -9,6 +9,7 @@ __pycache__/
 .eggs/
 dist/
 *.egg
+Структура.md
 
 # Virtual environment
 venv/

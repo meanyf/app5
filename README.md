@@ -2,9 +2,9 @@
 docker compose up --build
 
 # Обычный запуск после изменений
-docker compose up -d && docker compose logs -f media-service activity-service chat-service
+docker compose up -d && docker compose logs -f media-service activity-service chat-service auth-service api-gateway
 docker compose up -d
-docker compose logs -f media-service activity-service chat-service
+docker compose logs -f media-service activity-service chat-service auth-service
 
 docker compose exec chat-service alembic upgrade head
 
@@ -344,6 +344,8 @@ app5
 │   │   ├──alembic
 │   │   │   ├──versions
 │   │   │   │   ├──ac7af778082d_create_activities_table.py
+│   │   │   │   ├──add_activity_media.py
+│   │   │   │   ├──add_status.py
 │   │   │   │   └──second_migration.py
 │   │   │   ├──env.py
 │   │   │   ├──README
@@ -404,6 +406,11 @@ app5
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──auth-service
+│   │   ├──alembic
+│   │   │   ├──versions
+│   │   │   │   └──.gitkeep
+│   │   │   ├──env.py
+│   │   │   └──script.py.mako
 │   │   ├──app
 │   │   │   ├──db
 │   │   │   │   ├──__init__.py
@@ -425,14 +432,9 @@ app5
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
-│   │   ├──migrations
-│   │   │   ├──versions
-│   │   │   │   └──.gitkeep
-│   │   │   ├──alembic.ini
-│   │   │   ├──env.py
-│   │   │   └──script.py.mako
 │   │   ├──tests
 │   │   │   └──__init__.py
+│   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──chat-service
@@ -529,6 +531,11 @@ app5
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──user-service
+│   │   ├──alembic
+│   │   │   ├──versions
+│   │   │   │   └──.gitkeep
+│   │   │   ├──env.py
+│   │   │   └──script.py.mako
 │   │   ├──app
 │   │   │   ├──db
 │   │   │   │   ├──__init__.py
@@ -549,14 +556,9 @@ app5
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
-│   │   ├──migrations
-│   │   │   ├──versions
-│   │   │   │   └──.gitkeep
-│   │   │   ├──alembic.ini
-│   │   │   ├──env.py
-│   │   │   └──script.py.mako
 │   │   ├──tests
 │   │   │   └──__init__.py
+│   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   └──video-worker
@@ -584,6 +586,15 @@ app5
 
 ## Отдельный микросервис (пример структуры)
 ├──activity-service
+│   │   ├──alembic
+│   │   │   ├──versions
+│   │   │   │   ├──ac7af778082d_create_activities_table.py
+│   │   │   │   ├──add_activity_media.py
+│   │   │   │   ├──add_status.py
+│   │   │   │   └──second_migration.py
+│   │   │   ├──env.py
+│   │   │   ├──README
+│   │   │   └──script.py.mako
 │   │   ├──app
 │   │   │   ├──db
 │   │   │   │   ├──__init__.py
@@ -603,8 +614,7 @@ app5
 │   │   │   │   └──meetings.py
 │   │   │   ├──schemas
 │   │   │   │   ├──__init__.py
-│   │   │   │   ├──activity.py
-│   │   │   │   └──meeting.py
+│   │   │   │   └──activity.py
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──activity.py
@@ -614,13 +624,8 @@ app5
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
-│   │   ├──migrations
-│   │   │   ├──versions
-│   │   │   │   └──.gitkeep
-│   │   │   ├──alembic.ini
-│   │   │   ├──env.py
-│   │   │   └──script.py.mako
 │   │   ├──tests
 │   │   │   └──__init__.py
+│   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
