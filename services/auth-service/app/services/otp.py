@@ -63,10 +63,10 @@ async def _send_sms(phone: str, code: str) -> None:
 
         print(data)
 
-        # if data.get("status") != "OK":
-        #     raise RuntimeError(
-        #         f"Ошибка отправки СМС: {data.get('status_text', 'неизвестная ошибка')}"
-        #     )
+        if data.get("status") != "OK":
+            raise RuntimeError(
+                f"Ошибка отправки СМС: {data.get('status_text', 'неизвестная ошибка')}"
+            )
 
 async def verify_otp(phone: str, code: str) -> bool:
     """Проверяет OTP-код. Возвращает True если код верный, удаляет его из Redis."""

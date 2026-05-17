@@ -29,8 +29,10 @@ class _OtpScreenState extends State<OtpScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final response = await _client.get('auth/verify-otp');
-
+      final response = await _client.post('/auth/verify-otp', {
+              'phone': widget.phone,
+              'code': _codeController.text.trim(),
+            });
       // final response = await http.post(
       //   Uri.parse('$_baseUrl/auth/verify-otp'),
       //   headers: {'Content-Type': 'application/json'},
