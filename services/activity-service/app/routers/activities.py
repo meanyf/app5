@@ -1,6 +1,6 @@
 # activities.py
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
@@ -15,11 +15,10 @@ router = APIRouter(prefix="/activities", tags=["activities"])
 async def create_activity(
     activity_in: ActivityCreate,
     db: AsyncSession = Depends(get_db),
-    # current_user_id: UUID = Depends(get_current_user)
+    x_user_id: str = Header(...),
 ):
-    creator_id = UUID("00000000-0000-0000-0000-000000000000")  # временно
     service = ActivityService(db)
-    return await service.create_activity(creator_id, activity_in)
+    return await service.create_activity(x_user_id, activity_in)
 
 
 @router.get("/", response_model=list[ActivityRead])

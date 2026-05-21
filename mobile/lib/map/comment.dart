@@ -1,9 +1,8 @@
-// lib/map/comment.dart
-
 class Comment {
   final String id;
   final String activityId;
   final String userId;
+  final String userName; // новое
   final String text;
   final DateTime createdAt;
 
@@ -11,9 +10,19 @@ class Comment {
     required this.id,
     required this.activityId,
     required this.userId,
+    this.userName = '', // новое
     required this.text,
     required this.createdAt,
   });
+
+  Comment copyWith({String? userName}) => Comment(
+    id: id,
+    activityId: activityId,
+    userId: userId,
+    userName: userName ?? this.userName,
+    text: text,
+    createdAt: createdAt,
+  );
 
   factory Comment.fromJson(Map<String, dynamic> json) => Comment(
     id: json['id'] as String,

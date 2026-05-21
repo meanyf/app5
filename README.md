@@ -2,14 +2,20 @@
 docker compose up --build
 
 # Обычный запуск после изменений
-docker compose up -d && docker compose logs -f media-service activity-service chat-service auth-service api-gateway
+docker compose up -d && docker compose logs -f media-service activity-service chat-service auth-service api-gateway user-service
+
 docker compose up -d
 docker compose logs -f media-service activity-service chat-service auth-service
 
 docker compose exec chat-service alembic upgrade head
+docker compose exeс activity-service alembic revision --autogenerate -m "creator_id to string"
 
 docker compose exec postgres-activity psql -U postgres -d activity_db -c "UPDATE activities SET status = 'published';"
 
+docker exec -it postgres-chat psql -U postgres -d chat_db -c "SELECT * FROM comments LIMIT 5;"
+
+
+docker compose down
 ## Мобильное приложение для быстрого обмена событиями и встречами
 Общая идея
 Мобильное приложение объединяет карту локальных событий и инструмент для организации встреч между людьми. Основная идея — дать пользователям возможность видеть, что происходит вокруг, и находить людей для совместных действий, общения и решения задач.
@@ -242,6 +248,14 @@ app5
 │   │   │   └──RunnerTests.swift
 │   │   └──.gitignore
 │   ├──lib
+│   │   ├──auth
+│   │   │   ├──auth_screen.dart
+│   │   │   ├──otp_screen.dart
+│   │   │   └──setup_profile_screen.dart
+│   │   ├──core
+│   │   │   └──api_client.dart
+│   │   ├──feed
+│   │   │   └──feed_screen.dart
 │   │   ├──map
 │   │   │   ├──activity_service.dart
 │   │   │   ├──activity_sheet.dart
@@ -251,6 +265,8 @@ app5
 │   │   │   ├──comment.dart
 │   │   │   ├──create_activity_sheet.dart
 │   │   │   └──map_screen.dart
+│   │   ├──profile
+│   │   │   └──profile_screen.dart
 │   │   └──main.dart
 │   ├──linux
 │   │   ├──flutter
@@ -376,11 +392,13 @@ app5
 │   │   │   │   ├──geo_search.py
 │   │   │   │   ├──meeting.py
 │   │   │   │   └──ttl.py
+│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
 │   │   ├──tests
-│   │   │   └──__init__.py
+│   │   │   ├──__init__.py
+│   │   │   └──test_simple.py
 │   │   ├──alembic.ini
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
@@ -397,10 +415,12 @@ app5
 │   │   │   │   ├──chat.py
 │   │   │   │   ├──media.py
 │   │   │   │   └──users.py
+│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   ├──dependencies.py
-│   │   │   └──main.py
+│   │   │   ├──main.py
+│   │   │   └──proxy.py
 │   │   ├──tests
 │   │   │   └──__init__.py
 │   │   ├──Dockerfile
@@ -408,6 +428,7 @@ app5
 │   ├──auth-service
 │   │   ├──alembic
 │   │   │   ├──versions
+│   │   │   │   ├──0001_create_user_auth.py
 │   │   │   │   └──.gitkeep
 │   │   │   ├──env.py
 │   │   │   └──script.py.mako
@@ -429,6 +450,7 @@ app5
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──jwt.py
 │   │   │   │   └──otp.py
+│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
@@ -464,6 +486,7 @@ app5
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   └──chat.py
+│   │   │   ├──shared
 │   │   │   ├──websocket
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──handlers.py
@@ -487,6 +510,7 @@ app5
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   └──minio.py
+│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
@@ -530,9 +554,12 @@ app5
 │   │   │   └──__init__.py
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
+│   ├──shared
+│   │   └──dependencies.py
 │   ├──user-service
 │   │   ├──alembic
 │   │   │   ├──versions
+│   │   │   │   ├──create users table.py
 │   │   │   │   └──.gitkeep
 │   │   │   ├──env.py
 │   │   │   └──script.py.mako

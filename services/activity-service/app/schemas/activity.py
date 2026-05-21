@@ -75,7 +75,7 @@ class ActivityUpdate(BaseModel):
 class ActivityRead(BaseModel):
     id: UUID
     type: Literal["event", "meeting"]
-    creator_id: UUID
+    creator_id: str
     title: str
     description: Optional[str] = None
     latitude: float

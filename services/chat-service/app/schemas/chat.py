@@ -13,7 +13,7 @@ class CommentCreate(BaseModel):
 class CommentRead(BaseModel):
     id: UUID
     activity_id: UUID
-    user_id: UUID
+    user_id: str
     text: str
     created_at: datetime
 

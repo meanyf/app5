@@ -20,6 +20,8 @@ PUBLIC_PATHS = {
 
 
 async def jwt_validator_middleware(request: Request, call_next):
+    if request.method == "OPTIONS":
+        return await call_next(request)
     if request.url.path in PUBLIC_PATHS:
         return await call_next(request)
 
@@ -39,6 +41,7 @@ async def jwt_validator_middleware(request: Request, call_next):
             algorithms=[settings.JWT_ALGORITHM],
         )
         user_id: str = payload.get("sub")
+        phone: str = payload.get("phone", "")
         if not user_id:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
@@ -55,6 +58,7 @@ async def jwt_validator_middleware(request: Request, call_next):
     request.state.user_id = user_id
     headers = dict(request.headers)
     headers["x-user-id"] = user_id
+    headers["x-user-phone"] = phone
 
     # Мутируем scope чтобы заголовок был виден при проксировании
     request.scope["headers"] = [

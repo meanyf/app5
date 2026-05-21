@@ -26,7 +26,7 @@ class CommentService:
     async def create_comment(
         self,
         activity_id: UUID,
-        user_id: UUID,
+        user_id: str,
         data: CommentCreate,
     ) -> Comment:
         comment = Comment(
@@ -39,7 +39,7 @@ class CommentService:
         await self.db.refresh(comment)
         return comment
 
-    async def delete_comment(self, comment_id: UUID, user_id: UUID) -> bool:
+    async def delete_comment(self, comment_id: UUID, user_id: str) -> bool:
         result = await self.db.execute(
             select(Comment).where(
                 Comment.id == comment_id,

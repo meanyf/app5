@@ -15,6 +15,8 @@ class MediaItem {
 class Activity {
   final String id;
   final String type;
+  final String creatorId; // новое
+  final String authorName; // новое
   final String title;
   final String? description;
   final double latitude;
@@ -27,6 +29,8 @@ class Activity {
   const Activity({
     required this.id,
     required this.type,
+    required this.creatorId, // новое
+    this.authorName = '', // новое
     required this.title,
     this.description,
     this.maxParticipants,
@@ -37,9 +41,25 @@ class Activity {
     this.media = const [],
   });
 
+  Activity copyWith({String? authorName}) => Activity(
+    id: id,
+    type: type,
+    creatorId: creatorId,
+    authorName: authorName ?? this.authorName,
+    title: title,
+    description: description,
+    latitude: latitude,
+    longitude: longitude,
+    startsAt: startsAt,
+    expiresAt: expiresAt,
+    maxParticipants: maxParticipants,
+    media: media,
+  );
+
   factory Activity.fromJson(Map<String, dynamic> json) => Activity(
     id: json['id'] as String,
     type: json['type'] as String,
+    creatorId: json['creator_id'] as String, // новое
     title: json['title'] as String,
     description: json['description'] as String?,
     latitude: (json['latitude'] as num).toDouble(),

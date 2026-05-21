@@ -17,7 +17,7 @@ class Activity(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     type = Column(String, nullable=False)  # event | meeting
-    creator_id = Column(UUID(as_uuid=True), nullable=False)
+    creator_id = Column(String(36), nullable=False)    
     title = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     location = Column(Geography("POINT", srid=4326), nullable=False)

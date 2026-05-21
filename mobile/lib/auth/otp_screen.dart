@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../map/map_screen.dart';
 import 'package:app5/core/api_client.dart';
+import 'setup_profile_screen.dart';
 
 final _client = ApiClient();
 
@@ -33,27 +34,34 @@ class _OtpScreenState extends State<OtpScreen> {
               'phone': widget.phone,
               'code': _codeController.text.trim(),
             });
-      // final response = await http.post(
-      //   Uri.parse('$_baseUrl/auth/verify-otp'),
-      //   headers: {'Content-Type': 'application/json'},
-      //   body: jsonEncode({'phone': widget.phone, 'code': _codeController.text}),
-      // );
+
 
       if (!mounted) return;
-
+      
       if (response.statusCode == 200) {
         final token = jsonDecode(response.body)['access_token'] as String;
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('access_token', token);
 
         if (!mounted) return;
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const MapScreen()),
-          (_) => false,
-        );
-      } else {
-        final msg = jsonDecode(response.body)['detail'] ?? 'Неверный код';
-        _showError(msg.toString());
+
+          // Получаем профиль
+        final userResponse = await _client.get('/users/me');
+        final user = jsonDecode(userResponse.body);
+
+        if (!mounted) return;
+
+        if (user['name'] == null) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const SetupProfileScreen()),
+            (_) => false,
+          );
+        } else {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const MapScreen()),
+            (_) => false,
+          );
+        }
       }
     } catch (_) {
       _showError('Нет соединения с сервером');

@@ -133,7 +133,7 @@ services:
     restart: unless-stopped
 
   postgres-chat:
-    image: postgis/postgis:16-3.5
+    image: postgres:16
     container_name: postgres-chat
     restart: unless-stopped
     environment:
@@ -221,19 +221,52 @@ services:
     restart: unless-stopped
 
   # ====================== Kafka UI ======================
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
+  # kafka-ui:
+  #   image: provectuslabs/kafka-ui:latest
+  #   container_name: kafka-ui
+  #   ports:
+  #     - "8081:8080"
+  #   environment:
+  #     KAFKA_CLUSTERS_0_NAME: local
+  #     KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
+  #   restart: unless-stopped
+
+  user-service:
+    build:
+      context: ./services/user-service
+      dockerfile: Dockerfile
+    container_name: user-service
     ports:
-      - "8081:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      - "8004:8000"
+    volumes:
+      - ./services/user-service/app:/app/app
+    env_file:
+      - .env
     depends_on:
-      kafka:
+      postgres-user:
         condition: service_healthy
     restart: unless-stopped
 
+  postgres-user:
+    image: postgres:16
+    container_name: postgres-user
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5435:5432"
+    volumes:
+      - user_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 volumes:
   auth_postgres_data:
   activity_postgres_data:
@@ -241,4 +274,6 @@ volumes:
   kafka_data:
   minio_data:
   redis_data:
+  user_postgres_data:
+
   

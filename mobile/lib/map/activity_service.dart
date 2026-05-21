@@ -30,6 +30,29 @@ class ActivityService {
         .toList();
   }
 
+static Future<List<Activity>> fetchActivitiesWithAuthors() async {
+    final activities = await fetchActivities();
+
+    final authorIds = activities.map((a) => a.creatorId).toSet();
+
+    final authorNames = <String, String>{};
+    await Future.wait(
+      authorIds.map((id) async {
+        try {
+          final response = await _client.get('/users/$id');
+          if (response.statusCode == 200) {
+            final json = jsonDecode(response.body);
+            authorNames[id] = json['name'] as String? ?? 'Пользователь';
+          }
+        } catch (_) {}
+      }),
+    );
+
+    return activities
+        .map((a) => a.copyWith(authorName: authorNames[a.creatorId]))
+        .toList();
+  }
+  
   static Future<void> createActivity(Map<String, dynamic> body) async {
     final response = await _client
             .post('/activities/', body)

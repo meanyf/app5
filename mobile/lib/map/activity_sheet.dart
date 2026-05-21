@@ -34,7 +34,7 @@ class _ActivitySheetState extends State<ActivitySheet> {
 
   Future<void> _fetchComments() async {
     try {
-      final comments = await CommentService().getComments(widget.activity.id);
+      final comments = await CommentService().getCommentsWithUsers(widget.activity.id);
       if (mounted) {
         setState(() {
           _comments = comments;
@@ -354,6 +354,18 @@ class _CommentTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                    // comment.userName.isNotEmpty
+                    //   ? 
+                    comment.userName,
+                      // : comment.userId.substring(0, 8),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF616161),
+                  ),
+                ),
+                const SizedBox(height: 4),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
@@ -385,8 +397,7 @@ class _CommentTile extends StatelessWidget {
   }
 
   String _fmt(DateTime dt) {
-    final l = dt.toLocal();
-    return '${l.day.toString().padLeft(2, '0')}.${l.month.toString().padLeft(2, '0')} '
-        '${l.hour.toString().padLeft(2, '0')}:${l.minute.toString().padLeft(2, '0')}';
+    return '${dt.day.toString().padLeft(2, '0')}.${dt.month.toString().padLeft(2, '0')} '
+        '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
   }
 }

@@ -6,7 +6,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.proxy import lifespan
 from app.middleware.jwt_validator import jwt_validator_middleware
-from app.routers import activities, auth, chat, media
+from app.routers import activities, auth, chat, media, users
 
 
 app = FastAPI(title="API Gateway", lifespan=lifespan)
@@ -25,6 +25,7 @@ app.include_router(activities.router)
 app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(media.router)
+app.include_router(users.router)
 
 
 @app.get("/")

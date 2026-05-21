@@ -8,6 +8,9 @@ import 'activity_service.dart';
 import 'activity_widgets.dart';
 import 'activity_sheet.dart';
 import 'create_activity_sheet.dart';
+import 'package:app5/profile/profile_screen.dart';
+import '../feed/feed_screen.dart';
+
 
 const Duration kPollInterval = Duration(seconds: 20);
 
@@ -136,11 +139,52 @@ List<MapObject> get _mapObjects => _activities.map((activity) {
             ErrorBanner(message: _error!, onRetry: _fetchActivities),
 
           if (!_loading && _error == null)
-            Positioned(
+
+          Positioned(
               top: MediaQuery.of(context).padding.top + 12,
-              right: 16,
-              child: ActivityCounter(count: _activities.length),
+              left: 16,
+              child: GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ProfileScreen()),
+                ),
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.white,
+                  child: const Icon(
+                    Icons.person,
+                    size: 20,
+                    color: Color(0xFF5C6BC0),
+                  ),
+                ),
+              ),
             ),
+
+// Кнопка ленты — правый верхний угол
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 12,
+            right: 16,
+            child: GestureDetector(
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const FeedScreen())),
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.white,
+                child: const Icon(
+                  Icons.dynamic_feed,
+                  size: 20,
+                  color: Color(0xFF5C6BC0),
+                ),
+              ),
+            ),
+          ),
+
+          // Счётчик активностей — чуть ниже
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 52,
+            right: 16,
+            child: ActivityCounter(count: _activities.length),
+          ),
 
           Positioned(
             bottom: MediaQuery.of(context).padding.bottom + 90,

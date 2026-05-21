@@ -2,7 +2,7 @@
 
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
@@ -26,12 +26,10 @@ async def create_comment(
     activity_id: UUID,
     comment_in: CommentCreate,
     db: AsyncSession = Depends(get_db),
-    # user_id: UUID = Depends(get_current_user)  # раскомментить когда будет авторизация
+    x_user_id: str = Header(...),
 ):
-    user_id = UUID("00000000-0000-0000-0000-000000000000")  # временно
     service = CommentService(db)
-    return await service.create_comment(activity_id, user_id, comment_in)
-
+    return await service.create_comment(activity_id, x_user_id, comment_in)
 
 @router.delete("/{comment_id}", status_code=204)
 async def delete_comment(
