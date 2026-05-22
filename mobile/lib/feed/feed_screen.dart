@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../map/activity.dart';
 import '../map/activity_service.dart';
 import '../map/activity_sheet.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -17,9 +18,19 @@ class _FeedScreenState extends State<FeedScreen> {
   bool _isLoading = true;
   String? _error;
 
+  bool _filterMine = false;
+  String? _filterType; // null, 'event', 'meeting'
+  String? _currentUserId;
+
   @override
   void initState() {
     super.initState();
+    _loadUser();
+  }
+
+  Future<void> _loadUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    _currentUserId = prefs.getString('user_id');
     _fetch();
   }
 
@@ -29,7 +40,10 @@ class _FeedScreenState extends State<FeedScreen> {
       _error = null;
     });
     try {
-      final activities = await ActivityService.fetchActivitiesWithAuthors();
+      final activities = await ActivityService.fetchActivitiesWithAuthors(
+        creatorId: _filterMine ? _currentUserId : null,
+        activityType: _filterType,
+      );
       if (mounted) setState(() => _activities = activities);
     } catch (e) {
       if (mounted) setState(() => _error = e.toString());
@@ -46,11 +60,43 @@ class _FeedScreenState extends State<FeedScreen> {
       backgroundColor: scheme.surface,
       appBar: AppBar(
         title: const Text('Лента'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(icon: const Icon(Icons.refresh), onPressed: _fetch),
-        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Row(
+              children: [
+                FilterChip(
+                  label: const Text('Мои'),
+                  selected: _filterMine,
+                  onSelected: (v) {
+                    setState(() => _filterMine = v);
+                    _fetch();
+                  },
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: const Text('События'),
+                  selected: _filterType == 'event',
+                  onSelected: (v) {
+                    setState(() => _filterType = v ? 'event' : null);
+                    _fetch();
+                  },
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: const Text('Встречи'),
+                  selected: _filterType == 'meeting',
+                  onSelected: (v) {
+                    setState(() => _filterType = v ? 'meeting' : null);
+                    _fetch();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

@@ -6,16 +6,20 @@ import 'package:image_picker/image_picker.dart';
 import 'activity.dart';
 import 'activity_service.dart';
 import 'activity_widgets.dart';
+import 'package:video_player/video_player.dart';
 
 class CreateActivitySheet extends StatefulWidget {
   final double latitude;
   final double longitude;
   final Future<void> Function(Map<String, dynamic> body) onSubmit;
 
+final String? address;
+
   const CreateActivitySheet({
     super.key,
     required this.latitude,
     required this.longitude,
+    this.address,
     required this.onSubmit,
   });
 
@@ -34,55 +38,99 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
   DateTime _expiresAt = DateTime.now().add(const Duration(hours: 3));
   bool _submitting = false;
   String? _submitError;
+  
 
   // медиа
   final List<File> _selectedFiles = [];
   final List<MediaItem> _uploadedMedia = [];
   bool _uploadingMedia = false;
+  final Map<int, VideoPlayerController> _videoControllers = {};
+  final Set<int> _videoIndices = {};
 
+
+// ── dispose (замени существующий) ─────────────────────────────────────────────
   @override
   void dispose() {
     _titleController.dispose();
     _descController.dispose();
     _maxParticipantsController.dispose();
+    for (final c in _videoControllers.values) {
+      c.dispose();
+    }
     super.dispose();
   }
 
-  Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final picked = await picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 85,
-    );
-    if (picked == null) return;
+  // ── метод выбора медиа (замени _pickImage) ────────────────────────────────────
+Future<void> _pickMedia() async {
+  final picker = ImagePicker();
+  final picked = await picker.pickMedia();
+  if (picked == null) return;
+ 
+  final file = File(picked.path);
+  final isVideo = picked.mimeType?.startsWith('video') == true ||
+      picked.path.endsWith('.mp4') ||
+      picked.path.endsWith('.mov');
+ 
+  final index = _selectedFiles.length;
+ 
+  setState(() {
+    _selectedFiles.add(file);
+    _uploadingMedia = true;
+  });
+ 
+  // инициализируем контроллер для видео
+  if (isVideo) {
+    setState(() => _videoIndices.add(index)); // ← добавь эту строку
 
-    final file = File(picked.path);
-    setState(() {
-      _selectedFiles.add(file);
-      _uploadingMedia = true;
-    });
-
-    try {
-      final item = await ActivityService.uploadMedia(file);
-      if (mounted) {
-        setState(() => _uploadedMedia.add(item));
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() => _selectedFiles.remove(file));
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Ошибка загрузки: $e')));
-      }
-    } finally {
-      if (mounted) setState(() => _uploadingMedia = false);
+    final controller = VideoPlayerController.file(file);
+    await controller.initialize();
+    if (mounted) {
+      setState(() => _videoControllers[index] = controller);
     }
   }
-
-  void _removeMedia(int index) {
+ 
+  try {
+    final item = await ActivityService.uploadMedia(file);
+    if (mounted) setState(() => _uploadedMedia.add(item));
+  } catch (e) {
+    if (mounted) {
+      setState(() {
+        _selectedFiles.removeAt(index);
+        _videoControllers[index]?.dispose();
+        _videoControllers.remove(index);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ошибка загрузки: $e')),
+      );
+    }
+  } finally {
+    if (mounted) setState(() => _uploadingMedia = false);
+  }
+}
+ 
+// ── удаление медиа (замени _removeMedia) ──────────────────────────────────────
+void _removeMedia(int index) {
+    _videoControllers[index]?.dispose();
     setState(() {
       _selectedFiles.removeAt(index);
       _uploadedMedia.removeAt(index);
+      _videoIndices.remove(index);
+      // пересобираем индексы видео
+      final updatedIndices = _videoIndices
+          .map((i) => i > index ? i - 1 : i)
+          .toSet();
+      _videoIndices
+        ..clear()
+        ..addAll(updatedIndices);
+      // контроллеры как раньше
+      final updated = <int, VideoPlayerController>{};
+      _videoControllers.forEach((k, v) {
+        if (k < index) updated[k] = v;
+        if (k > index) updated[k - 1] = v;
+      });
+      _videoControllers
+        ..clear()
+        ..addAll(updated);
     });
   }
 
@@ -192,11 +240,18 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
+Text(
                 '${widget.latitude.toStringAsFixed(5)}, '
                 '${widget.longitude.toStringAsFixed(5)}',
                 style: TextStyle(fontSize: 12, color: Colors.grey[500]),
               ),
+              if (widget.address != null) ...[
+                const SizedBox(height: 2),
+                Text(
+                  widget.address!,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                ),
+              ],
               const SizedBox(height: 20),
 
               // тип
@@ -285,7 +340,7 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
               Row(
                 children: [
                   Text(
-                    'Фото',
+                    'Медиа',
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -301,9 +356,9 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
                     )
                   else if (_selectedFiles.length < 5)
                     TextButton.icon(
-                      onPressed: _pickImage,
+                      onPressed: _pickMedia,
                       icon: Icon(
-                        Icons.add_photo_alternate,
+                        Icons.perm_media,
                         color: activeColor,
                         size: 18,
                       ),
@@ -323,37 +378,58 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
                     scrollDirection: Axis.horizontal,
                     itemCount: _selectedFiles.length,
                     separatorBuilder: (_, __) => const SizedBox(width: 8),
-                    itemBuilder: (_, i) => Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            _selectedFiles[i],
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.cover,
+                    itemBuilder: (_, i) {
+                    final isVideo = _videoIndices.contains(i);
+                      return Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: isVideo
+                                ? SizedBox(
+                                    width: 90,
+                                    height: 90,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        VideoPlayer(_videoControllers[i]!),
+                                        const Center(
+                                          child: Icon(
+                                            Icons.play_circle_outline,
+                                            color: Colors.white,
+                                            size: 32,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Image.file(
+                                    _selectedFiles[i],
+                                    width: 90,
+                                    height: 90,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
-                        ),
-                        Positioned(
-                          top: 2,
-                          right: 2,
-                          child: GestureDetector(
-                            onTap: () => _removeMedia(i),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.black54,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.close,
-                                size: 16,
-                                color: Colors.white,
+                          Positioned(
+                            top: 2,
+                            right: 2,
+                            child: GestureDetector(
+                              onTap: () => _removeMedia(i),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.black54,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.close,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ],

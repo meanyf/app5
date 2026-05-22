@@ -10,9 +10,111 @@ import 'activity_sheet.dart';
 import 'create_activity_sheet.dart';
 import 'package:app5/profile/profile_screen.dart';
 import '../feed/feed_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 const Duration kPollInterval = Duration(seconds: 20);
+
+class _AddressSearchSheet extends StatefulWidget {
+  final Future<void> Function(String query) onAddressSelected;
+
+  const _AddressSearchSheet({required this.onAddressSelected});
+
+  @override
+  State<_AddressSearchSheet> createState() => _AddressSearchSheetState();
+}
+
+class _AddressSearchSheetState extends State<_AddressSearchSheet> {
+  final _controller = TextEditingController();
+  List<SuggestItem> _suggests = [];
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onChanged(String value) async {
+    if (value.isEmpty) {
+      setState(() => _suggests = []);
+      return;
+    }
+
+    final (_, result) = await YandexSuggest.getSuggestions(
+      text: value,
+      boundingBox: const BoundingBox(
+        southWest: Point(latitude: 55.4913, longitude: 37.2421),
+        northEast: Point(latitude: 55.9578, longitude: 37.9674),
+      ),
+      suggestOptions: const SuggestOptions(
+        suggestType: SuggestType.geo,
+        strictBounds: true,
+      ),
+    );
+
+    final suggestResult = await result;
+    debugPrint('error: ${suggestResult.error}');
+    debugPrint('items count: ${suggestResult.items?.length}');
+    debugPrint('first item: ${suggestResult.items?.firstOrNull?.title}');
+    if (suggestResult.error != null) return;
+    if (!mounted) return;
+    setState(() => _suggests = suggestResult.items ?? []);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 16,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            controller: _controller,
+            autofocus: true,
+            decoration: const InputDecoration(
+              hintText: 'Введите адрес',
+              prefixIcon: Icon(Icons.search),
+            ),
+            onChanged: _onChanged,
+            onSubmitted: (value) {
+              Navigator.pop(context);
+              widget.onAddressSelected(value);
+            },
+          ),
+          if (_suggests.isNotEmpty)
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 270),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: _suggests.length,
+                itemBuilder: (_, i) {
+                  final suggest = _suggests[i];
+                  return ListTile(
+                    leading: const Icon(Icons.location_on_outlined),
+                    title: Text(suggest.title),
+                    subtitle: suggest.subtitle != null
+                        ? Text(suggest.subtitle!)
+                        : null,
+                    onTap: () {
+                      Navigator.pop(context);
+                      widget.onAddressSelected(suggest.displayText);
+                    },
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -29,11 +131,42 @@ class _MapScreenState extends State<MapScreen> {
   bool _loading = true;
   String? _error;
 
-  @override
+  bool _filterMine = false;
+  String? _filterType;
+  String? _currentUserId;
+
+@override
   void initState() {
     super.initState();
+    _loadUser();
+    _requestLocation();
     _fetchActivities();
     _pollTimer = Timer.periodic(kPollInterval, (_) => _fetchActivities());
+  }
+
+Future<void> _loadUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() => _currentUserId = prefs.getString('user_id'));
+  }
+
+  Future<void> _requestLocation() async {
+    final status = await Permission.location.request();
+    debugPrint('Location permission status: $status');
+
+  }
+
+  Future<String?> _getAddress(Point point) async {
+    final (_, result) = await YandexSearch.searchByPoint(
+      point: point,
+      zoom: 16,
+      searchOptions: const SearchOptions(
+        searchType: SearchType.geo,
+        resultPageSize: 1,
+      ),
+    );
+    final searchResult = await result;
+    if (searchResult.error != null) return null;
+    return searchResult.items?.firstOrNull?.name;
   }
 
   @override
@@ -45,7 +178,10 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _fetchActivities() async {
     try {
-      final activities = await ActivityService.fetchActivities();
+      final activities = await ActivityService.fetchActivitiesWithAuthors(
+              creatorId: _filterMine ? _currentUserId : null,
+              activityType: _filterType,
+            );
       if (mounted) {
         setState(() {
           _activities = activities;
@@ -68,7 +204,92 @@ class _MapScreenState extends State<MapScreen> {
     await _fetchActivities();
   }
 
-  void _onMapLongTap(Point point) {
+
+void _onSearchAddress() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => DraggableScrollableSheet(
+        initialChildSize: 0.9,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        expand: false,
+        builder: (_, scrollController) => _AddressSearchSheet(
+          onAddressSelected: (query) async {
+            await _searchAndCreate(query);
+          },
+        ),
+      ),
+    );
+  }
+
+Future<void> _searchAndCreate(String query) async {
+  if (query.isEmpty) return;
+
+  final (_, result) = await YandexSearch.searchByText(
+    searchText: query,
+    geometry: Geometry.fromBoundingBox(const BoundingBox(
+      southWest: Point(latitude: -90, longitude: -180),
+      northEast: Point(latitude: 90, longitude: 180),
+    )),
+    searchOptions: const SearchOptions(
+      searchType: SearchType.geo,
+      resultPageSize: 1,
+    ),
+  );
+
+  final searchResult = await result;
+  if (searchResult.error != null || searchResult.items == null || searchResult.items!.isEmpty) return;
+
+  final item = searchResult.items!.first;
+  final point = item.geometry.first.point;
+  if (point == null) return;
+
+  await _mapController?.moveCamera(
+    CameraUpdate.newCameraPosition(CameraPosition(target: point, zoom: 15)),
+    animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.5),
+  );
+
+  if (!mounted) return;
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (_) => CreateActivitySheet(
+      latitude: point.latitude,
+      longitude: point.longitude,
+      address: item.name,
+      onSubmit: _createActivity,
+    ),
+  );
+}
+
+Future<void> _moveToUser() async {
+    final userPosition = await _mapController?.getUserCameraPosition();
+    if (userPosition == null) return;
+    await _mapController?.moveCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: userPosition.target,
+          zoom: 15, // игнорируем userPosition.zoom
+        ),
+      ),
+      animation: const MapAnimation(
+        type: MapAnimationType.smooth,
+        duration: 0.5,
+      ),
+    );
+  }
+
+ void _onMapLongTap(Point point) async {
+    final address = await _getAddress(point);
+    if (!mounted) return;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -78,6 +299,7 @@ class _MapScreenState extends State<MapScreen> {
       builder: (_) => CreateActivitySheet(
         latitude: point.latitude,
         longitude: point.longitude,
+        address: address, // добавь этот параметр
         onSubmit: _createActivity,
       ),
     );
@@ -97,7 +319,7 @@ class _MapScreenState extends State<MapScreen> {
 List<MapObject> get _mapObjects => _activities.map((activity) {
     final String iconAsset = activity.type == 'meeting'
         ? 'assets/meeting.png'
-        : 'assets/pin.png';
+        : 'assets/event.png';
 
     return PlacemarkMapObject(
       mapId: MapObjectId('activity_${activity.id}'),
@@ -105,29 +327,58 @@ List<MapObject> get _mapObjects => _activities.map((activity) {
       icon: PlacemarkIcon.single(
         PlacemarkIconStyle(
           image: BitmapDescriptor.fromAssetImage(iconAsset),
-          scale: activity.type == 'meeting' ? 0.4 : 0.2,
+          scale: activity.type == 'meeting' ? 0.2 : 0.2,
         ),
       ),
       onTap: (_, __) => _showActivitySheet(activity),
     );
   }).toList();
 
+Widget _buildChip(
+    String label,
+    bool selected,
+    ValueChanged<bool> onSelected,
+  ) {
+    return RawChip(
+      label: Text(label, style: const TextStyle(fontSize: 11)),
+      selected: selected,
+      onSelected: onSelected,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      backgroundColor: Colors.white,
+      selectedColor: const Color(0xFF5C6BC0).withOpacity(0.2),
+      visualDensity: VisualDensity.compact,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          YandexMap(
+         YandexMap(
             mapObjects: _mapObjects,
-            onMapCreated: (controller) {
-              _mapController = controller;
-              controller.moveCamera(
-                CameraUpdate.newCameraPosition(
-                  const CameraPosition(
-                    target: Point(latitude: 55.7558, longitude: 37.6173),
-                    zoom: 12,
+            onUserLocationAdded: (UserLocationView view) async {
+              return view.copyWith(
+                pin: view.pin.copyWith(
+                  icon: PlacemarkIcon.single(
+                    PlacemarkIconStyle(
+                      image: BitmapDescriptor.fromAssetImage('assets/pin.png'),
+                      scale: 0.2,
+                    ),
                   ),
                 ),
+                accuracyCircle: view.accuracyCircle.copyWith(
+                  fillColor: const Color(0xFF5C6BC0).withOpacity(0.15),
+                  strokeColor: const Color(0xFF5C6BC0),
+                  strokeWidth: 1.0,
+                ),
+              );
+            },
+onMapCreated: (controller) async {
+              _mapController = controller;
+              await controller.toggleUserLayer(
+                visible: true,
+                autoZoomEnabled: true,
               );
             },
             onMapLongTap: _onMapLongTap,
@@ -141,23 +392,65 @@ List<MapObject> get _mapObjects => _activities.map((activity) {
           if (!_loading && _error == null)
 
           Positioned(
-              top: MediaQuery.of(context).padding.top + 12,
               left: 16,
-              child: GestureDetector(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const ProfileScreen()),
-                ),
-                child: CircleAvatar(
-                  radius: 18,
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.person,
-                    size: 20,
-                    color: Color(0xFF5C6BC0),
-                  ),
-                ),
+              bottom: 100,
+              child: FloatingActionButton(
+                mini: true,
+                onPressed: _moveToUser,
+                child: const Icon(Icons.my_location),
               ),
             ),
+
+          Positioned(
+            left: 16,
+            bottom: 156,
+            child: FloatingActionButton(
+              mini: true,
+              onPressed: () {
+                print('BUTTON TAPPED');
+                _onSearchAddress();
+              },              child: const Icon(Icons.search),
+            ),
+          ),
+
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 12,
+            left: 16,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ProfileScreen()),
+                  ),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Colors.white,
+                    child: const Icon(
+                      Icons.person,
+                      size: 20,
+                      color: Color(0xFF5C6BC0),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _buildChip('Мои', _filterMine, (v) {
+                  setState(() => _filterMine = v);
+                  _fetchActivities();
+                }),
+                const SizedBox(height: 4),
+                _buildChip('События', _filterType == 'event', (v) {
+                  setState(() => _filterType = v ? 'event' : null);
+                  _fetchActivities();
+                }),
+                const SizedBox(height: 4),
+                _buildChip('Встречи', _filterType == 'meeting', (v) {
+                  setState(() => _filterType = v ? 'meeting' : null);
+                  _fetchActivities();
+                }),
+              ],
+            ),
+          ),
 
 // Кнопка ленты — правый верхний угол
           Positioned(

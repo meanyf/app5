@@ -5,6 +5,7 @@ import 'activity.dart';
 import 'activity_widgets.dart';
 import 'comment.dart';
 import 'comment_service.dart';
+import 'package:video_player/video_player.dart';
 
 class ActivitySheet extends StatefulWidget {
   final Activity activity;
@@ -19,16 +20,36 @@ class _ActivitySheetState extends State<ActivitySheet> {
   List<Comment> _comments = [];
   bool _loadingComments = true;
   bool _sending = false;
+  final Map<int, VideoPlayerController> _videoControllers = {};
 
+
+// ── замени initState ──────────────────────────────────────────────────────────
   @override
   void initState() {
     super.initState();
     _fetchComments();
+    _initVideoControllers();
   }
 
+  Future<void> _initVideoControllers() async {
+    for (var i = 0; i < widget.activity.media.length; i++) {
+      if (widget.activity.media[i].type == 'video') {
+        final controller = VideoPlayerController.networkUrl(
+          Uri.parse(widget.activity.media[i].url),
+        );
+        await controller.initialize();
+        if (mounted) setState(() => _videoControllers[i] = controller);
+      }
+    }
+  }
+
+  // ── замени dispose ────────────────────────────────────────────────────────────
   @override
   void dispose() {
     _textController.dispose();
+    for (final c in _videoControllers.values) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -195,24 +216,88 @@ class _ActivitySheetState extends State<ActivitySheet> {
                                 itemCount: widget.activity.media.length,
                                 separatorBuilder: (_, __) =>
                                     const SizedBox(width: 8),
-                                itemBuilder: (_, i) => ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    widget.activity.media[i].url,
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => Container(
-                                      width: 200,
-                                      height: 200,
-                                      color: Colors.grey[200],
-                                      child: const Icon(
-                                        Icons.broken_image,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                itemBuilder: (_, i) {
+                                  final item = widget.activity.media[i];
+                                  final isVideo = item.type == 'video';
+                                  final controller = _videoControllers[i];
+
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: isVideo
+                                        ? SizedBox(
+                                            width: 200,
+                                            height: 200,
+                                            child: controller == null
+                                                ? Container(
+                                                    color: Colors.black,
+                                                    child: const Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                            color: Colors.white,
+                                                          ),
+                                                    ),
+                                                  )
+                                                : GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        controller
+                                                                .value
+                                                                .isPlaying
+                                                            ? controller.pause()
+                                                            : controller.play();
+                                                      });
+                                                    },
+                                                    child: Stack(
+                                                      fit: StackFit.expand,
+                                                      children: [
+                                                        VideoPlayer(controller),
+                                                        // иконка play/pause поверх
+                                                        ValueListenableBuilder(
+                                                          valueListenable:
+                                                              controller,
+                                                          builder:
+                                                              (
+                                                                _,
+                                                                value,
+                                                                __,
+                                                              ) => value.isPlaying
+                                                              ? const SizedBox.shrink()
+                                                              : Container(
+                                                                  color: Colors
+                                                                      .black26,
+                                                                  child: const Center(
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .play_circle_outline,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      size: 48,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                          )
+                                        : Image.network(
+                                            item.url,
+                                            width: 200,
+                                            height: 200,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (_, __, ___) =>
+                                                Container(
+                                                  width: 200,
+                                                  height: 200,
+                                                  color: Colors.grey[200],
+                                                  child: const Icon(
+                                                    Icons.broken_image,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                          ),
+                                  );
+                                },
                               ),
                             ),
                           ],

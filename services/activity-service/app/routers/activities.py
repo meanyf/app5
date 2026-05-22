@@ -24,9 +24,11 @@ async def create_activity(
 @router.get("/", response_model=list[ActivityRead])
 async def get_activities(
     db: AsyncSession = Depends(get_db),
+    creator_id: str | None = None,
+    activity_type: str | None = None,
 ):
     service = ActivityService(db)
-    return await service.get_activities()
+    return await service.get_activities(creator_id=creator_id, activity_type=activity_type)
 
 
 @router.get("/{activity_id}", response_model=ActivityRead)

@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:app5/core/api_client.dart';
+import 'package:app5/auth/auth_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,6 +27,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     _loadProfile();
   }
+
+  Future<void> _logout() async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+      if (!mounted) return;
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const AuthScreen()),
+        (_) => false,
+      );
+    }
 
   Future<void> _loadProfile() async {
     try {
@@ -85,6 +97,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text('Профиль'),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(icon: const Icon(Icons.logout), onPressed: _logout),
+        ],
       ),
       backgroundColor: scheme.surface,
       body: _isLoading

@@ -48,6 +48,8 @@ class _OtpScreenState extends State<OtpScreen> {
           // Получаем профиль
         final userResponse = await _client.get('/users/me');
         final user = jsonDecode(userResponse.body);
+        await prefs.setString('user_id', user['id'].toString()); // вот сюда
+
 
         if (!mounted) return;
 

@@ -56,12 +56,15 @@ class ActivityService:
         )
         return result.scalar_one_or_none()
 
-    async def get_activities(self) -> List[Activity]:
-        result = await self.db.execute(
-            select(Activity)
-            .where(Activity.status == "published")
-            .order_by(Activity.starts_at.desc())
-        )
+    async def get_activities(self, creator_id: str = None, activity_type: str = None) -> List[Activity]:
+        query = select(Activity).where(Activity.status == "published")
+        
+        if creator_id:
+            query = query.where(Activity.creator_id == creator_id)
+        if activity_type:
+            query = query.where(Activity.type == activity_type)
+        
+        result = await self.db.execute(query.order_by(Activity.starts_at.desc()))
         return result.scalars().all()
 
     async def update_status(self, activity_id: UUID, status: str) -> Optional[Activity]:

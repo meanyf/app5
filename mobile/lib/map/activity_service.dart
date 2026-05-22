@@ -15,9 +15,20 @@ final _client = ApiClient();
 // const String kMediaUrl = 'http://192.168.0.124:8002'; // media-service
 
 class ActivityService {
-  static Future<List<Activity>> fetchActivities() async {
+  static Future<List<Activity>> fetchActivities({
+    String? creatorId,
+    String? activityType,
+  }) async {
+    final params = <String, String>{};
+    if (creatorId != null) params['creator_id'] = creatorId;
+    if (activityType != null) params['activity_type'] = activityType;
+
+    final query = params.isEmpty
+        ? ''
+        : '?${Uri(queryParameters: params).query}';
+
     final response = await _client
-        .get('/activities/')
+        .get('/activities/$query')
         .timeout(const Duration(seconds: 10));
 
     if (response.statusCode != 200) {
@@ -29,9 +40,15 @@ class ActivityService {
         .map((e) => Activity.fromJson(e as Map<String, dynamic>))
         .toList();
   }
-
-static Future<List<Activity>> fetchActivitiesWithAuthors() async {
-    final activities = await fetchActivities();
+  
+static Future<List<Activity>> fetchActivitiesWithAuthors({
+    String? creatorId,
+    String? activityType,
+  }) async {
+    final activities = await fetchActivities(
+      creatorId: creatorId,
+      activityType: activityType,
+    );
 
     final authorIds = activities.map((a) => a.creatorId).toSet();
 
