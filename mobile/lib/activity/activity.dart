@@ -1,22 +1,13 @@
 // lib/map/activity.dart
 
-class MediaItem {
-  final String url;
-  final String type; // "photo" | "video"
-
-  const MediaItem({required this.url, required this.type});
-
-  factory MediaItem.fromJson(Map<String, dynamic> json) =>
-      MediaItem(url: json['url'] as String, type: json['type'] as String);
-
-  Map<String, dynamic> toJson() => {'url': url, 'type': type};
-}
+import '../core/media_service.dart';
 
 class Activity {
   final String id;
   final String type;
   final String creatorId; // новое
   final String authorName; // новое
+  final String? authorAvatarUrl;
   final String title;
   final String? description;
   final double latitude;
@@ -31,6 +22,7 @@ class Activity {
     required this.type,
     required this.creatorId, // новое
     this.authorName = '', // новое
+    this.authorAvatarUrl,
     required this.title,
     this.description,
     this.maxParticipants,
@@ -41,11 +33,12 @@ class Activity {
     this.media = const [],
   });
 
-  Activity copyWith({String? authorName}) => Activity(
+  Activity copyWith({String? authorName, String? authorAvatarUrl}) => Activity(
     id: id,
     type: type,
     creatorId: creatorId,
     authorName: authorName ?? this.authorName,
+    authorAvatarUrl: authorAvatarUrl ?? this.authorAvatarUrl,
     title: title,
     description: description,
     latitude: latitude,

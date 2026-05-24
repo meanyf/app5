@@ -10,6 +10,8 @@ from app.services.activity import ActivityService
 
 router = APIRouter(prefix="/activities", tags=["activities"])
 
+import logging
+logger = logging.getLogger(__name__)
 
 @router.post("/", response_model=ActivityRead, status_code=201)
 async def create_activity(
@@ -28,8 +30,9 @@ async def get_activities(
     activity_type: str | None = None,
 ):
     service = ActivityService(db)
-    return await service.get_activities(creator_id=creator_id, activity_type=activity_type)
-
+    activities = await service.get_activities(creator_id=creator_id, activity_type=activity_type)
+    logger.info("Activities: %s", [a.id for a in activities])
+    return activities
 
 @router.get("/{activity_id}", response_model=ActivityRead)
 async def get_activity(activity_id: UUID, db: AsyncSession = Depends(get_db)):

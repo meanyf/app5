@@ -12,6 +12,8 @@ docker compose exeс activity-service alembic revision --autogenerate -m "creato
 
 docker compose exec postgres-activity psql -U postgres -d activity_db -c "UPDATE activities SET status = 'published';"
 
+flutter run 2>&1 | grep -E "flutter|ERROR|EXCEPTION|Error|dart"
+
 docker exec -it postgres-chat psql -U postgres -d chat_db -c "SELECT * FROM comments LIMIT 5;"
 
 
@@ -121,6 +123,7 @@ Prometheus собирает метрики со всех сервисов. Ка�
 Grafana визуализирует метрики из Prometheus в виде дашбордов.
 
 ```
+```
 app5
 ├──infra
 │   ├──grafana
@@ -190,6 +193,9 @@ app5
 │   │   ├──settings.gradle.kts
 │   │   └──.gitignore
 │   ├──assets
+│   │   ├──event.png
+│   │   ├──exmeeting.png
+│   │   ├──expin.png
 │   │   ├──meeting.png
 │   │   └──pin.png
 │   ├──ios
@@ -248,23 +254,29 @@ app5
 │   │   │   └──RunnerTests.swift
 │   │   └──.gitignore
 │   ├──lib
+│   │   ├──activity
+│   │   │   ├──activity_service.dart
+│   │   │   ├──activity_sheet.dart
+│   │   │   ├──activity_widgets.dart
+│   │   │   └──activity.dart
 │   │   ├──auth
 │   │   │   ├──auth_screen.dart
 │   │   │   ├──otp_screen.dart
 │   │   │   └──setup_profile_screen.dart
+│   │   ├──chat
+│   │   │   ├──comment_service.dart
+│   │   │   └──comment.dart
 │   │   ├──core
 │   │   │   └──api_client.dart
 │   │   ├──feed
 │   │   │   └──feed_screen.dart
 │   │   ├──map
-│   │   │   ├──activity_service.dart
-│   │   │   ├──activity_sheet.dart
-│   │   │   ├──activity_widgets.dart
-│   │   │   ├──activity.dart
-│   │   │   ├──comment_service.dart
-│   │   │   ├──comment.dart
 │   │   │   ├──create_activity_sheet.dart
 │   │   │   └──map_screen.dart
+│   │   ├──meetings
+│   │   │   ├──meeting_request.dart
+│   │   │   ├──meeting_service.dart
+│   │   │   └──meeting_sheet.dart
 │   │   ├──profile
 │   │   │   └──profile_screen.dart
 │   │   └──main.dart
@@ -359,6 +371,8 @@ app5
 │   ├──activity-service
 │   │   ├──alembic
 │   │   │   ├──versions
+│   │   │   │   ├──005_creator_id_to_string.py
+│   │   │   │   ├──006_create_meeting_requests.py
 │   │   │   │   ├──ac7af778082d_create_activities_table.py
 │   │   │   │   ├──add_activity_media.py
 │   │   │   │   ├──add_status.py
@@ -385,7 +399,8 @@ app5
 │   │   │   │   └──meetings.py
 │   │   │   ├──schemas
 │   │   │   │   ├──__init__.py
-│   │   │   │   └──activity.py
+│   │   │   │   ├──activity.py
+│   │   │   │   └──meeting.py
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──activity.py
@@ -414,6 +429,7 @@ app5
 │   │   │   │   ├──auth.py
 │   │   │   │   ├──chat.py
 │   │   │   │   ├──media.py
+│   │   │   │   ├──meetings.py
 │   │   │   │   └──users.py
 │   │   │   ├──shared
 │   │   │   ├──__init__.py
@@ -463,6 +479,7 @@ app5
 │   │   ├──alembic
 │   │   │   ├──versions
 │   │   │   │   ├──001_create_comments_table.py
+│   │   │   │   ├──002_user_id_varchar.py
 │   │   │   │   └──.gitkeep
 │   │   │   ├──env.py
 │   │   │   └──script.py.mako
@@ -555,7 +572,6 @@ app5
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
 │   ├──shared
-│   │   └──dependencies.py
 │   ├──user-service
 │   │   ├──alembic
 │   │   │   ├──versions
@@ -608,6 +624,7 @@ app5
 ├──README.md
 ├──.env.example
 └──.gitignore
+```
 ```
 
 

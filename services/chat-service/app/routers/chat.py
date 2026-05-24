@@ -35,10 +35,9 @@ async def create_comment(
 async def delete_comment(
     comment_id: UUID,
     db: AsyncSession = Depends(get_db),
-    # user_id: UUID = Depends(get_current_user)
+    x_user_id: str = Header(...),
 ):
-    user_id = UUID("00000000-0000-0000-0000-000000000000")  # временно
     service = CommentService(db)
-    deleted = await service.delete_comment(comment_id, user_id)
+    deleted = await service.delete_comment(comment_id, x_user_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Comment not found")

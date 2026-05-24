@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:app5/core/api_client.dart';
 import 'package:app5/auth/auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../user/user.dart';
+import '../user/user_service.dart';
+import '../core/media_service.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,13 +24,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   bool _isLoading = true;
   bool _isSaving = false;
-  String? _name;
-  String? _phone;
+  UserProfile? _profile; 
+
 
   @override
   void initState() {
     super.initState();
     _loadProfile();
+  }
+
+Future<void> _pickAndUploadAvatar() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+    if (picked == null) return;
+
+    setState(() => _isLoading = true);
+    try {
+      final media = await MediaService.uploadMedia(File(picked.path));
+      final patch = await _client.patch('/users/me', {'avatar_url': media.url});
+      if (patch.statusCode == 200 && mounted) {
+        setState(() => _profile = UserProfile.fromJson(jsonDecode(patch.body)));
+        UserService.invalidate(_profile!.id);
+      }
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Ошибка загрузки фото'),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   Future<void> _logout() async {
@@ -42,11 +76,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       final response = await _client.get('/users/me');
       if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
         setState(() {
-          _name = json['name'] as String?;
-          _phone = json['phone'] as String?;
-          _nameController.text = _name ?? '';
+          _profile = UserProfile.fromJson(jsonDecode(response.body));
+          _nameController.text = _profile?.name ?? '';
           _isLoading = false;
         });
       }
@@ -64,7 +96,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final response = await _client.patch('/users/me', {'name': newName});
       if (!mounted) return;
       if (response.statusCode == 200) {
-        setState(() => _name = newName);
+        setState(
+          () => _profile = UserProfile.fromJson(jsonDecode(response.body)),
+        );
+        UserService.invalidate(_profile!.id); // сбрасываем кэш
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(const SnackBar(content: Text('Имя обновлено')));
@@ -112,18 +147,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     const SizedBox(height: 24),
                     Center(
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundColor: scheme.primaryContainer,
-                        child: Text(
-                          _name?.isNotEmpty == true
-                              ? _name![0].toUpperCase()
-                              : '?',
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: scheme.onPrimaryContainer,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      child: GestureDetector(
+                        onTap: _pickAndUploadAvatar,
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: scheme.primaryContainer,
+                              backgroundImage: _profile?.avatarUrl != null
+                                  ? NetworkImage(_profile!.avatarUrl!)
+                                  : null,
+                              child: _profile?.avatarUrl == null
+                                  ? Text(
+                                      _profile?.name?.isNotEmpty == true
+                                          ? _profile!.name![0].toUpperCase()
+                                          : '?',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                        color: scheme.onPrimaryContainer,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  : null,
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: CircleAvatar(
+                                radius: 12,
+                                backgroundColor: scheme.primary,
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -136,7 +196,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Text(_phone ?? '—', style: const TextStyle(fontSize: 16)),
+                    Text(
+                      _profile?.phone ?? '—', style: const TextStyle(fontSize: 16)),
                     const SizedBox(height: 24),
                     Text(
                       'Имя',

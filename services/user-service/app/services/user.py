@@ -35,3 +35,11 @@ class UserService:
         await self.db.commit()
         await self.db.refresh(user)
         return user
+    
+
+
+    async def get_by_ids(self, ids: list[str]) -> list[User]:
+        result = await self.db.execute(
+            select(User).where(User.id.in_(ids))
+        )
+        return result.scalars().all()

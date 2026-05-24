@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
-from app.schemas.user import UserRead, UserUpdate
+from app.schemas.user import UserRead, UserUpdate, UserIdsRequest
 from app.services.user import UserService
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -44,3 +44,12 @@ async def get_user(
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Пользователь не найден")
     return user
+
+@router.post("/batch", response_model=list[UserRead])
+async def get_users_batch(
+    data: UserIdsRequest,
+    db: AsyncSession = Depends(get_db),
+    x_user_id: str = Header(...),
+):
+    service = UserService(db)
+    return await service.get_by_ids(data.ids)

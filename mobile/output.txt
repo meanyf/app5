@@ -1,0 +1,1515 @@
+Launching lib\main.dart on SM A346E in debug mode...
+Running Gradle task 'assembleDebug'...                             56,8s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          36,7s
+D/FlutterJNI(22936): Beginning load of flutter...
+D/FlutterJNI(22936): flutter (null) was loaded normally!
+I/flutter (22936): [IMPORTANT:flutter/shell/platform/android/android_context_vk_impeller.cc(62)] Using the Impeller rendering backend (Vulkan).
+D/FlutterRenderer(22936): Width is zero. 0,0
+Syncing files to device SM A346E...                             
+
+══╡ EXCEPTION CAUGHT BY SCHEDULER LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during a scheduler callback:
+There are multiple heroes that share the same tag within a subtree.
+Within each subtree for which heroes are to be animated (i.e. a PageRoute subtree), each Hero must
+have a unique non-null tag.
+In this case, multiple heroes had the following tag: <default FloatingActionButton tag>
+├# Here is the subtree for one of the offending heroes: Hero
+
+When the exception was thrown, this was the stack:
+#0      Hero._allHeroesFor.inviteHero.<anonymous closure> (package:flutter/src/widgets/heroes.dart:277:11)
+#1      Hero._allHeroesFor.inviteHero (package:flutter/src/widgets/heroes.dart:293:8)
+#2      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:311:11)
+#3      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#4      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#5      ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#6      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#7      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#8      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#9      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#10     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#11     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#12     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#13     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#14     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#15     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#16     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#17     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7223:16)
+#18     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#19     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#20     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#21     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#22     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#23     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#24     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#25     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7223:16)
+#26     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#27     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#28     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#29     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#30     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#31     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#32     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#33     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#34     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#35     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#36     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#37     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#38     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#39     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#40     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#41     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#42     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#43     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#44     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#45     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#46     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#47     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#48     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#49     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#50     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#51     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#52     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#53     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#54     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#55     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#56     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#57     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#58     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#59     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#60     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#61     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#62     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#63     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#64     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#65     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#66     Element.visitChildElements (package:flutter/src/widgets/framework.dart:3934:5)
+#67     Hero._allHeroesFor (package:flutter/src/widgets/heroes.dart:329:13)
+#68     HeroController._startHeroTransition (package:flutter/src/widgets/heroes.dart:995:16)
+#69     HeroController._maybeStartHeroTransition.<anonymous closure> (package:flutter/src/widgets/heroes.dart:947:9)
+#70     SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+#71     SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1357:11)
+#72     SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198:5)
+#73     _invoke (dart:ui/hooks.dart:356:13)
+#74     PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:444:5)
+#75     _drawFrame (dart:ui/hooks.dart:328:31)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+D/HWUI    (22936): HWUI - treat SMPTE_170M as sRGB
+I/IDS_TAG (22936): Closing IDS observe window
+I/IDS_TAG (22936): Getting Shared Preference for com.example.app5.MainApplication@23a637 uid = 10547
+I/IDS_TAG (22936): IDS count updated to 1 for com.example.app5.MainApplication@23a637
+I/Choreographer(22936): Skipped 185 frames!  The application may be doing too much work on its main thread.
+I/WindowExtensionsImpl(22936): Initializing Window Extensions, vendor API level=9, activity embedding enabled=true
+I/SV[50485965 MainActivity](22936): onWindowVisibilityChanged(0) true io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ......I. 0,0-0,0} of VRI[MainActivity]@732a08a
+D/SurfaceView(22936): 50485965 updateSurface: has no frame
+D/FlutterRenderer(22936): Width is zero. 0,0
+I/om.example.app5(22936): Compiler allocated 5066KB to compile void android.view.ViewRootImpl.performTraversals()
+E/om.example.app5(22936): [perfctl] 22936 22936 FPSGO ver:0
+E/om.example.app5(22936): [perfctl] 0 0 0 0
+D/BufferQueueConsumer(22936): [](id:599800000000,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#0](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3585 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 android.view.Choreographer.doCallbacks:1367 android.view.Choreographer.doFrame:1292 android.view.Choreographer$FrameDisplayEventReceiver.run:1870 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 sc.mNativeObject= 0xb400007523474e90 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3590 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#0](f:0,a:0,s:0) update width=1080 height=2340 format=-3 mTransformHint=0
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)0 dur=8 res=0x3 s={true 0xb400007583497c20} ch=true seqId=0
+I/VRI[MainActivity]@732a08a(22936): performConfigurationChange setNightDimText nightDimLevel=0
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initialize() mSurface={isValid=true 0xb400007583497c20} hwInitialized=true
+D/FlutterJNI(22936): Sending viewport metrics to the engine.
+D/SurfaceView(22936): 50485965 updateSurface: has no frame
+I/SV[50485965 MainActivity](22936): windowStopped(false) true io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ......ID 0,0-1080,2340} of VRI[MainActivity]@732a08a
+D/SurfaceView(22936): 50485965 updateSurface: has no frame
+D/VRI[MainActivity]@732a08a(22936): reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+I/SurfaceView(22936): 50485965 Changes: creating=true format=true size=true visible=true alpha=false hint=false left=true top=true z=false attached=true lifecycleStrategy=false
+D/BufferQueueConsumer(22936): [](id:599800000001,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 caller= android.view.SurfaceView.createBlastSurfaceControls:1781 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.lambda$new$0:280 android.view.SurfaceView.$r8$lambda$NfZyM_TG8F8lqzaOVZ7noREFjzU:0 android.view.SurfaceView$$ExternalSyntheticLambda1.onPreDraw:0 android.view.ViewTreeObserver.dispatchOnPreDraw:1229 android.view.ViewRootImpl.performTraversals:5448 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 sc.mNativeObject= 0xb400007523476210 format= 4 caller= android.view.SurfaceView.createBlastSurfaceControls:1782 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.lambda$new$0:280 android.view.SurfaceView.$r8$lambda$NfZyM_TG8F8lqzaOVZ7noREFjzU:0 android.view.SurfaceView$$ExternalSyntheticLambda1.onPreDraw:0 android.view.ViewTreeObserver.dispatchOnPreDraw:1229 
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1](f:0,a:0,s:0) update width=1080 height=2340 format=4 mTransformHint=0
+I/SurfaceView(22936): 50485965 Cur surface: Surface(name=null mNativeObject=0)/@0x8de54d4
+I/SV[50485965 MainActivity](22936): pST: sr = Rect(0, 0 - 1080, 2340) sw = 1080 sh = 2340
+D/SurfaceView(22936): 50485965 performSurfaceTransaction RenderWorker position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): updateSurface: mVisible = true mSurface.isValid() = true
+I/SV[50485965 MainActivity](22936): updateSurface: mSurfaceCreated = false surfaceChanged = true visibleChanged = true
+I/SurfaceView(22936): 50485965 visibleChanged -- surfaceCreated
+I/SV[50485965 MainActivity](22936): surfaceCreated 1 #8 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ......ID 0,0-1080,2340}
+D/om.example.app5(22936): Can't load libmbrainSDK
+D/om.example.app5(22936): initMbrain failed
+Syncing files to device SM A346E...                                337ms
+
+Flutter run key commands.
+r Hot reload. 
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on SM A346E is available at: http://127.0.0.1:54557/u-BBJdBTecg=/
+The Flutter DevTools debugger and profiler on SM A346E is available at: http://127.0.0.1:54557/u-BBJdBTecg=/devtools/?uri=ws://127.0.0.1:54557/u-BBJdBTecg=/ws
+I/SurfaceView(22936): 50485965 surfaceChanged -- format=4 w=1080 h=2340
+I/SV[50485965 MainActivity](22936): surfaceChanged (1080,2340) 1 #8 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ......ID 0,0-1080,2340}
+I/SurfaceView(22936): 50485965 surfaceRedrawNeeded
+V/SurfaceView(22936): Layout: x=0 y=0 w=1080 h=2340, frame=Rect(0, 0 - 1080, 2340)
+D/VRI[MainActivity]@732a08a(22936): Canceling draw. cancelDueToPreDrawListener=true cancelDueToSync=false
+I/Choreographer(22936): Skipped 34 frames!  The application may be doing too much work on its main thread.
+I/GrallocExtra(22936): gralloc_extra_query:is_SW3D 0
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1](f:0,a:0,s:0) onFrameAvailable the first frame is available
+I/GrallocExtra(22936): gralloc_extra_query:is_SW3D 0
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1](f:0,a:1,s:0) acquireNextBufferLocked size=1080x2340 mFrameNumber=1 applyTransaction=true mTimestamp=33534066173843(auto) mPendingTransactions.size=0 graphicBufferId=98509369901066 transform=0
+D/om.example.app5(22936): Can't load libmbrainSDK
+D/om.example.app5(22936): initMbrain failed
+I/SurfaceView(22936): 50485965 finishedDrawing
+D/PhoneWindow(22936): forceLight changed to false [com.example.app5/com.example.app5.MainActivity] from com.android.internal.policy.PhoneWindow.updateForceLightNavigationBar:4584 com.android.internal.policy.PhoneWindow.setNavigationBarColor:4275 io.flutter.plugin.platform.PlatformPlugin.setSystemChromeSystemUIOverlayStyle:514 io.flutter.plugin.platform.PlatformPlugin.access$700:36 io.flutter.plugin.platform.PlatformPlugin$1.setSystemUiOverlayStyle:123 
+I/flutter (22936): Location permission status: PermissionStatus.granted
+W/yandex.maps(22936): t6c8XyOLWgTnpOP9OqRR: Locale is already set. Ignored.
+W/yandex.maps(22936): aenAWaCiPaULDXYndbnK: API key is already set. Ignored.
+W/yandex.maps(22936): kWLknibK3l5Yvquaj9zN: Vulkan is not enabled. Do not use vulkan.
+I/PlatformViewsController(22936): Using hybrid composition for platform view: 0
+D/BufferQueueConsumer(22936): [](id:599800000002,api:0,p:-1,c:22936) connect: controlledByApp=true
+W/WindowOnBackDispatcher(22936): sendCancelIfRunning: isInProgress=false callback=io.flutter.embedding.android.FlutterActivity$1@25ec158
+D/BufferQueueConsumer(22936): [](id:599800000003,api:0,p:-1,c:22936) connect: controlledByApp=true
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=com.example.app5/com.example.app5.MainActivity
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=com.example.app5/com.example.app5.MainActivity
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 sc.mNativeObject= 0xb400007523482210 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3574 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)0 dur=8 res=0x1 s={true 0xb400007583497c20} ch=false seqId=0
+I/VRI[MainActivity]@732a08a(22936): updateBoundsLayer: t=android.view.SurfaceControl$Transaction@4f768ed sc=Surface(name=Bounds for - com.example.app5/com.example.app5.MainActivity@0)/@0x39e1322 frame=1
+D/VRI[MainActivity]@732a08a(22936): reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+D/VRI[MainActivity]@732a08a(22936): Setup new sync=wmsSync-VRI[MainActivity]@732a08a#1
+I/VRI[MainActivity]@732a08a(22936): Creating new active sync group VRI[MainActivity]@732a08a#2
+D/VRI[MainActivity]@732a08a(22936): Draw frame after cancel
+D/VRI[MainActivity]@732a08a(22936): registerCallbacksForSync syncBuffer=false
+D/BufferQueueConsumer(22936): [](id:599800000004,api:0,p:-1,c:22936) connect: controlledByApp=true
+D/libMEOW (22936): meow reload base cfg path: na
+D/libMEOW (22936): meow reload overlay cfg path: na
+W/QT      (22936): qt_process_init() called
+E/QT      (22936): [QT]file does not exist
+W/QT      (22936): Support!!
+E/QT      (22936): [QT]file does not exist
+D/libMEOW (22936): applied 1 plugins for [com.example.app5]:
+D/libMEOW (22936):   plugin 1: [libMEOW_gift.so]:
+D/SurfaceView(22936): 50485965 updateSurfacePosition RenderWorker, frameNr = 1, position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): uSP: rtp = Rect(0, 0 - 1080, 2340) rtsw = 1080 rtsh = 2340
+I/SV[50485965 MainActivity](22936): onSSPAndSRT: pl = 0 pt = 0 sx = 1.0 sy = 1.0
+I/SV[50485965 MainActivity](22936): aOrMT: VRI[MainActivity]@732a08a t = android.view.SurfaceControl$Transaction@1313088 fN = 1 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb400007683491a90 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+D/libMEOW (22936): meow new tls: 0xb4000075c36071c0
+D/libMEOW (22936): applied 1 plugins for [com.example.app5]:
+D/libMEOW (22936):   plugin 1: [libMEOW_gift.so]:
+D/MMUD    (22936): mtk_memory_debug_init com.example.app5 0xb40000749aae6400
+D/VRI[MainActivity]@732a08a(22936): Received frameDrawingCallback syncResult=0 frameNum=1.
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076834b3910 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+I/VRI[MainActivity]@732a08a(22936): Setting up sync and frameCommitCallback
+E/om.example.app5(22936): setpriority success to 100 : mali-cmar-backend
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#0](f:0,a:0,s:0) onFrameAvailable the first frame is available
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#0](f:0,a:1,s:0) acquireNextBufferLocked size=1080x2340 mFrameNumber=1 applyTransaction=true mTimestamp=33534294249843(auto) mPendingTransactions.size=0 graphicBufferId=98509369901107 transform=0
+I/VRI[MainActivity]@732a08a(22936): Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true
+D/HWUI    (22936): CFMS:: SetUp Pid : 22936    Tid : 22958
+D/VRI[MainActivity]@732a08a(22936): reportDrawFinished seqId=0
+I/Choreographer(22936): Skipped 32 frames!  The application may be doing too much work on its main thread.
+W/om.example.app5(22936): userfaultfd: MOVE ioctl seems unsupported: Try again
+W/yandex.maps(22936): ayLufDAnASjmvtmy5ecP: ##  decodeStyle duration: 144
+I/om.example.app5(22936): NativeAlloc concurrent mark compact GC freed 4688KB AllocSpace bytes, 10(308KB) LOS objects, 88% free, 3111KB/27MB, paused 536us,6.550ms total 65.151ms
+W/Choreographer(22936): Already have a pending vsync event.  There should only be one at a time.
+D/WindowLayoutComponentImpl(22936): Register WindowLayoutInfoListener on Context=com.example.app5.MainActivity@941ba27, of which baseContext=android.app.ContextImpl@8488ecc
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007583497c20}
+D/InputMethodManagerUtils(22936): startInputInner - Id : 0
+I/InputMethodManager(22936): startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+D/FlutterJNI(22936): Sending viewport metrics to the engine.
+D/InputTransport(22936): Input channel constructed: 'ClientS', fd=275
+I/BluetoothAdapter(22936): BluetoothAdapter() : com.example.app5
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+I/InputMethodManager(22936): handleMessage: setImeVisibility visible=false
+D/InsetsController(22936): hide(ime(), fromIme=false)
+I/ImeTracker(22936): com.example.app5:c6969de8: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+W/Choreographer(22936): Already have a pending vsync event.  There should only be one at a time.
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 2 created. That could seriously decrease rendering speed
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 3 created. That could seriously decrease rendering speed
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 4 created. That could seriously decrease rendering speed
+D/ProfileInstaller(22936): Installing profile for com.example.app5
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+I/VRI[MainActivity]@732a08a(22936): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@732a08a
+I/Choreographer(22936): Skipped 45 frames!  The application may be doing too much work on its main thread.
+I/ImeFocusController(22936): onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+I/ImeFocusController(22936): onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+W/yandex.maps(22936): FSQsibO5dSfN8zdvss4C: No available cache for request
+D/InputTransport(22936): Input channel destroyed: 'ClientS', fd=275
+I/VRI[MainActivity]@732a08a(22936): handleAppVisibility mAppVisible = true visible = false
+D/VRI[MainActivity]@732a08a(22936): visibilityChanged oldVisibility=true newVisibility=false
+I/SV[50485965 MainActivity](22936): onWindowVisibilityChanged(8) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+I/SurfaceView(22936): 50485965 Changes: creating=false format=false size=false visible=true alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+I/SurfaceView(22936): 50485965 Cur surface: Surface(name=null mNativeObject=-5476376642168726544)/@0x8de54d4
+I/SurfaceView(22936): 50485965 surfaceDestroyed
+I/SV[50485965 MainActivity](22936): surfaceDestroyed callback.size 1 #2 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SV[50485965 MainActivity](22936): updateSurface: mVisible = false mSurface.isValid() = true
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1](f:0,a:2,s:0) destructor()
+D/BufferQueueConsumer(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#1(BLAST Consumer)1](id:599800000001,api:0,p:-1,c:22936) disconnect
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+V/SurfaceView(22936): Layout: x=0 y=0 w=1080 h=2340, frame=Rect(0, 0 - 1080, 2340)
+D/SurfaceView(22936): 81978438 windowPositionLost, frameNr = 0
+D/HWUI    (22936): CacheManager::trimMemory(20)
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#0](f:0,a:2,s:0) destructor()
+D/BufferQueueConsumer(22936): [VRI[MainActivity]@732a08a#0(BLAST Consumer)0](id:599800000000,api:0,p:-1,c:22936) disconnect
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)8 dur=6 res=0x2 s={false 0x0} ch=true seqId=0
+I/SV[50485965 MainActivity](22936): windowStopped(true) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/VRI[MainActivity]@732a08a(22936): Not drawing due to not visible. Reason=!mAppVisible && !mForceDecorViewVisibility
+D/VRI[MainActivity]@732a08a(22936): Pending transaction will not be applied in sync with a draw due to view not visible
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076834877d0 mBlastBufferQueue=0xnull fn= 0 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl.handleSyncRequestWhenNoAsyncDraw:6733 android.view.ViewRootImpl.performTraversals:5504 android.view.ViewRootImpl.doTraversal:3924 
+W/yandex.maps(22936): 7Qn5NkuMgDkYXp22AchP: Got memory warning
+D/HWUI    (22936): CacheManager::trimMemory(20)
+I/VRI[MainActivity]@732a08a(22936): stopped(true) old = false
+D/VRI[MainActivity]@732a08a(22936): WindowStopped on com.example.app5/com.example.app5.MainActivity set to true
+D/HWUI    (22936): CacheManager::trimMemory(20)
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/BBA2    (22936): setIsFg isFg = false; delayValue 3999ms
+I/VRI[MainActivity]@732a08a(22936): handleAppVisibility mAppVisible = false visible = true
+I/VRI[MainActivity]@732a08a(22936): stopped(false) old = true
+D/VRI[MainActivity]@732a08a(22936): WindowStopped on com.example.app5/com.example.app5.MainActivity set to false
+D/ViewRootImpl(22936): Skipping stats log for color mode
+I/SV[50485965 MainActivity](22936): onWindowVisibilityChanged(0) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/BufferQueueConsumer(22936): [](id:599800000005,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#2](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3585 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 android.view.Choreographer.doCallbacks:1367 android.view.Choreographer.doFrame:1292 android.view.Choreographer$FrameDisplayEventReceiver.run:1870 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 sc.mNativeObject= 0xb4000075234d4110 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3590 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#2](f:0,a:0,s:0) update width=1080 height=2340 format=-3 mTransformHint=0
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)0 dur=9 res=0x3 s={true 0xb40000758349a930} ch=true seqId=0
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initialize() mSurface={isValid=true 0xb40000758349a930} hwInitialized=true
+I/SurfaceView(22936): 50485965 Changes: creating=false format=false size=false visible=false alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+I/SV[50485965 MainActivity](22936): windowStopped(false) true io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+I/SurfaceView(22936): 50485965 Changes: creating=true format=false size=false visible=true alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+D/BufferQueueConsumer(22936): [](id:599800000006,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 caller= android.view.SurfaceView.createBlastSurfaceControls:1781 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.setWindowStopped:539 android.view.SurfaceView.surfaceCreated:2327 android.view.ViewRootImpl.notifySurfaceCreated:3502 android.view.ViewRootImpl.performTraversals:5286 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 sc.mNativeObject= 0xb40000752348dfd0 format= 4 caller= android.view.SurfaceView.createBlastSurfaceControls:1782 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.setWindowStopped:539 android.view.SurfaceView.surfaceCreated:2327 android.view.ViewRootImpl.notifySurfaceCreated:3502 android.view.ViewRootImpl.performTraversals:5286 
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3](f:0,a:0,s:0) update width=1080 height=2340 format=4 mTransformHint=0
+I/SurfaceView(22936): 50485965 Cur surface: Surface(name=null mNativeObject=0)/@0x8de54d4
+I/SV[50485965 MainActivity](22936): pST: sr = Rect(0, 0 - 1080, 2340) sw = 1080 sh = 2340
+D/SurfaceView(22936): 50485965 performSurfaceTransaction RenderWorker position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): updateSurface: mVisible = true mSurface.isValid() = true
+I/SV[50485965 MainActivity](22936): updateSurface: mSurfaceCreated = false surfaceChanged = true visibleChanged = true
+I/SurfaceView(22936): 50485965 visibleChanged -- surfaceCreated
+I/SV[50485965 MainActivity](22936): surfaceCreated 1 #1 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SurfaceView(22936): 50485965 surfaceChanged -- format=4 w=1080 h=2340
+I/SV[50485965 MainActivity](22936): surfaceChanged (1080,2340) 1 #1 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SurfaceView(22936): 50485965 surfaceRedrawNeeded
+I/SurfaceView(22936): 50485965 finishedDrawing
+V/SurfaceView(22936): Layout: x=0 y=0 w=1080 h=2340, frame=Rect(0, 0 - 1080, 2340)
+D/VRI[MainActivity]@732a08a(22936): reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+D/VRI[MainActivity]@732a08a(22936): Setup new sync=wmsSync-VRI[MainActivity]@732a08a#4
+I/VRI[MainActivity]@732a08a(22936): Creating new active sync group VRI[MainActivity]@732a08a#5
+D/VRI[MainActivity]@732a08a(22936): Start draw after previous draw not visible
+D/VRI[MainActivity]@732a08a(22936): registerCallbacksForSync syncBuffer=false
+D/SurfaceView(22936): 50485965 updateSurfacePosition RenderWorker, frameNr = 1, position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): uSP: rtp = Rect(0, 0 - 1080, 2340) rtsw = 1080 rtsh = 2340
+I/SV[50485965 MainActivity](22936): onSSPAndSRT: pl = 0 pt = 0 sx = 1.0 sy = 1.0
+I/SV[50485965 MainActivity](22936): aOrMT: VRI[MainActivity]@732a08a t = android.view.SurfaceControl$Transaction@44eefcd fN = 1 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb400007683523ad0 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+D/VRI[MainActivity]@732a08a(22936): Received frameDrawingCallback syncResult=0 frameNum=1.
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076835233d0 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+I/VRI[MainActivity]@732a08a(22936): Setting up sync and frameCommitCallback
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#2](f:0,a:0,s:0) onFrameAvailable the first frame is available
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#2](f:0,a:1,s:0) acquireNextBufferLocked size=1080x2340 mFrameNumber=1 applyTransaction=true mTimestamp=33570197378153(auto) mPendingTransactions.size=0 graphicBufferId=98509369901115 transform=0
+I/VRI[MainActivity]@732a08a(22936): Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true
+D/VRI[MainActivity]@732a08a(22936): reportDrawFinished seqId=0
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=com.example.app5/com.example.app5.MainActivity
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=com.example.app5/com.example.app5.MainActivity
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb40000758349a930}
+D/InputMethodManagerUtils(22936): startInputInner - Id : 0
+I/InputMethodManager(22936): startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+I/InputMethodManager(22936): handleMessage: setImeVisibility visible=false
+D/InsetsController(22936): hide(ime(), fromIme=false)
+I/ImeTracker(22936): com.example.app5:e92b2360: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/InputTransport(22936): Input channel constructed: 'ClientS', fd=282
+W/Kumiho-Kumiho(22936): isSupportedFormat: Format is not supported
+D/HWUI    (22936): --- Failed to create image decoder with message 'unimplemented'
+I/ExoPlayerImpl(22936): Init c12cd92 [AndroidXMedia3/1.9.2] [a34x, SM-A346E, samsung, 36]
+D/AudioSystem(22936): onNewServiceWithAdapter: media.audio_flinger service obtained 0xb4000075b36dd0a0
+D/AudioSystem(22936): getService: checking for service media.audio_flinger: 0xb4000075734a5980
+D/BufferQueueConsumer(22936): [](id:599800000007,api:0,p:-1,c:22936) connect: controlledByApp=true
+D/AudioSystem(22936): onNewService: media.audio_policy service obtained 0xb4000075734a8360
+D/AudioSystem(22936): getService: checking for service media.audio_policy: 0xb4000075734a8360
+I/AudioManager(22936): getParameters keys = offloadVariableRateSupported
+W/AudioCapabilities(22936): Unsupported mediaType audio/x-ima
+W/AudioCapabilities(22936): Unsupported mediaType audio/mpeg-L1
+W/AudioCapabilities(22936): Unsupported mediaType audio/mpeg-L2
+W/VideoCapabilities(22936): Unsupported mime video/wvc1
+W/VideoCapabilities(22936): Unsupported mime video/x-ms-wmv
+W/AudioCapabilities(22936): Unsupported mediaType audio/iamf
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unrecognized profile/level 32768/256 for video/mp4v-es
+W/VideoCapabilities(22936): Unrecognized profile/level 32768/256 for video/mp4v-es
+W/AudioCapabilities(22936): Unsupported mime audio/x-ima
+W/AudioCapabilities(22936): Unsupported mime audio/mpeg-L1
+W/AudioCapabilities(22936): Unsupported mime audio/mpeg-L2
+W/VideoCapabilities(22936): Unsupported mime video/wvc1
+W/VideoCapabilities(22936): Unsupported mime video/wvc1
+W/VideoCapabilities(22936): Unsupported mime video/x-ms-wmv
+W/AudioCapabilities(22936): Unsupported mime audio/iamf
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unsupported mime image/vnd.android.heic
+W/VideoCapabilities(22936): Unrecognized profile/level 32768/256 for video/mp4v-es
+W/VideoCapabilities(22936): Unrecognized profile/level 32768/256 for video/mp4v-es
+W/VideoCapabilities(22936): Unrecognized profile/level 32768/256 for video/mp4v-es
+I/DMCodecAdapterFactory(22936): Creating an asynchronous MediaCodec adapter for track type video
+I/CCodec  (22936): state->set(ALLOCATING)
+D/RuntimeProperty(22936): ro.soc.model: MT6877
+I/CCodec  (22936): allocate(c2.mtk.avc.decoder)
+D/CCodec  (22936): allocate(c2.mtk.avc.decoder)
+I/ApexCodecsLazy(22936): Failed to load libcom.android.media.swcodec.apexcodecs.so: dlopen failed: library "libcom.android.media.swcodec.apexcodecs.so" not found
+I/Codec2Client(22936): Available Codec2 services: "default" "default1" "software"
+I/CCodec  (22936): setting up 'default' as default (vendor) store
+W/Kumiho-Kumiho(22936): isSupportedFormat: Format is not supported
+D/HWUI    (22936): --- Failed to create image decoder with message 'unimplemented'
+E/FlutterImageDecoderImplDefault(22936): Failed to decode image
+E/FlutterImageDecoderImplDefault(22936): android.graphics.ImageDecoder$DecodeException: Failed to create image decoder with message 'unimplemented'Input contained an error.
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.nCreate(Native Method)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.-$$Nest$smnCreate(Unknown Source:0)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder$ByteBufferSource.createImageDecoder(ImageDecoder.java:256)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.decodeBitmapImpl(ImageDecoder.java:1858)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.decodeBitmap(ImageDecoder.java:1850)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.image.ImageDecoderDefaultImpl.decodeImage(ImageDecoderDefaultImpl.java:44)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.image.FlutterImageDecoder.decodeImage(FlutterImageDecoder.java:60)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.FlutterJNI.decodeImage(FlutterJNI.java:577)
+I/CCodec  (22936): Created component [c2.mtk.avc.decoder] for [c2.mtk.avc.decoder]
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(ALLOCATED)
+D/CCodecConfig(22936): read media type: video/avc
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): ignored struct field coded.color-format.locations
+D/CCodecConfig(22936): ignoring local param raw.size (0xd2001800) as it is already supported
+D/CCodecConfig(22936): ignoring local param raw.crop (0xd2001801) as it is already supported
+D/CCodecConfig(22936): ignoring local param default.color (0x5200180b) as it is already supported
+D/CCodecConfig(22936): ignoring local param raw.hdr-static-info (0xd200180a) as it is already supported
+I/CCodec  (22936): [c2.mtk.avc.decoder] config->initialize() : 0
+Another exception was thrown: Exception: Invalid image data
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is Dict {
+D/CCodecConfig(22936):   c2::u32 algo.low-latency.value = 0
+D/CCodecConfig(22936):   c2::i32 algo.priority.value = 1
+D/CCodecConfig(22936):   c2::float algo.rate.value = 0
+D/CCodecConfig(22936):   c2::float coded.frame-rate.value = 0
+D/CCodecConfig(22936):   c2::u32 coded.pl.level = 20496
+D/CCodecConfig(22936):   c2::u32 coded.pl.profile = 20481
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.range = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 default.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 default.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 default.color.range = 0
+D/CCodecConfig(22936):   c2::u32 default.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 2097152
+D/CCodecConfig(22936):   c2::u32 input.delay.value = 4
+D/CCodecConfig(22936):   string input.media-type.value = "video/avc"
+D/CCodecConfig(22936):   c2::u32 output.delay.value = 12
+D/CCodecConfig(22936):   string output.media-type.value = "video/raw"
+D/CCodecConfig(22936):   c2::u32 raw.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.range = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.height = 239
+D/CCodecConfig(22936):   c2::u32 raw.crop.left = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.top = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.width = 319
+D/CCodecConfig(22936):   c2::float raw.hdr-static-info.master
+W/ColorUtils(22936): expected specified color aspects (0:0:0:0)
+I/CCodec  (22936): [c2.mtk.avc.decoder] config->queryConfiguration()
+I/CCodec  (22936): [c2.mtk.avc.decoder] mCallback->onComponentAllocated() IN
+I/CCodec  (22936): [c2.mtk.avc.decoder] mCallback->onComponentAllocated() OUT
+I/MediaCodec(22936): MediaCodec will operate in async mode
+E/MediaCodec(22936): Media Quality Service not found.
+D/SurfaceUtils(22936): connecting to surface 0xb400007583569620, reason connectToSurface
+I/MediaCodec(22936): [c2.mtk.avc.decoder] setting surface generation to 23486465
+D/SurfaceUtils(22936): disconnecting from surface 0xb400007583569620, reason connectToSurface(reconnect)
+D/SurfaceUtils(22936): connecting to surface 0xb400007583569610, reason connectToSurface(reconnect-with-listener)
+D/CCodec  (22936): [c2.mtk.avc.decoder] buffers are bound to CCodec for this session
+I/CCodec  (22936): appPid(22936) width(1080) height(2340)
+D/CCodecConfig(22936): no c2 equivalents for log-session-id
+D/CCodecConfig(22936): no c2 equivalents for importance
+D/CCodecConfig(22936): no c2 equivalents for color-standard
+D/CCodecConfig(22936): no c2 equivalents for csd-1
+D/CCodecConfig(22936): no c2 equivalents for native-window
+D/CCodecConfig(22936): no c2 equivalents for native-window-generation
+D/CCodecConfig(22936): no c2 equivalents for flags
+D/CCodecConfig(22936): c2 config diff is   c2::i32 algo.priority.value = 0
+D/CCodecConfig(22936):   c2::float algo.rate.value = 31.297
+D/CCodecConfig(22936):   c2::float coded.frame-rate.value = 31.297
+D/CCodecConfig(22936):   c2::u32 default.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 default.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 default.color.range = 2
+D/CCodecConfig(22936):   c2::u32 default.color.transfer = 3
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 4191232
+D/CCodecConfig(22936):   c2::u32 raw.max-size.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.max-size.width = 1080
+D/CCodecConfig(22936):   c2::u32 raw.pixel-format.value = 34
+D/CCodecConfig(22936):   c2::u32 raw.size.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.size.width = 1080
+D/CCodec  (22936): client requested max input size 508482, which is smaller than what component recommended (4191232); overriding with component recommendation.
+W/CCodec  (22936): This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+D/CCodec  (22936): encoding statistics level = 0
+D/CCodec  (22936): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   string mime = "video/avc"
+D/CCodec  (22936):   int32_t width = 1080
+D/CCodec  (22936):   int32_t profile = 65536
+D/CCodec  (22936):   int32_t priority = 0
+D/CCodec  (22936):   int32_t frame-rate = 31
+D/CCodec  (22936):   int32_t height = 2340
+D/CCodec  (22936):   int32_t level = 65536
+D/CCodec  (22936):   int32_t max-input-size = 4191232
+D/CCodec  (22936):   Rect crop(0, 0, 318, 238)
+D/CCodec  (22936): }
+D/CCodec  (22936): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t android._color-format = 2130708361
+D/CCodec  (22936):   int32_t android._video-scaling = 1
+D/CCodec  (22936):   int32_t sar-width = 1
+D/CCodec  (22936):   int32_t color-standard = 4
+D/CCodec  (22936):   int32_t color-range = 2
+D/CCodec  (22936):   int32_t color-transfer = 3
+D/CCodec  (22936):   int32_t android._dataspace = 259
+D/CCodec  (22936):   int32_t width = 1080
+D/CCodec  (22936):   int32_t rotation-degrees = 0
+D/CCodec  (22936):   int32_t sar-height = 1
+D/CCodec  (22936):   int32_t max-width = 1080
+D/CCodec  (22936):   int32_t max-height = 2340
+D/CCodec  (22936):   int32_t priority = 0
+D/CCodec  (22936):   string mime = "video/raw"
+D/CCodec  (22936):   Rect crop(0, 0, 318, 238)
+D/CCodec  (22936):   Buffer hdr-static-info = {
+D/CCodec  (22936):     00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+D/CCodec  (22936):     00000010:  00 00 00 00 00 00 00 00  00                       .........
+D/CCodec  (22936):   }
+D/CCodec  (22936):   int32_t frame-rate = 31
+D/CCodec  (22936):   int32_t height = 2340
+D/CCodec  (22936):   int32_t color-format = 2130708361
+D/CCodec  (22936):   int32_t p-extraBC = 6
+D/CCodec  (22936): }
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 raw.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 raw.color.range = 2
+D/CCodecConfig(22936):   c2::u32 raw.color.transfer = 3
+E/om.example.app5(22936): Failed to query component interface for required system resources: 6
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(STARTING)
+D/C2Store (22936): Using DMABUF Heaps
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] start: max output delay 19
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] Query output surface allocator returned 0 params => BAD_INDEX (6)
+D/Codec2Client(22936): GraphicBufferAllocator created
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] Created output block pool with allocatorID 18 => poolID 91 - OK
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] Configured output block pool ids 91 => OK
+D/GraphicsTracker(22936): new surface in configuration: maxDequeueRequested(0), maxDequeueCommitted(3)
+D/GraphicsTracker(22936): new surface configured with id:98509369901063 gen:23486465 maxDequeue:3
+D/GraphicsTracker(22936): maxDequeueCount committed to IGBP: 19
+D/GraphicsTracker(22936): Cache size 0 -> 0: maybe_cleared(0), dequeued(0)
+D/GraphicsTracker(22936): maxDqueueCount change 3 -> 19: pending: 0
+D/Codec2Client(22936): setOutputSurface -- generation=23486465 consumer usage=0x900
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RUNNING)
+I/DMABUFHEAPS(22936): Using DMA-BUF heap named: mtk_mm
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] 8 initial input buffers available
+I/DMCodecAdapterFactory(22936): Creating an asynchronous MediaCodec adapter for track type audio
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+I/CCodec  (22936): state->set(ALLOCATING)
+I/CCodec  (22936): allocate(c2.android.aac.decoder)
+D/CCodec  (22936): allocate(c2.android.aac.decoder)
+I/CCodec  (22936): setting up 'default' as default (vendor) store
+I/MediaCodec(22936): setCodecState state(0), called in 6, domain 1, 1
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+I/CCodec  (22936): Created component [c2.android.aac.decoder] for [c2.android.aac.decoder]
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(ALLOCATED)
+D/CCodecConfig(22936): read media type: audio/mp4a-latm
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.pool-ids.values
+I/CCodec  (22936): [c2.android.aac.decoder] config->initialize() : 0
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is Dict {
+D/CCodecConfig(22936):   c2::u32 coded.aac-packaging.value = 0
+D/CCodecConfig(22936):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(22936):   c2::u32 coded.pl.level = 0
+D/CCodecConfig(22936):   c2::u32 coded.pl.profile = 8192
+D/CCodecConfig(22936):   c2::i32 coding.drc.album-mode.value = 0
+D/CCodecConfig(22936):   c2::float coding.drc.attenuation-factor.value = 1
+D/CCodecConfig(22936):   c2::float coding.drc.boost-factor.value = 1
+D/CCodecConfig(22936):   c2::i32 coding.drc.compression-mode.value = 3
+D/CCodecConfig(22936):   c2::i32 coding.drc.effect-type.value = 3
+D/CCodecConfig(22936):   c2::float coding.drc.encoded-level.value = 0.25
+D/CCodecConfig(22936):   c2::float coding.drc.reference-level.value = -16
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 8192
+D/CCodecConfig(22936):   c2::u32 input.delay.value = 0
+D/CCodecConfig(22936):   string input.media-type.value = "audio/mp4a-latm"
+D/CCodecConfig(22936):   c2::u32 output.delay.value = 2
+D/CCodecConfig(22936):   c2::float output.drc.output-loudness.value = 0.25
+D/CCodecConfig(22936):   c2::u32 output.large-frame.max-size = 0
+D/CCodecConfig(22936):   c2::u32 output.large-frame.threshold-size = 0
+D/CCodecConfig(22936):   string output.media-type.value = "audio/raw"
+D/CCodecConfig(22936):   c2::u32 raw.channel-count.value = 1
+D/CCodecConfig(22936):   c2::u32 raw.channel-mask.value = 0
+D/CCodecConfig(22936):   c2::u32 raw.max-channel-count.value = 8
+D/CCodecConfig(22936):   c2::u32 raw.sample-rate.value = 44100
+D/CCodecConfig(22936): }
+I/CCodec  (22936): [c2.android.aac.decoder] config->queryConfiguration()
+I/CCodec  (22936): [c2.android.aac.decoder] mCallback->onComponentAllocated() IN
+I/CCodec  (22936): [c2.android.aac.decoder] mCallback->onComponentAllocated() OUT
+I/MediaCodec(22936): MediaCodec will operate in async mode
+E/MediaCodec(22936): Media Quality Service not found.
+D/CCodec  (22936): [c2.android.aac.decoder] buffers are bound to CCodec for this session
+I/CCodec  (22936): appPid(22936) width(0) height(0)
+D/CCodecConfig(22936): no c2 equivalents for log-session-id
+D/CCodecConfig(22936): no c2 equivalents for importance
+D/CCodecConfig(22936): no c2 equivalents for flags
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.channel-count.value = 2
+D/CCodecConfig(22936):   c2::u32 raw.sample-rate.value = 48000
+D/CCodec  (22936): client requested max input size 542, which is smaller than what component recommended (8192); overriding with component recommendation.
+W/CCodec  (22936): This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+D/CCodec  (22936): encoding statistics level = 0
+D/CCodec  (22936): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t aac-drc-album-mode = 0
+D/CCodec  (22936):   int32_t aac-drc-boost-level = 127
+D/CCodec  (22936):   int32_t aac-drc-cut-level = 127
+D/CCodec  (22936):   int32_t aac-drc-effect-type = 3
+D/CCodec  (22936):   int32_t aac-encoded-target-level = -1
+D/CCodec  (22936):   int32_t aac-max-output-channel_count = 8
+D/CCodec  (22936):   int32_t aac-target-ref-level = 64
+D/CCodec  (22936):   int32_t bitrate = 64000
+D/CCodec  (22936):   int32_t channel-count = 2
+D/CCodec  (22936):   int32_t channel-mask = 0
+D/CCodec  (22936):   int32_t level = 0
+D/CCodec  (22936):   int32_t max-input-size = 8192
+D/CCodec  (22936):   int32_t max-output-channel-count = 8
+D/CCodec  (22936):   string mime = "audio/mp4a-latm"
+D/CCodec  (22936):   int32_t profile = 2
+D/CCodec  (22936):   int32_t sample-rate = 48000
+D/CCodec  (22936): }
+D/CCodec  (22936): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t aac-drc-album-mode = 0
+D/CCodec  (22936):   int32_t aac-drc-boost-level = 127
+D/CCodec  (22936):   int32_t aac-drc-cut-level = 127
+D/CCodec  (22936):   int32_t aac-drc-effect-type = 3
+D/CCodec  (22936):   int32_t aac-drc-output-loudness = -1
+D/CCodec  (22936):   int32_t aac-encoded-target-level = -1
+D/CCodec  (22936):   int32_t aac-max-output-channel_count = 8
+D/CCodec  (22936):   int32_t aac-target-ref-level = 64
+D/CCodec  (22936):   int32_t buffer-batch-max-output-size = 0
+D/CCodec  (22936):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodec  (22936):   int32_t channel-count = 2
+D/CCodec  (22936):   int32_t channel-mask = 0
+D/CCodec  (22936):   int32_t max-output-channel-count = 8
+D/CCodec  (22936):   string mime = "audio/raw"
+D/CCodec  (22936):   int32_t sample-rate = 48000
+D/CCodec  (22936):   int32_t android._config-pcm-encoding = 2
+D/CCodec  (22936): }
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+E/om.example.app5(22936): Failed to query component interface for required system resources: 6
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(STARTING)
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] Created output block pool with allocatorID 16 => poolID 510 - OK
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] Configured output block pool ids 510 => OK
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RUNNING)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] 4 initial input buffers available
+D/CCodecConfig(22936): c2 config diff is   c2::u32 output.delay.value = 11
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] updating max output delay 19
+D/GraphicsTracker(22936): maxDequeueCount is already 19
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] Ignoring stale input buffer done callback: last flush index = 0, frameIndex = 0
+I/Choreographer(22936): Skipped 33 frames!  The application may be doing too much work on its main thread.
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.crop.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.crop.width = 1080
+D/CCodecConfig(22936):   c2::u32 raw.pixel-format.value = 4096
+D/CCodecBuffers(22936): [c2.mtk.avc.decoder#612:2D-Output] popFromStashAndRegister: at 1000000000000us, output format changed to AMessage(what = 0x00000000) = {
+D/CCodecBuffers(22936):   int32_t android._color-format = 4096
+D/CCodecBuffers(22936):   int32_t android._video-scaling = 1
+D/CCodecBuffers(22936):   int32_t sar-width = 1
+D/CCodecBuffers(22936):   int32_t color-standard = 1
+D/CCodecBuffers(22936):   int32_t color-range = 2
+D/CCodecBuffers(22936):   int32_t color-transfer = 3
+D/CCodecBuffers(22936):   int32_t android._dataspace = 260
+D/CCodecBuffers(22936):   int32_t width = 1080
+D/CCodecBuffers(22936):   int32_t rotation-degrees = 0
+D/CCodecBuffers(22936):   int32_t sar-height = 1
+D/CCodecBuffers(22936):   int32_t max-width = 1080
+D/CCodecBuffers(22936):   int32_t max-height = 2340
+D/CCodecBuffers(22936):   int32_t priority = 0
+D/CCodecBuffers(22936):   string mime = "video/raw"
+D/CCodecBuffers(22936):   Rect crop(0, 0, 1079, 2339)
+D/CCodecBuffers(22936):   Buffer hdr-static-info = {
+D/CCodecBuffers(22936):     00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+D/CCodecBuffers(22936):     00000010:  00 00 00 00 00 00 00 00  00                       .........
+D/CCodecBuffers(22936):   }
+D/CCodecBuffers(22936):   int32_t frame-rate = 31
+D/CCodecBuffers(22936):   int32_t height = 2340
+D/CCodecBuffers(22936):   int32_t color-format = 2130708361
+D/CCodecBuffers(22936):   int32_t p-extraBC = 6
+D/CCodecBuffers(22936): }
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.channel-mask.value = 12
+D/CCodecBuffers(22936): [c2.android.aac.decoder#902:Output[N]] popFromStashAndRegister: at 1000000142500us, output format changed to AMessage(what = 0x00000000) = {
+D/CCodecBuffers(22936):   int32_t aac-drc-album-mode = 0
+D/CCodecBuffers(22936):   int32_t aac-drc-boost-level = 127
+D/CCodecBuffers(22936):   int32_t aac-drc-cut-level = 127
+D/CCodecBuffers(22936):   int32_t aac-drc-effect-type = 3
+D/CCodecBuffers(22936):   int32_t aac-drc-output-loudness = -1
+D/CCodecBuffers(22936):   int32_t aac-encoded-target-level = -1
+D/CCodecBuffers(22936):   int32_t aac-max-output-channel_count = 8
+D/CCodecBuffers(22936):   int32_t aac-target-ref-level = 64
+D/CCodecBuffers(22936):   int32_t buffer-batch-max-output-size = 0
+D/CCodecBuffers(22936):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodecBuffers(22936):   int32_t channel-count = 2
+D/CCodecBuffers(22936):   int32_t channel-mask = 12
+D/CCodecBuffers(22936):   int32_t max-output-channel-count = 8
+D/CCodecBuffers(22936):   string mime = "audio/raw"
+D/CCodecBuffers(22936):   int32_t sample-rate = 48000
+D/CCodecBuffers(22936):   int32_t android._config-pcm-encoding = 2
+D/CCodecBuffers(22936): }
+I/MediaCodec(22936): setCodecState state(1), called in 6, domain 1, 1
+I/om.example.app5(22936): hiddenapi: Accessing hidden method Landroid/media/AudioTrack;->getLatency()I (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/media3/exoplayer/audio/AudioTrackPositionTracker; (domain=app, TargetSdkVersion=36) using reflection: allowed
+D/AudioTrack(22936): setVolume(1.000000, 1.000000) pid : 22936
+I/ExoPlayerImpl(22936): Release c12cd92 [AndroidXMedia3/1.9.2] [a34x, SM-A346E, samsung, 36] [media3.common, media3.exoplayer, media3.decoder, media3.datasource, media3.extractor]
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(FLUSHING)
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(FLUSHED)
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RESUMING)
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is   c2::u32 coded.vui.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.range = 2
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.transfer = 3
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] 8 initial input buffers available
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RUNNING)
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(FLUSHING)
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(FLUSHED)
+D/CCodecBuffers(22936): [c2.android.aac.decoder#902:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 0
+D/CCodecBuffers(22936): [c2.android.aac.decoder#902:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 1
+D/CCodecBuffers(22936): [c2.android.aac.decoder#902:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 2
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RESUMING)
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] 4 initial input buffers available
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RUNNING)
+D/BufferQueueConsumer(22936): [](id:599800000008,api:0,p:-1,c:22936) connect: controlledByApp=false
+D/SurfaceUtils(22936): connecting to surface 0xb40000758357d190, reason connectToSurface
+I/MediaCodec(22936): [c2.mtk.avc.decoder] setting surface generation to 23486466
+D/SurfaceUtils(22936): disconnecting from surface 0xb40000758357d190, reason connectToSurface(reconnect)
+D/SurfaceUtils(22936): connecting to surface 0xb40000758357d180, reason connectToSurface(reconnect-with-listener)
+D/GraphicsTracker(22936): new surface in configuration: maxDequeueRequested(0), maxDequeueCommitted(19)
+D/GraphicsTracker(22936): new surface configured with id:98509369901064 gen:23486466 maxDequeue:19
+D/GraphicsTracker(22936): maxDequeueCount is already 19
+D/Codec2Client(22936): setOutputSurface -- generation=23486466 consumer usage=0x900
+D/SurfaceUtils(22936): disconnecting from surface 0xb400007583569620, reason disconnectFromSurface
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RELEASING)
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+I/CCodec  (22936): [release][3405] component -> surface
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#612] MediaCodec discarded an unknown buffer
+D/BufferQueueConsumer(22936): [](id:599800000009,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RELEASING)
+D/om.example.app5(22936): Can't load libmbrainSDK
+D/om.example.app5(22936): initMbrain failed
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] MediaCodec discarded an unknown buffer
+D/GraphicsTracker(22936): allocateed 1 buffer after stop
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#902] MediaCodec discarded an unknown buffer
+I/CCodec  (22936): [release][3405] component -> surface
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RELEASED)
+I/Codec2Client(22936): Component destructing
+I/MediaCodec(22936): Codec shutdown complete
+I/CCodecBufferChannel(22936): CCodecBufferChannel destructing c2.android.aac.decoder#902
+D/BufferQueueConsumer(22936): [ImageReader-1x1f22m7-22936-2](id:599800000007,api:0,p:-1,c:22936) disconnect
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RELEASED)
+I/Codec2Client(22936): Component destructing
+D/SurfaceUtils(22936): disconnecting from surface 0xb40000758357d190, reason disconnectFromSurface
+I/MediaCodec(22936): Codec shutdown complete
+I/CCodecBufferChannel(22936): CCodecBufferChannel destructing c2.mtk.avc.decoder#612
+E/GraphicsTracker(22936): cannot deallocate due to being stopped
+W/Codec2-GraphicBufferAllocator(22936): deallocate() 98509369901157 was not successful 1
+E/Surface (22936): freeAllBuffers: 1 buffers were freed while being dequeued!
+D/BufferQueueConsumer(22936): [unnamed-22936-8](id:599800000009,api:0,p:-1,c:22936) disconnect
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c350ef58 : 0(0 size) total buffers - 0(0 size) used buffers - 28/37 (recycle/alloc) - 9/23 (fetch/transfer)
+D/AidlBufferPoolAcc(22936): evictor expired: 1, evicted: 1
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c3546068 : 0(0 size) total buffers - 0(0 size) used buffers - 16/21 (recycle/alloc) - 5/16 (fetch/transfer)
+D/AidlBufferPoolAcc(22936): evictor expired: 1, evicted: 1
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+
+Performing hot restart...                                       
+D/libMEOW (22936): meow delete tls: 0xb4000075c36071c0
+D/BufferQueueConsumer(22936): [SurfaceTexture-0-22936-0](id:599800000004,api:0,p:-1,c:22936) disconnect
+Restarted application in 5 669ms.
+I/Choreographer(22936): Skipped 116 frames!  The application may be doing too much work on its main thread.
+I/HWUI    (22936): Davey! duration=980ms; Flags=0, FrameTimelineVsyncId=11951207, IntendedVsync=33743684921000, Vsync=33744651549000, InputEventId=0, HandleInputStart=33744659529240, AnimationStart=33744659531009, PerformTraversalsStart=33744659531625, DrawStart=33744659747394, FrameDeadline=33743693254333, FrameStartTime=33744659130163, FrameInterval=8333000, WorkloadTarget=8333333, SyncQueued=33744659827625, SyncStart=33744659901471, IssueDrawCommandsStart=33744660125548, SwapBuffers=33744662406394, FrameCompleted=33744665005163, DequeueBufferDuration=39077, QueueBufferDuration=504923, GpuCompleted=33744665005163, SwapBuffersCompleted=33744663167317, DisplayPresentTime=33535214103997, CommandSubmissionCompleted=33744662406394, 
+W/WindowOnBackDispatcher(22936): sendCancelIfRunning: isInProgress=false callback=io.flutter.embedding.android.FlutterActivity$1@25ec158
+
+══╡ EXCEPTION CAUGHT BY SCHEDULER LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during a scheduler callback:
+There are multiple heroes that share the same tag within a subtree.
+Within each subtree for which heroes are to be animated (i.e. a PageRoute subtree), each Hero must
+have a unique non-null tag.
+In this case, multiple heroes had the following tag: <default FloatingActionButton tag>
+├# Here is the subtree for one of the offending heroes: Hero
+
+When the exception was thrown, this was the stack:
+#0      Hero._allHeroesFor.inviteHero.<anonymous closure> (package:flutter/src/widgets/heroes.dart:277:11)
+#1      Hero._allHeroesFor.inviteHero (package:flutter/src/widgets/heroes.dart:293:8)
+#2      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:311:11)
+#3      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#4      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#5      ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#6      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#7      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#8      Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#9      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#10     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#11     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#12     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#13     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#14     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#15     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#16     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#17     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7223:16)
+#18     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#19     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#20     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#21     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#22     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#23     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#24     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#25     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7223:16)
+#26     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#27     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#28     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#29     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#30     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#31     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#32     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#33     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#34     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#35     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#36     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#37     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#38     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#39     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#40     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#41     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#42     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#43     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#44     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#45     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#46     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#47     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#48     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#49     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#50     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#51     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#52     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#53     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#54     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#55     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#56     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#57     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#58     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#59     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#60     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#61     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#62     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#63     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5871:14)
+#64     Hero._allHeroesFor.visitor (package:flutter/src/widgets/heroes.dart:326:15)
+#65     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7101:14)
+#66     Element.visitChildElements (package:flutter/src/widgets/framework.dart:3934:5)
+#67     Hero._allHeroesFor (package:flutter/src/widgets/heroes.dart:329:13)
+#68     HeroController._startHeroTransition (package:flutter/src/widgets/heroes.dart:995:16)
+#69     HeroController._maybeStartHeroTransition.<anonymous closure> (package:flutter/src/widgets/heroes.dart:947:9)
+#70     SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+#71     SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1357:11)
+#72     SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198:5)
+#73     _invoke (dart:ui/hooks.dart:356:13)
+#74     PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:444:5)
+#75     _drawFrame (dart:ui/hooks.dart:328:31)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+D/BufferQueueConsumer(22936): [ImageReader-1080x2340f1m3-22936-0](id:599800000002,api:0,p:-1,c:22936) disconnect
+I/flutter (22936): Location permission status: PermissionStatus.granted
+I/Choreographer(22936): Skipped 59 frames!  The application may be doing too much work on its main thread.
+W/yandex.maps(22936): t6c8XyOLWgTnpOP9OqRR: Locale is already set. Ignored.
+W/yandex.maps(22936): aenAWaCiPaULDXYndbnK: API key is already set. Ignored.
+W/yandex.maps(22936): kWLknibK3l5Yvquaj9zN: Vulkan is not enabled. Do not use vulkan.
+I/PlatformViewsController(22936): Using hybrid composition for platform view: 0
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3](f:0,a:0,s:0) onFrameAvailable the first frame is available
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3](f:0,a:1,s:0) acquireNextBufferLocked size=1080x2340 mFrameNumber=1 applyTransaction=true mTimestamp=33745311299625(auto) mPendingTransactions.size=0 graphicBufferId=98509369901169 transform=0
+W/yandex.maps(22936): ayLufDAnASjmvtmy5ecP: ##  decodeStyle duration: 111
+D/BufferQueueConsumer(22936): [](id:59980000000a,api:0,p:-1,c:22936) connect: controlledByApp=true
+D/BufferQueueConsumer(22936): [](id:59980000000b,api:0,p:-1,c:22936) connect: controlledByApp=true
+D/libMEOW (22936): meow new tls: 0xb4000075c37072c0
+D/libMEOW (22936): applied 1 plugins for [com.example.app5]:
+D/libMEOW (22936):   plugin 1: [libMEOW_gift.so]:
+W/WindowOnBackDispatcher(22936): sendCancelIfRunning: isInProgress=false callback=io.flutter.embedding.android.FlutterActivity$1@25ec158
+W/yandex.maps(22936): UDJFd3dKAo6oib7P77kw: Clearing cache
+W/yandex.maps(22936): UDJFd3dKAo6oib7P77kw: Clearing cache
+W/yandex.maps(22936): UDJFd3dKAo6oib7P77kw: Clearing cache
+W/yandex.maps(22936): UDJFd3dKAo6oib7P77kw: Clearing cache
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 2 created. That could seriously decrease rendering speed
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+I/Kumiho-Kumiho(22936): getPackageName: com.example.app5
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 3 created. That could seriously decrease rendering speed
+W/yandex.maps(22936): kbBiQ/mL6ZM4vm8bWbov: Atlas: MapObjectAtlas. Page: 4 created. That could seriously decrease rendering speed
+I/VRI[MainActivity]@732a08a(22936): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@732a08a
+D/Choreographer(22936): BBA2 receive callback when in bg : 0
+I/ImeFocusController(22936): onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+I/ImeFocusController(22936): onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+W/yandex.maps(22936): FSQsibO5dSfN8zdvss4C: No available cache for request
+D/InputTransport(22936): Input channel destroyed: 'ClientS', fd=282
+I/VRI[MainActivity]@732a08a(22936): handleAppVisibility mAppVisible = true visible = false
+D/VRI[MainActivity]@732a08a(22936): visibilityChanged oldVisibility=true newVisibility=false
+I/SV[50485965 MainActivity](22936): onWindowVisibilityChanged(8) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+I/SurfaceView(22936): 50485965 Changes: creating=false format=false size=false visible=true alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+I/SurfaceView(22936): 50485965 Cur surface: Surface(name=null mNativeObject=-5476376642168459568)/@0x8de54d4
+I/SurfaceView(22936): 50485965 surfaceDestroyed
+I/SV[50485965 MainActivity](22936): surfaceDestroyed callback.size 1 #2 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SV[50485965 MainActivity](22936): updateSurface: mVisible = false mSurface.isValid() = true
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3](f:0,a:1,s:0) destructor()
+D/BufferQueueConsumer(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#3(BLAST Consumer)3](id:599800000006,api:0,p:-1,c:22936) disconnect
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+V/SurfaceView(22936): Layout: x=0 y=0 w=1080 h=2340, frame=Rect(0, 0 - 1080, 2340)
+D/SurfaceView(22936): 12117492 windowPositionLost, frameNr = 0
+D/HWUI    (22936): CacheManager::trimMemory(20)
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#2](f:0,a:2,s:0) destructor()
+D/BufferQueueConsumer(22936): [VRI[MainActivity]@732a08a#2(BLAST Consumer)2](id:599800000005,api:0,p:-1,c:22936) disconnect
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)8 dur=6 res=0x2 s={false 0x0} ch=true seqId=0
+I/SV[50485965 MainActivity](22936): windowStopped(true) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/VRI[MainActivity]@732a08a(22936): Not drawing due to not visible. Reason=!mAppVisible && !mForceDecorViewVisibility
+D/VRI[MainActivity]@732a08a(22936): Pending transaction will not be applied in sync with a draw due to view not visible
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076834877d0 mBlastBufferQueue=0xnull fn= 0 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl.handleSyncRequestWhenNoAsyncDraw:6733 android.view.ViewRootImpl.performTraversals:5504 android.view.ViewRootImpl.doTraversal:3924 
+W/yandex.maps(22936): 7Qn5NkuMgDkYXp22AchP: Got memory warning
+D/HWUI    (22936): CacheManager::trimMemory(20)
+I/VRI[MainActivity]@732a08a(22936): stopped(true) old = false
+D/VRI[MainActivity]@732a08a(22936): WindowStopped on com.example.app5/com.example.app5.MainActivity set to true
+D/HWUI    (22936): CacheManager::trimMemory(20)
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/BBA2    (22936): setIsFg isFg = false; delayValue 3999ms
+I/VRI[MainActivity]@732a08a(22936): handleAppVisibility mAppVisible = false visible = true
+I/VRI[MainActivity]@732a08a(22936): stopped(false) old = true
+D/VRI[MainActivity]@732a08a(22936): WindowStopped on com.example.app5/com.example.app5.MainActivity set to false
+D/ViewRootImpl(22936): Skipping stats log for color mode
+I/SV[50485965 MainActivity](22936): onWindowVisibilityChanged(0) false io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+D/SV[50485965 MainActivity](22936): updateSurface: surface is not valid
+I/SV[50485965 MainActivity](22936): releaseSurfaces: viewRoot = VRI[MainActivity]@732a08a
+D/VRI[MainActivity]@732a08a(22936): applyTransactionOnDraw applyImmediately
+D/BufferQueueConsumer(22936): [](id:59980000000c,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#4](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3585 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 android.view.Choreographer.doCallbacks:1367 android.view.Choreographer.doFrame:1292 android.view.Choreographer$FrameDisplayEventReceiver.run:1870 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = VRI[MainActivity]@732a08a mNativeObject= 0xb4000076a348cef0 sc.mNativeObject= 0xb4000075234fffd0 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3590 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#4](f:0,a:0,s:0) update width=1080 height=2340 format=-3 mTransformHint=0
+I/VRI[MainActivity]@732a08a(22936): Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)0 dur=11 res=0x3 s={true 0xb400007583552d90} ch=true seqId=0
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initialize() mSurface={isValid=true 0xb400007583552d90} hwInitialized=true
+I/SurfaceView(22936): 50485965 Changes: creating=false format=false size=false visible=false alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+I/SV[50485965 MainActivity](22936): windowStopped(false) true io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340} of VRI[MainActivity]@732a08a
+I/SurfaceView(22936): 50485965 Changes: creating=true format=false size=false visible=true alpha=false hint=false left=false top=false z=false attached=true lifecycleStrategy=false
+D/BufferQueueConsumer(22936): [](id:59980000000d,api:0,p:-1,c:22936) connect: controlledByApp=false
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#5](f:0,a:0,s:0) constructor()
+I/BLASTBufferQueue_Java(22936): new BLASTBufferQueue, mName= 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 caller= android.view.SurfaceView.createBlastSurfaceControls:1781 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.setWindowStopped:539 android.view.SurfaceView.surfaceCreated:2327 android.view.ViewRootImpl.notifySurfaceCreated:3502 android.view.ViewRootImpl.performTraversals:5286 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+I/BLASTBufferQueue_Java(22936): update, w= 1080 h= 2340 mName = 3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0 mNativeObject= 0xb4000076a348e100 sc.mNativeObject= 0xb4000075234c2f50 format= 4 caller= android.view.SurfaceView.createBlastSurfaceControls:1782 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.setWindowStopped:539 android.view.SurfaceView.surfaceCreated:2327 android.view.ViewRootImpl.notifySurfaceCreated:3502 android.view.ViewRootImpl.performTraversals:5286 
+I/BLASTBufferQueue(22936): [3025acd SurfaceView[com.example.app5/com.example.app5.MainActivity]@0#5](f:0,a:0,s:0) update width=1080 height=2340 format=4 mTransformHint=0
+I/SurfaceView(22936): 50485965 Cur surface: Surface(name=null mNativeObject=0)/@0x8de54d4
+I/SV[50485965 MainActivity](22936): pST: sr = Rect(0, 0 - 1080, 2340) sw = 1080 sh = 2340
+D/SurfaceView(22936): 50485965 performSurfaceTransaction RenderWorker position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): updateSurface: mVisible = true mSurface.isValid() = true
+I/SV[50485965 MainActivity](22936): updateSurface: mSurfaceCreated = false surfaceChanged = true visibleChanged = true
+I/SurfaceView(22936): 50485965 visibleChanged -- surfaceCreated
+I/SV[50485965 MainActivity](22936): surfaceCreated 1 #1 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SurfaceView(22936): 50485965 surfaceChanged -- format=4 w=1080 h=2340
+I/SV[50485965 MainActivity](22936): surfaceChanged (1080,2340) 1 #1 io.flutter.embedding.android.FlutterSurfaceView{3025acd V.E...... ........ 0,0-1080,2340}
+I/SurfaceView(22936): 50485965 surfaceRedrawNeeded
+I/SurfaceView(22936): 50485965 finishedDrawing
+V/SurfaceView(22936): Layout: x=0 y=0 w=1080 h=2340, frame=Rect(0, 0 - 1080, 2340)
+D/VRI[MainActivity]@732a08a(22936): reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+D/VRI[MainActivity]@732a08a(22936): Setup new sync=wmsSync-VRI[MainActivity]@732a08a#7
+I/VRI[MainActivity]@732a08a(22936): Creating new active sync group VRI[MainActivity]@732a08a#8
+D/VRI[MainActivity]@732a08a(22936): Start draw after previous draw not visible
+D/VRI[MainActivity]@732a08a(22936): registerCallbacksForSync syncBuffer=false
+D/SurfaceView(22936): 50485965 updateSurfacePosition RenderWorker, frameNr = 1, position = [0, 0, 1080, 2340] surfaceSize = 1080x2340
+I/SV[50485965 MainActivity](22936): uSP: rtp = Rect(0, 0 - 1080, 2340) rtsw = 1080 rtsh = 2340
+I/SV[50485965 MainActivity](22936): onSSPAndSRT: pl = 0 pt = 0 sx = 1.0 sy = 1.0
+I/SV[50485965 MainActivity](22936): aOrMT: VRI[MainActivity]@732a08a t = android.view.SurfaceControl$Transaction@7fe3ac1 fN = 1 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076834ccb90 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+D/VRI[MainActivity]@732a08a(22936): Received frameDrawingCallback syncResult=0 frameNum=1.
+I/VRI[MainActivity]@732a08a(22936): mWNT: t=0xb4000076834ff790 mBlastBufferQueue=0xb4000076a348cef0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+I/VRI[MainActivity]@732a08a(22936): Setting up sync and frameCommitCallback
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#4](f:0,a:0,s:0) onFrameAvailable the first frame is available
+I/BLASTBufferQueue(22936): [VRI[MainActivity]@732a08a#4](f:0,a:1,s:0) acquireNextBufferLocked size=1080x2340 mFrameNumber=1 applyTransaction=true mTimestamp=33753378818087(auto) mPendingTransactions.size=0 graphicBufferId=98509369901196 transform=0
+I/VRI[MainActivity]@732a08a(22936): Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true
+D/VRI[MainActivity]@732a08a(22936): reportDrawFinished seqId=0
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=com.example.app5/com.example.app5.MainActivity
+I/InsetsSourceConsumer(22936): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=com.example.app5/com.example.app5.MainActivity
+D/VRI[MainActivity]@732a08a(22936): mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007583552d90}
+D/InputMethodManagerUtils(22936): startInputInner - Id : 0
+I/InputMethodManager(22936): startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+D/InputTransport(22936): Input channel constructed: 'ClientS', fd=265
+W/Kumiho-Kumiho(22936): isSupportedFormat: Format is not supported
+D/HWUI    (22936): --- Failed to create image decoder with message 'unimplemented'
+I/InputMethodManager(22936): handleMessage: setImeVisibility visible=false
+D/InsetsController(22936): hide(ime(), fromIme=false)
+I/ImeTracker(22936): com.example.app5:b9cfc8bc: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+I/ExoPlayerImpl(22936): Init a1cabc6 [AndroidXMedia3/1.9.2] [a34x, SM-A346E, samsung, 36]
+D/BufferQueueConsumer(22936): [](id:59980000000e,api:0,p:-1,c:22936) connect: controlledByApp=true
+I/AudioManager(22936): getParameters keys = offloadVariableRateSupported
+I/DMCodecAdapterFactory(22936): Creating an asynchronous MediaCodec adapter for track type video
+I/CCodec  (22936): state->set(ALLOCATING)
+I/CCodec  (22936): allocate(c2.mtk.avc.decoder)
+D/CCodec  (22936): allocate(c2.mtk.avc.decoder)
+I/CCodec  (22936): setting up 'default' as default (vendor) store
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+I/CCodec  (22936): Created component [c2.mtk.avc.decoder] for [c2.mtk.avc.decoder]
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(ALLOCATED)
+D/CCodecConfig(22936): read media type: video/avc
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): ignored struct field coded.color-format.locations
+D/CCodecConfig(22936): ignoring local param raw.size (0xd2001800) as it is already supported
+D/CCodecConfig(22936): ignoring local param raw.crop (0xd2001801) as it is already supported
+D/CCodecConfig(22936): ignoring local param default.color (0x5200180b) as it is already supported
+D/CCodecConfig(22936): ignoring local param raw.hdr-static-info (0xd200180a) as it is already supported
+I/CCodec  (22936): [c2.mtk.avc.decoder] config->initialize() : 0
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is Dict {
+D/CCodecConfig(22936):   c2::u32 algo.low-latency.value = 0
+D/CCodecConfig(22936):   c2::i32 algo.priority.value = 1
+D/CCodecConfig(22936):   c2::float algo.rate.value = 0
+D/CCodecConfig(22936):   c2::float coded.frame-rate.value = 0
+D/CCodecConfig(22936):   c2::u32 coded.pl.level = 20496
+D/CCodecConfig(22936):   c2::u32 coded.pl.profile = 20481
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.range = 0
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 default.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 default.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 default.color.range = 0
+D/CCodecConfig(22936):   c2::u32 default.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 2097152
+D/CCodecConfig(22936):   c2::u32 input.delay.value = 4
+D/CCodecConfig(22936):   string input.media-type.value = "video/avc"
+D/CCodecConfig(22936):   c2::u32 output.delay.value = 12
+D/CCodecConfig(22936):   string output.media-type.value = "video/raw"
+D/CCodecConfig(22936):   c2::u32 raw.color.matrix = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.primaries = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.range = 0
+D/CCodecConfig(22936):   c2::u32 raw.color.transfer = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.height = 239
+D/CCodecConfig(22936):   c2::u32 raw.crop.left = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.top = 0
+D/CCodecConfig(22936):   c2::u32 raw.crop.width = 319
+D/CCodecConfig(22936):   c2::float raw.hdr-static-info.master
+W/ColorUtils(22936): expected specified color aspects (0:0:0:0)
+I/CCodec  (22936): [c2.mtk.avc.decoder] config->queryConfiguration()
+I/CCodec  (22936): [c2.mtk.avc.decoder] mCallback->onComponentAllocated() IN
+I/CCodec  (22936): [c2.mtk.avc.decoder] mCallback->onComponentAllocated() OUT
+I/MediaCodec(22936): MediaCodec will operate in async mode
+E/MediaCodec(22936): Media Quality Service not found.
+D/SurfaceUtils(22936): connecting to surface 0xb4000075834f37f0, reason connectToSurface
+I/MediaCodec(22936): [c2.mtk.avc.decoder] setting surface generation to 23486467
+D/SurfaceUtils(22936): disconnecting from surface 0xb4000075834f37f0, reason connectToSurface(reconnect)
+D/SurfaceUtils(22936): connecting to surface 0xb4000075834f37e0, reason connectToSurface(reconnect-with-listener)
+D/CCodec  (22936): [c2.mtk.avc.decoder] buffers are bound to CCodec for this session
+I/CCodec  (22936): appPid(22936) width(1080) height(2340)
+D/CCodecConfig(22936): no c2 equivalents for log-session-id
+D/CCodecConfig(22936): no c2 equivalents for importance
+D/CCodecConfig(22936): no c2 equivalents for color-standard
+D/CCodecConfig(22936): no c2 equivalents for csd-1
+D/CCodecConfig(22936): no c2 equivalents for native-window
+D/CCodecConfig(22936): no c2 equivalents for native-window-generation
+D/CCodecConfig(22936): no c2 equivalents for flags
+D/CCodecConfig(22936): c2 config diff is   c2::i32 algo.priority.value = 0
+D/CCodecConfig(22936):   c2::float algo.rate.value = 31.297
+D/CCodecConfig(22936):   c2::float coded.frame-rate.value = 31.297
+D/CCodecConfig(22936):   c2::u32 default.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 default.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 default.color.range = 2
+D/CCodecConfig(22936):   c2::u32 default.color.transfer = 3
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 4191232
+D/CCodecConfig(22936):   c2::u32 raw.max-size.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.max-size.width = 1080
+D/CCodecConfig(22936):   c2::u32 raw.pixel-format.value = 34
+D/CCodecConfig(22936):   c2::u32 raw.size.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.size.width = 1080
+D/CCodec  (22936): client requested max input size 508482, which is smaller than what component recommended (4191232); overriding with component recommendation.
+W/CCodec  (22936): This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+D/CCodec  (22936): encoding statistics level = 0
+D/CCodec  (22936): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   string mime = "video/avc"
+D/CCodec  (22936):   int32_t width = 1080
+D/CCodec  (22936):   int32_t profile = 65536
+D/CCodec  (22936):   int32_t priority = 0
+D/CCodec  (22936):   int32_t frame-rate = 31
+D/CCodec  (22936):   int32_t height = 2340
+D/CCodec  (22936):   int32_t level = 65536
+D/CCodec  (22936):   int32_t max-input-size = 4191232
+D/CCodec  (22936):   Rect crop(0, 0, 318, 238)
+D/CCodec  (22936): }
+D/CCodec  (22936): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t android._color-format = 2130708361
+D/CCodec  (22936):   int32_t android._video-scaling = 1
+D/CCodec  (22936):   int32_t sar-width = 1
+D/CCodec  (22936):   int32_t color-standard = 4
+D/CCodec  (22936):   int32_t color-range = 2
+D/CCodec  (22936):   int32_t color-transfer = 3
+D/CCodec  (22936):   int32_t android._dataspace = 259
+D/CCodec  (22936):   int32_t width = 1080
+D/CCodec  (22936):   int32_t rotation-degrees = 0
+D/CCodec  (22936):   int32_t sar-height = 1
+D/CCodec  (22936):   int32_t max-width = 1080
+D/CCodec  (22936):   int32_t max-height = 2340
+D/CCodec  (22936):   int32_t priority = 0
+D/CCodec  (22936):   string mime = "video/raw"
+D/CCodec  (22936):   Rect crop(0, 0, 318, 238)
+D/CCodec  (22936):   Buffer hdr-static-info = {
+D/CCodec  (22936):     00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+D/CCodec  (22936):     00000010:  00 00 00 00 00 00 00 00  00                       .........
+D/CCodec  (22936):   }
+D/CCodec  (22936):   int32_t frame-rate = 31
+D/CCodec  (22936):   int32_t height = 2340
+D/CCodec  (22936):   int32_t color-format = 2130708361
+D/CCodec  (22936):   int32_t p-extraBC = 6
+D/CCodec  (22936): }
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 raw.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 raw.color.range = 2
+D/CCodecConfig(22936):   c2::u32 raw.color.transfer = 3
+E/om.example.app5(22936): Failed to query component interface for required system resources: 6
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(STARTING)
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] Created input block pool with allocatorID 16 => poolID 19 - OK (0)
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] start: max output delay 19
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] Query output surface allocator returned 0 params => BAD_INDEX (6)
+D/Codec2Client(22936): GraphicBufferAllocator created
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] Created output block pool with allocatorID 18 => poolID 92 - OK
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] Configured output block pool ids 92 => OK
+D/GraphicsTracker(22936): new surface in configuration: maxDequeueRequested(0), maxDequeueCommitted(3)
+D/GraphicsTracker(22936): new surface configured with id:98509369901070 gen:23486467 maxDequeue:3
+D/GraphicsTracker(22936): maxDequeueCount committed to IGBP: 19
+D/GraphicsTracker(22936): Cache size 0 -> 0: maybe_cleared(0), dequeued(0)
+D/GraphicsTracker(22936): maxDqueueCount change 3 -> 19: pending: 0
+D/Codec2Client(22936): setOutputSurface -- generation=23486467 consumer usage=0x900
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RUNNING)
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] 8 initial input buffers available
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c350ef58 : 0(0 size) total buffers - 0(0 size) used buffers - 28/37 (recycle/alloc) - 9/23 (fetch/transfer)
+D/AidlBufferPool(22936): Destruction - bufferpool2 0xb4000074c350ef58 cached: 0/0M, 0/0% in use; allocs: 37, 76% recycled; transfers: 23, 61% unfetched
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+I/DMCodecAdapterFactory(22936): Creating an asynchronous MediaCodec adapter for track type audio
+I/MediaCodec(22936): setCodecState state(0), called in 6, domain 1, 1
+I/CCodec  (22936): state->set(ALLOCATING)
+I/CCodec  (22936): allocate(c2.android.aac.decoder)
+D/CCodec  (22936): allocate(c2.android.aac.decoder)
+I/CCodec  (22936): setting up 'default' as default (vendor) store
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c3546068 : 0(0 size) total buffers - 0(0 size) used buffers - 16/21 (recycle/alloc) - 5/16 (fetch/transfer)
+D/AidlBufferPool(22936): Destruction - bufferpool2 0xb4000074c3546068 cached: 0/0M, 0/0% in use; allocs: 21, 76% recycled; transfers: 16, 69% unfetched
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+I/CCodec  (22936): Created component [c2.android.aac.decoder] for [c2.android.aac.decoder]
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(ALLOCATED)
+D/CCodecConfig(22936): read media type: audio/mp4a-latm
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(22936): extent() != 1 for single value type: algo.buffers.pool-ids.values
+I/CCodec  (22936): [c2.android.aac.decoder] config->initialize() : 0
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is Dict {
+D/CCodecConfig(22936):   c2::u32 coded.aac-packaging.value = 0
+D/CCodecConfig(22936):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(22936):   c2::u32 coded.pl.level = 0
+D/CCodecConfig(22936):   c2::u32 coded.pl.profile = 8192
+D/CCodecConfig(22936):   c2::i32 coding.drc.album-mode.value = 0
+D/CCodecConfig(22936):   c2::float coding.drc.attenuation-factor.value = 1
+D/CCodecConfig(22936):   c2::float coding.drc.boost-factor.value = 1
+D/CCodecConfig(22936):   c2::i32 coding.drc.compression-mode.value = 3
+D/CCodecConfig(22936):   c2::i32 coding.drc.effect-type.value = 3
+D/CCodecConfig(22936):   c2::float coding.drc.encoded-level.value = 0.25
+D/CCodecConfig(22936):   c2::float coding.drc.reference-level.value = -16
+D/CCodecConfig(22936):   c2::u32 input.buffers.max-size.value = 8192
+D/CCodecConfig(22936):   c2::u32 input.delay.value = 0
+D/CCodecConfig(22936):   string input.media-type.value = "audio/mp4a-latm"
+D/CCodecConfig(22936):   c2::u32 output.delay.value = 2
+D/CCodecConfig(22936):   c2::float output.drc.output-loudness.value = 0.25
+D/CCodecConfig(22936):   c2::u32 output.large-frame.max-size = 0
+D/CCodecConfig(22936):   c2::u32 output.large-frame.threshold-size = 0
+D/CCodecConfig(22936):   string output.media-type.value = "audio/raw"
+D/CCodecConfig(22936):   c2::u32 raw.channel-count.value = 1
+D/CCodecConfig(22936):   c2::u32 raw.channel-mask.value = 0
+D/CCodecConfig(22936):   c2::u32 raw.max-channel-count.value = 8
+D/CCodecConfig(22936):   c2::u32 raw.sample-rate.value = 44100
+D/CCodecConfig(22936): }
+I/CCodec  (22936): [c2.android.aac.decoder] config->queryConfiguration()
+I/CCodec  (22936): [c2.android.aac.decoder] mCallback->onComponentAllocated() IN
+I/CCodec  (22936): [c2.android.aac.decoder] mCallback->onComponentAllocated() OUT
+D/CCodecConfig(22936): c2 config diff is   c2::u32 output.delay.value = 11
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] updating max output delay 19
+D/GraphicsTracker(22936): maxDequeueCount is already 19
+I/MediaCodec(22936): MediaCodec will operate in async mode
+E/MediaCodec(22936): Media Quality Service not found.
+D/CCodec  (22936): [c2.android.aac.decoder] buffers are bound to CCodec for this session
+I/CCodec  (22936): appPid(22936) width(0) height(0)
+D/CCodecConfig(22936): no c2 equivalents for log-session-id
+D/CCodecConfig(22936): no c2 equivalents for importance
+D/CCodecConfig(22936): no c2 equivalents for flags
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] Ignoring stale input buffer done callback: last flush index = 0, frameIndex = 0
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.channel-count.value = 2
+D/CCodecConfig(22936):   c2::u32 raw.sample-rate.value = 48000
+D/CCodec  (22936): client requested max input size 542, which is smaller than what component recommended (8192); overriding with component recommendation.
+W/CCodec  (22936): This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+D/CCodec  (22936): encoding statistics level = 0
+D/CCodec  (22936): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t aac-drc-album-mode = 0
+D/CCodec  (22936):   int32_t aac-drc-boost-level = 127
+D/CCodec  (22936):   int32_t aac-drc-cut-level = 127
+D/CCodec  (22936):   int32_t aac-drc-effect-type = 3
+D/CCodec  (22936):   int32_t aac-encoded-target-level = -1
+D/CCodec  (22936):   int32_t aac-max-output-channel_count = 8
+D/CCodec  (22936):   int32_t aac-target-ref-level = 64
+D/CCodec  (22936):   int32_t bitrate = 64000
+D/CCodec  (22936):   int32_t channel-count = 2
+D/CCodec  (22936):   int32_t channel-mask = 0
+D/CCodec  (22936):   int32_t level = 0
+D/CCodec  (22936):   int32_t max-input-size = 8192
+D/CCodec  (22936):   int32_t max-output-channel-count = 8
+D/CCodec  (22936):   string mime = "audio/mp4a-latm"
+D/CCodec  (22936):   int32_t profile = 2
+D/CCodec  (22936):   int32_t sample-rate = 48000
+D/CCodec  (22936): }
+D/CCodec  (22936): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (22936):   int32_t aac-drc-album-mode = 0
+D/CCodec  (22936):   int32_t aac-drc-boost-level = 127
+D/CCodec  (22936):   int32_t aac-drc-cut-level = 127
+D/CCodec  (22936):   int32_t aac-drc-effect-type = 3
+D/CCodec  (22936):   int32_t aac-drc-output-loudness = -1
+D/CCodec  (22936):   int32_t aac-encoded-target-level = -1
+D/CCodec  (22936):   int32_t aac-max-output-channel_count = 8
+D/CCodec  (22936):   int32_t aac-target-ref-level = 64
+D/CCodec  (22936):   int32_t buffer-batch-max-output-size = 0
+D/CCodec  (22936):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodec  (22936):   int32_t channel-count = 2
+D/CCodec  (22936):   int32_t channel-mask = 0
+D/CCodec  (22936):   int32_t max-output-channel-count = 8
+D/CCodec  (22936):   string mime = "audio/raw"
+D/CCodec  (22936):   int32_t sample-rate = 48000
+D/CCodec  (22936):   int32_t android._config-pcm-encoding = 2
+D/CCodec  (22936): }
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+E/om.example.app5(22936): Failed to query component interface for required system resources: 6
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(STARTING)
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] Created input block pool with allocatorID 16 => poolID 20 - OK (0)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] Created output block pool with allocatorID 16 => poolID 512 - OK
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] Configured output block pool ids 512 => OK
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RUNNING)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] 4 initial input buffers available
+W/om.example.app5(22936): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.channel-mask.value = 12
+D/CCodecBuffers(22936): [c2.android.aac.decoder#111:Output[N]] popFromStashAndRegister: at 1000000142500us, output format changed to AMessage(what = 0x00000000) = {
+D/CCodecBuffers(22936):   int32_t aac-drc-album-mode = 0
+D/CCodecBuffers(22936):   int32_t aac-drc-boost-level = 127
+D/CCodecBuffers(22936):   int32_t aac-drc-cut-level = 127
+D/CCodecBuffers(22936):   int32_t aac-drc-effect-type = 3
+D/CCodecBuffers(22936):   int32_t aac-drc-output-loudness = -1
+D/CCodecBuffers(22936):   int32_t aac-encoded-target-level = -1
+D/CCodecBuffers(22936):   int32_t aac-max-output-channel_count = 8
+D/CCodecBuffers(22936):   int32_t aac-target-ref-level = 64
+D/CCodecBuffers(22936):   int32_t buffer-batch-max-output-size = 0
+D/CCodecBuffers(22936):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodecBuffers(22936):   int32_t channel-count = 2
+D/CCodecBuffers(22936):   int32_t channel-mask = 12
+D/CCodecBuffers(22936):   int32_t max-output-channel-count = 8
+D/CCodecBuffers(22936):   string mime = "audio/raw"
+D/CCodecBuffers(22936):   int32_t sample-rate = 48000
+D/CCodecBuffers(22936):   int32_t android._config-pcm-encoding = 2
+D/CCodecBuffers(22936): }
+D/CCodecConfig(22936): c2 config diff is   c2::u32 raw.crop.height = 2340
+D/CCodecConfig(22936):   c2::u32 raw.crop.width = 1080
+D/CCodecConfig(22936):   c2::u32 raw.pixel-format.value = 4096
+D/CCodecBuffers(22936): [c2.mtk.avc.decoder#239:2D-Output] popFromStashAndRegister: at 1000000000000us, output format changed to AMessage(what = 0x00000000) = {
+D/CCodecBuffers(22936):   int32_t android._color-format = 4096
+D/CCodecBuffers(22936):   int32_t android._video-scaling = 1
+D/CCodecBuffers(22936):   int32_t sar-width = 1
+D/CCodecBuffers(22936):   int32_t color-standard = 1
+D/CCodecBuffers(22936):   int32_t color-range = 2
+D/CCodecBuffers(22936):   int32_t color-transfer = 3
+D/CCodecBuffers(22936):   int32_t android._dataspace = 260
+D/CCodecBuffers(22936):   int32_t width = 1080
+D/CCodecBuffers(22936):   int32_t rotation-degrees = 0
+D/CCodecBuffers(22936):   int32_t sar-height = 1
+D/CCodecBuffers(22936):   int32_t max-width = 1080
+D/CCodecBuffers(22936):   int32_t max-height = 2340
+D/CCodecBuffers(22936):   int32_t priority = 0
+D/CCodecBuffers(22936):   string mime = "video/raw"
+D/CCodecBuffers(22936):   Rect crop(0, 0, 1079, 2339)
+D/CCodecBuffers(22936):   Buffer hdr-static-info = {
+D/CCodecBuffers(22936):     00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+D/CCodecBuffers(22936):     00000010:  00 00 00 00 00 00 00 00  00                       .........
+D/CCodecBuffers(22936):   }
+D/CCodecBuffers(22936):   int32_t frame-rate = 31
+D/CCodecBuffers(22936):   int32_t height = 2340
+D/CCodecBuffers(22936):   int32_t color-format = 2130708361
+D/CCodecBuffers(22936):   int32_t p-extraBC = 6
+D/CCodecBuffers(22936): }
+D/AudioTrack(22936): setVolume(1.000000, 1.000000) pid : 22936
+I/MediaCodec(22936): setCodecState state(1), called in 6, domain 1, 1
+W/Kumiho-Kumiho(22936): isSupportedFormat: Format is not supported
+D/HWUI    (22936): --- Failed to create image decoder with message 'unimplemented'
+E/FlutterImageDecoderImplDefault(22936): Failed to decode image
+E/FlutterImageDecoderImplDefault(22936): android.graphics.ImageDecoder$DecodeException: Failed to create image decoder with message 'unimplemented'Input contained an error.
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.nCreate(Native Method)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.-$$Nest$smnCreate(Unknown Source:0)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder$ByteBufferSource.createImageDecoder(ImageDecoder.java:256)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.decodeBitmapImpl(ImageDecoder.java:1858)
+E/FlutterImageDecoderImplDefault(22936): 	at android.graphics.ImageDecoder.decodeBitmap(ImageDecoder.java:1850)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.image.ImageDecoderDefaultImpl.decodeImage(ImageDecoderDefaultImpl.java:44)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.image.FlutterImageDecoder.decodeImage(FlutterImageDecoder.java:60)
+E/FlutterImageDecoderImplDefault(22936): 	at io.flutter.embedding.engine.FlutterJNI.decodeImage(FlutterJNI.java:577)
+Another exception was thrown: Exception: Invalid image data
+I/Choreographer(22936): Skipped 44 frames!  The application may be doing too much work on its main thread.
+I/ExoPlayerImpl(22936): Release a1cabc6 [AndroidXMedia3/1.9.2] [a34x, SM-A346E, samsung, 36] [media3.common, media3.exoplayer, media3.decoder, media3.datasource, media3.extractor]
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(FLUSHING)
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(FLUSHED)
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RESUMING)
+I/CCodecConfig(22936): query failed after returning 18 values (BAD_INDEX)
+D/CCodecConfig(22936): c2 config diff is   c2::u32 coded.vui.color.matrix = 1
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.primaries = 1
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.range = 2
+D/CCodecConfig(22936):   c2::u32 coded.vui.color.transfer = 3
+I/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] 8 initial input buffers available
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RUNNING)
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(FLUSHING)
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(FLUSHED)
+D/CCodecBuffers(22936): [c2.android.aac.decoder#111:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 0
+D/CCodecBuffers(22936): [c2.android.aac.decoder#111:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 1
+D/CCodecBuffers(22936): [c2.android.aac.decoder#111:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 2
+D/CCodecBuffers(22936): [c2.android.aac.decoder#111:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 3
+D/MediaCodec(22936): keep callback message for reclaim
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RESUMING)
+I/CCodecConfig(22936): query failed after returning 21 values (BAD_INDEX)
+I/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] 4 initial input buffers available
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RUNNING)
+D/BufferQueueConsumer(22936): [](id:59980000000f,api:0,p:-1,c:22936) connect: controlledByApp=false
+D/SurfaceUtils(22936): connecting to surface 0xb40000758352fd90, reason connectToSurface
+I/MediaCodec(22936): [c2.mtk.avc.decoder] setting surface generation to 23486468
+D/SurfaceUtils(22936): disconnecting from surface 0xb40000758352fd90, reason connectToSurface(reconnect)
+D/SurfaceUtils(22936): connecting to surface 0xb40000758352fd80, reason connectToSurface(reconnect-with-listener)
+D/GraphicsTracker(22936): new surface in configuration: maxDequeueRequested(0), maxDequeueCommitted(19)
+D/GraphicsTracker(22936): new surface configured with id:98509369901071 gen:23486468 maxDequeue:19
+D/GraphicsTracker(22936): maxDequeueCount is already 19
+D/Codec2Client(22936): setOutputSurface -- generation=23486468 consumer usage=0x900
+D/SurfaceUtils(22936): disconnecting from surface 0xb4000075834f37f0, reason disconnectFromSurface
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RELEASING)
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.mtk.avc.decoder#239] MediaCodec discarded an unknown buffer
+I/CCodec  (22936): [release][3405] component -> surface
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RELEASING)
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] MediaCodec discarded an unknown buffer
+I/CCodec  (22936): [release][3405] component -> surface
+D/CCodecBufferChannel(22936): [c2.android.aac.decoder#111] MediaCodec discarded an unknown buffer
+I/CCodec  (22936): [c2.android.aac.decoder] state->set(RELEASED)
+I/Codec2Client(22936): Component destructing
+I/MediaCodec(22936): Codec shutdown complete
+D/BufferQueueConsumer(22936): [](id:599800000010,api:0,p:-1,c:22936) connect: controlledByApp=false
+D/BufferQueueConsumer(22936): [ImageReader-1x1f22m7-22936-4](id:59980000000e,api:0,p:-1,c:22936) disconnect
+D/GraphicsTracker(22936): allocateed 1 buffer after stop
+I/CCodecBufferChannel(22936): CCodecBufferChannel destructing c2.android.aac.decoder#111
+D/GraphicsTracker(22936): allocateed 2 buffer after stop
+I/CCodec  (22936): [c2.mtk.avc.decoder] state->set(RELEASED)
+D/SurfaceUtils(22936): disconnecting from surface 0xb40000758352fd90, reason disconnectFromSurface
+I/Codec2Client(22936): Component destructing
+I/MediaCodec(22936): Codec shutdown complete
+I/CCodecBufferChannel(22936): CCodecBufferChannel destructing c2.mtk.avc.decoder#239
+E/GraphicsTracker(22936): cannot deallocate due to being stopped
+W/Codec2-GraphicBufferAllocator(22936): deallocate() 98509369901239 was not successful 1
+E/GraphicsTracker(22936): cannot deallocate due to being stopped
+W/Codec2-GraphicBufferAllocator(22936): deallocate() 98509369901240 was not successful 1
+E/Surface (22936): freeAllBuffers: 2 buffers were freed while being dequeued!
+D/BufferQueueConsumer(22936): [unnamed-22936-14](id:599800000010,api:0,p:-1,c:22936) disconnect
+I/VRI[MainActivity]@732a08a(22936): call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@732a08a
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c3557148 : 0(0 size) total buffers - 0(0 size) used buffers - 28/37 (recycle/alloc) - 9/37 (fetch/transfer)
+D/AidlBufferPoolAcc(22936): evictor expired: 1, evicted: 1
+D/AidlBufferPool(22936): bufferpool2 0xb4000074c38b0268 : 0(0 size) total buffers - 0(0 size) used buffers - 26/31 (recycle/alloc) - 5/26 (fetch/transfer)
+D/AidlBufferPoolAcc(22936): evictor expired: 3, evicted: 1
+W/yandex.maps(22936): qx+9G3UJGPX+BMm2K6fT: Active wifi scan failed.
+Lost connection to device.
+�������� �믮������ ����⭮�� 䠩�� [Y(��)/N(���)]? 
+^C

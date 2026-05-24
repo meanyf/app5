@@ -13,9 +13,11 @@ from app.config import get_settings
 from app.db.session import get_db
 from app.kafka.consumer import consume_moderation_results
 from app.routers.activities import router as activities_router
+from app.routers.meetings import router as meetings_router
 
 logger = logging.getLogger(__name__)
 
+logging.basicConfig(level=logging.INFO)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -46,6 +48,8 @@ app.add_middleware(
 )
 
 app.include_router(activities_router)
+app.include_router(meetings_router)
+
 
 settings = get_settings()
 

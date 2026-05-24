@@ -1,9 +1,9 @@
 // lib/feed/feed_screen.dart
 
 import 'package:flutter/material.dart';
-import '../map/activity.dart';
-import '../map/activity_service.dart';
-import '../map/activity_sheet.dart';
+import '../activity/activity.dart';
+import '../activity/activity_service.dart';
+import '../activity/activity_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -243,16 +243,21 @@ class _ActivityCard extends StatelessWidget {
                       CircleAvatar(
                         radius: 12,
                         backgroundColor: scheme.primaryContainer,
-                        child: Text(
-                          activity.authorName.isNotEmpty
-                              ? activity.authorName[0].toUpperCase()
-                              : '?',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: scheme.onPrimaryContainer,
-                          ),
-                        ),
+                        backgroundImage: activity.authorAvatarUrl != null
+                            ? NetworkImage(activity.authorAvatarUrl!)
+                            : null,
+                        child: activity.authorAvatarUrl == null
+                            ? Text(
+                                activity.authorName.isNotEmpty
+                                    ? activity.authorName[0].toUpperCase()
+                                    : '?',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: scheme.onPrimaryContainer,
+                                ),
+                              )
+                            : null,
                       ),
                       const SizedBox(width: 8),
                       Text(

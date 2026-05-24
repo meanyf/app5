@@ -23,8 +23,8 @@ class Settings(BaseSettings):
 
     # JWT
     JWT_SECRET: str
-    JWT_ALGORITHM: str = "HS256"
-    JWT_EXPIRE_MINUTES: int = 60
+    JWT_ALGORITHM: str 
+    JWT_EXPIRE_MINUTES: int 
 
     # OTP
     OTP_TTL_SECONDS: int = 300  # 5 минут

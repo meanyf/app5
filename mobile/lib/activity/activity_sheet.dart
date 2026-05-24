@@ -3,9 +3,16 @@
 import 'package:flutter/material.dart';
 import 'activity.dart';
 import 'activity_widgets.dart';
-import 'comment.dart';
-import 'comment_service.dart';
+import '../chat/comment.dart';
+import '../chat/comment_service.dart';
 import 'package:video_player/video_player.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:app5/meetings/meeting_request.dart';
+import 'package:app5/meetings/meeting_service.dart';
+import 'package:app5/meetings/meeting_sheet.dart';
+import '../chat/comment_widget.dart';
+import '../chat/chat_screen.dart';
+import 'package:app5/user/user_service.dart';
 
 class ActivitySheet extends StatefulWidget {
   final Activity activity;
@@ -16,6 +23,9 @@ class ActivitySheet extends StatefulWidget {
 }
 
 class _ActivitySheetState extends State<ActivitySheet> {
+  String? _currentUserId;
+  MeetingRequest? _myRequest;
+  bool _loadingRequest = false;
   final _textController = TextEditingController();
   List<Comment> _comments = [];
   bool _loadingComments = true;
@@ -27,10 +37,28 @@ class _ActivitySheetState extends State<ActivitySheet> {
   @override
   void initState() {
     super.initState();
+    _loadCurrentUser();
     _fetchComments();
     _initVideoControllers();
+    _loadMeetingData();
   }
 
+Future<void> _loadCurrentUser() async {
+  final prefs = await SharedPreferences.getInstance();
+  if (mounted) setState(() => _currentUserId = prefs.getString('user_id'));
+}
+
+Future<void> _loadMeetingData() async {
+    if (widget.activity.type != 'meeting') return;
+    setState(() => _loadingRequest = true);
+    final request = await MeetingService.getMyRequest(widget.activity.id);
+    if (mounted)
+      setState(() {
+        _myRequest = request;
+        _loadingRequest = false;
+      });
+  }
+  
   Future<void> _initVideoControllers() async {
     for (var i = 0; i < widget.activity.media.length; i++) {
       if (widget.activity.media[i].type == 'video') {
@@ -67,6 +95,133 @@ class _ActivitySheetState extends State<ActivitySheet> {
     }
   }
 
+Widget _buildMeetingBlock() {
+    final isOrganizer = widget.activity.creatorId == _currentUserId;
+
+    final chatButton = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ElevatedButton.icon(
+        icon: const Icon(Icons.chat_bubble_outline),
+        label: const Text('Перейти в чат'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF26A69A),
+          foregroundColor: Colors.white,
+          minimumSize: const Size.fromHeight(44),
+        ),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ChatScreen(
+              activityId: widget.activity.id,
+              activityTitle: widget.activity.title,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    if (isOrganizer) {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.people),
+              label: const Text('Управление заявками'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF26A69A),
+                foregroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(44),
+              ),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => MeetingSheet(
+                    activityId: widget.activity.id,
+                    activityTitle: widget.activity.title,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          chatButton,
+        ],
+      );
+    }
+
+    if (_loadingRequest) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_myRequest == null) {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF26A69A),
+                foregroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(44),
+              ),
+              onPressed: _submitRequest,
+              child: const Text('Подать заявку'),
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
+      );
+    }
+
+    final (text, color) = switch (_myRequest!.status) {
+      'pending' => ('Заявка на рассмотрении', Colors.orange),
+      'approved' => ('Заявка одобрена ✓', Colors.green),
+      'rejected' => ('Заявка отклонена', Colors.red),
+      _ => ('', Colors.grey),
+    };
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: color.withOpacity(0.3)),
+            ),
+            child: Text(
+              text,
+              style: TextStyle(color: color, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        if (_myRequest!.status == 'approved') ...[
+          const SizedBox(height: 8),
+          chatButton,
+        ],
+      ],
+    );
+  }
+
+  Future<void> _submitRequest() async {
+    setState(() => _loadingRequest = true);
+    try {
+      final request = await MeetingService.createRequest(widget.activity.id);
+      if (mounted) setState(() => _myRequest = request);
+    } catch (e) {
+      if (mounted)
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка: $e'), backgroundColor: Colors.red),
+        );
+    } finally {
+      if (mounted) setState(() => _loadingRequest = false);
+    }
+  }
+  
   Future<void> _sendComment() async {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
@@ -77,9 +232,14 @@ class _ActivitySheetState extends State<ActivitySheet> {
         widget.activity.id,
         text,
       );
+      final userMap = await UserService.fetchBatch([comment.userId]);
+      final enriched = comment.copyWith(
+        userName: userMap[comment.userId]?.name ?? '',
+        userAvatarUrl: userMap[comment.userId]?.avatarUrl,
+      );
       if (mounted) {
         setState(() {
-          _comments.add(comment);
+          _comments.add(enriched);
           _textController.clear();
         });
       }
@@ -171,6 +331,59 @@ class _ActivitySheetState extends State<ActivitySheet> {
                                   maxLines: 2,
                                 ),
                               ),
+                              if (_currentUserId == widget.activity.creatorId)
+                                PopupMenuButton<_ActivityAction>(
+                                  icon: const Icon(
+                                    Icons.more_vert,
+                                    color: Color(0xFF9E9E9E),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  onSelected: (action) {
+                                    if (action == _ActivityAction.delete)
+                                      _deleteActivity();
+                                  },
+                                  itemBuilder: (_) => [
+                                    const PopupMenuItem(
+                                      value: _ActivityAction.edit,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.edit_outlined,
+                                            size: 18,
+                                            color: Color(0xFF616161),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            'Редактировать',
+                                            style: TextStyle(fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const PopupMenuItem(
+                                      value: _ActivityAction.delete,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.delete_outline,
+                                            size: 18,
+                                            color: Colors.redAccent,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            'Удалить',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                             ],
                           ),
 
@@ -301,25 +514,33 @@ class _ActivitySheetState extends State<ActivitySheet> {
                               ),
                             ),
                           ],
-
-                          const SizedBox(height: 16),
-                          const Divider(height: 1),
-                          const SizedBox(height: 12),
-
-                          const Text(
-                            'Комментарии',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: Color(0xFF424242),
+                      if (isEvent) ...[
+                            const SizedBox(height: 16),
+                            const Divider(height: 1),
+                            const SizedBox(height: 12),
+                            const Text(
+                              'Комментарии',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Color(0xFF424242),
+                              ),
                             ),
-                          ),
+                            const SizedBox(height: 8),
+                          ] else ...[
+                            const SizedBox(height: 16),
+                            const Divider(height: 1),
+                            const SizedBox(height: 16),
+                            _buildMeetingBlock(),
+                            const SizedBox(height: 8),
+                          ],
                           const SizedBox(height: 8),
                         ],
                       ),
                     ),
 
                     // Список комментариев
+                    if (isEvent)
                     _loadingComments
                         ? const Center(
                             child: Padding(
@@ -341,19 +562,24 @@ class _ActivitySheetState extends State<ActivitySheet> {
                             ),
                           )
                         : ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            itemCount: _comments.length,
-                            itemBuilder: (_, i) =>
-                                _CommentTile(comment: _comments[i]),
-                          ),
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
+                              itemCount: _comments.length,
+                              itemBuilder: (_, i) => CommentTile(
+                                comment: _comments[i],
+                                isOwner: _comments[i].userId == _currentUserId,
+                              ),
+                            ),
                   ],
                 ),
               ),
             ),
 
             // Нижняя панель ввода (приклеена снизу)
+            if (isEvent)
             Container(
               padding: EdgeInsets.fromLTRB(16, 8, 16, bottomPadding),
               decoration: const BoxDecoration(
@@ -415,74 +641,26 @@ class _ActivitySheetState extends State<ActivitySheet> {
     return '${l.day.toString().padLeft(2, '0')}.${l.month.toString().padLeft(2, '0')} '
         '${l.hour.toString().padLeft(2, '0')}:${l.minute.toString().padLeft(2, '0')}';
   }
-}
 
-// _CommentTile остается без изменений
-class _CommentTile extends StatelessWidget {
-  final Comment comment;
-  const _CommentTile({required this.comment});
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 16,
-            backgroundColor: const Color(0xFFEEEEEE),
-            child: const Icon(Icons.person, size: 18, color: Color(0xFF9E9E9E)),
+  Future<void> _deleteActivity() async {
+    await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Удалить активность?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Отмена'),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    // comment.userName.isNotEmpty
-                    //   ? 
-                    comment.userName,
-                      // : comment.userId.substring(0, 8),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF616161),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF5F5F5),
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                  child: Text(
-                    comment.text,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  _fmt(comment.createdAt),
-                  style: const TextStyle(
-                    fontSize: 11,
-                    color: Color(0xFFBDBDBD),
-                  ),
-                ),
-              ],
-            ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Удалить', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
   }
-
-  String _fmt(DateTime dt) {
-    return '${dt.day.toString().padLeft(2, '0')}.${dt.month.toString().padLeft(2, '0')} '
-        '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
-  }
 }
+
+enum _ActivityAction { edit, delete }

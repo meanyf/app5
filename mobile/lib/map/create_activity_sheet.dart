@@ -3,9 +3,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'activity.dart';
-import 'activity_service.dart';
-import 'activity_widgets.dart';
+import '../activity/activity.dart';
+import '../activity/activity_service.dart';
+import '../activity/activity_widgets.dart';
+import '../core/media_service.dart';
 import 'package:video_player/video_player.dart';
 
 class CreateActivitySheet extends StatefulWidget {
@@ -62,51 +63,60 @@ class _CreateActivitySheetState extends State<CreateActivitySheet> {
 
   // ── метод выбора медиа (замени _pickImage) ────────────────────────────────────
 Future<void> _pickMedia() async {
-  final picker = ImagePicker();
-  final picked = await picker.pickMedia();
-  if (picked == null) return;
- 
-  final file = File(picked.path);
-  final isVideo = picked.mimeType?.startsWith('video') == true ||
-      picked.path.endsWith('.mp4') ||
-      picked.path.endsWith('.mov');
- 
-  final index = _selectedFiles.length;
- 
-  setState(() {
-    _selectedFiles.add(file);
-    _uploadingMedia = true;
-  });
- 
-  // инициализируем контроллер для видео
-  if (isVideo) {
-    setState(() => _videoIndices.add(index)); // ← добавь эту строку
+    final picker = ImagePicker();
+    final picked = await picker.pickMedia();
+    if (picked == null) return;
 
-    final controller = VideoPlayerController.file(file);
-    await controller.initialize();
-    if (mounted) {
-      setState(() => _videoControllers[index] = controller);
-    }
-  }
- 
-  try {
-    final item = await ActivityService.uploadMedia(file);
-    if (mounted) setState(() => _uploadedMedia.add(item));
-  } catch (e) {
-    if (mounted) {
+    final isVideo =
+        picked.mimeType?.startsWith('video') == true ||
+        picked.path.toLowerCase().endsWith('.mp4') ||
+        picked.path.toLowerCase().endsWith('.mov') ||
+        picked.path.toLowerCase().endsWith('.avi') ||
+        picked.path.toLowerCase().endsWith('.mkv');
+
+    // копируем во temp чтобы гарантировать доступ на Android
+    final tempDir = await Directory.systemTemp.createTemp();
+    final ext = picked.path.split('.').last;
+    final file = File(
+      '${tempDir.path}/media_${DateTime.now().millisecondsSinceEpoch}.$ext',
+    );
+    await file.writeAsBytes(await picked.readAsBytes());
+
+    final index = _selectedFiles.length;
+
+    setState(() {
+      _selectedFiles.add(file);
+      _uploadingMedia = true;
+    });
+
+    if (isVideo) {
+      final controller = VideoPlayerController.file(file);
+      await controller.initialize();
+      if (!mounted) return;
       setState(() {
-        _selectedFiles.removeAt(index);
-        _videoControllers[index]?.dispose();
-        _videoControllers.remove(index);
+        _videoIndices.add(index);
+        _videoControllers[index] = controller;
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Ошибка загрузки: $e')),
-      );
     }
-  } finally {
-    if (mounted) setState(() => _uploadingMedia = false);
+
+    try {
+      final item = await MediaService.uploadMedia(file);
+      if (mounted) setState(() => _uploadedMedia.add(item));
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _selectedFiles.removeAt(index);
+          _videoControllers[index]?.dispose();
+          _videoControllers.remove(index);
+        });
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка загрузки: $e')));
+      }
+    } finally {
+      if (mounted) setState(() => _uploadingMedia = false);
+    }
   }
-}
  
 // ── удаление медиа (замени _removeMedia) ──────────────────────────────────────
 void _removeMedia(int index) {
@@ -379,30 +389,49 @@ Text(
                     itemCount: _selectedFiles.length,
                     separatorBuilder: (_, __) => const SizedBox(width: 8),
                     itemBuilder: (_, i) {
-                    final isVideo = _videoIndices.contains(i);
+                   final isVideo = _videoIndices.contains(i);
+                      final controller =
+                          _videoControllers[i]; // ← достаём отдельно
                       return Stack(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: isVideo
-                                ? SizedBox(
-                                    width: 90,
-                                    height: 90,
-                                    child: Stack(
-                                      fit: StackFit.expand,
-                                      children: [
-                                        VideoPlayer(_videoControllers[i]!),
-                                        const Center(
-                                          child: Icon(
-                                            Icons.play_circle_outline,
-                                            color: Colors.white,
-                                            size: 32,
+                                ? (controller != null
+                                      ? SizedBox(
+                                          width: 90,
+                                          height: 90,
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              VideoPlayer(controller),
+                                              const Center(
+                                                child: Icon(
+                                                  Icons.play_circle_outline,
+                                                  color: Colors.white,
+                                                  size: 32,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
+                                        )
+                                      : Container(
+                                          // ← заглушка пока контроллер грузится
+                                          width: 90,
+                                          height: 90,
+                                          color: Colors.black26,
+                                          child: const Center(
+                                            child: SizedBox(
+                                              width: 24,
+                                              height: 24,
+                                              child: CircularProgressIndicator(
+                                                strokeWidth: 2,
+                                              ),
+                                            ),
+                                          ),
+                                        ))
                                 : Image.file(
+                                    // ← только для не-видео
                                     _selectedFiles[i],
                                     width: 90,
                                     height: 90,

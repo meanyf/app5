@@ -11,7 +11,6 @@ services:
       - "8080:8000"
     volumes:
       - ./services/api-gateway/app:/app/app
-      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -31,7 +30,6 @@ services:
       - "8003:8000"
     volumes:
       - ./services/auth-service/app:/app/app
-      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -84,7 +82,6 @@ services:
       - "8000:8000"
     volumes:
       - ./services/activity-service/app:/app/app
-      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -122,7 +119,6 @@ services:
       - "8001:8000"
     volumes:
       - ./services/chat-service/app:/app/app
-      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:
@@ -160,7 +156,6 @@ services:
       - "8002:8000"
     volumes:
       - ./services/media-service/app:/app/app
-      - ./services/shared:/app/app/shared
     env_file:
       - .env
     depends_on:

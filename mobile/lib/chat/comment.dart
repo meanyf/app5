@@ -2,7 +2,8 @@ class Comment {
   final String id;
   final String activityId;
   final String userId;
-  final String userName; // новое
+  final String userName;
+  final String? userAvatarUrl; // добавили
   final String text;
   final DateTime createdAt;
 
@@ -10,16 +11,18 @@ class Comment {
     required this.id,
     required this.activityId,
     required this.userId,
-    this.userName = '', // новое
+    this.userName = '',
+    this.userAvatarUrl, // добавили
     required this.text,
     required this.createdAt,
   });
 
-  Comment copyWith({String? userName}) => Comment(
+  Comment copyWith({String? userName, String? userAvatarUrl}) => Comment(
     id: id,
     activityId: activityId,
     userId: userId,
     userName: userName ?? this.userName,
+    userAvatarUrl: userAvatarUrl ?? this.userAvatarUrl, // добавили
     text: text,
     createdAt: createdAt,
   );
