@@ -3,3 +3,4 @@ uvicorn[standard]
 httpx
 python-jose[cryptography]
 pydantic-settings
+prometheus-fastapi-instrumentator

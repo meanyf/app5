@@ -1,9 +1,15 @@
 import 'dart:convert';
 import '../core/api_client.dart';
 import 'user.dart';
+import 'package:http/http.dart' as http;
 
 class UserService {
   static final _client = ApiClient();
+
+
+static Future<http.Response> updateFcmToken(String token) async {
+    return await _client.patch('/users/me', {'fcm_token': token});
+  }
 
   static Future<Map<String, UserProfile>> fetchBatch(List<String> ids) async {
     if (ids.isEmpty) return {};

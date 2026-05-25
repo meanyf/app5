@@ -212,7 +212,7 @@ services:
       interval: 15s
       timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 90s
     restart: unless-stopped
 
   # ====================== Kafka UI ======================
@@ -262,6 +262,48 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+    # ====================== Notification Service ======================
+  notification-service:
+    build:
+      context: ./services/notification-service
+      dockerfile: Dockerfile
+    container_name: notification-service
+    volumes:
+      - ./services/notification-service/app:/app/app
+      - ./firebase-credentials.json:/app/firebase-credentials.json:ro
+    env_file:
+      - .env
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+# ====================== Prometheus ======================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus-app
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    restart: unless-stopped
+
+  # ====================== Grafana ======================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
 volumes:
   auth_postgres_data:
   activity_postgres_data:
@@ -270,5 +312,7 @@ volumes:
   minio_data:
   redis_data:
   user_postgres_data:
+  prometheus_data:
+  grafana_data:
 
   

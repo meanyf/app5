@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../map/map_screen.dart';
 import 'package:app5/core/api_client.dart';
 import 'setup_profile_screen.dart';
+import 'package:app5/user/user_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 final _client = ApiClient();
 
@@ -50,6 +52,12 @@ class _OtpScreenState extends State<OtpScreen> {
         final user = jsonDecode(userResponse.body);
         await prefs.setString('user_id', user['id'].toString()); // вот сюда
 
+        final fcmToken = await FirebaseMessaging.instance.getToken();
+        print('FCM token to save: $fcmToken');
+        if (fcmToken != null) {
+                  final result = await UserService.updateFcmToken(fcmToken);
+                  print('Update FCM result: ${result.statusCode} ${result.body}');
+                }
 
         if (!mounted) return;
 
@@ -65,7 +73,8 @@ class _OtpScreenState extends State<OtpScreen> {
           );
         }
       }
-    } catch (_) {
+} catch (e) {
+      print('Error: $e');
       _showError('Нет соединения с сервером');
     } finally {
       if (mounted) setState(() => _isLoading = false);

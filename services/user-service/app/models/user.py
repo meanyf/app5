@@ -26,3 +26,4 @@ class User(Base):
         onupdate=lambda: datetime.now(timezone.utc),
         nullable=False,
     )
+    fcm_token: Mapped[str | None] = mapped_column(String(500), nullable=True)

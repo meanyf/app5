@@ -16,6 +16,7 @@ PUBLIC_PATHS = {
     "/openapi.json",
     "/auth/send-otp",
     "/auth/verify-otp",
+    "/metrics", 
 }
 
 

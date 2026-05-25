@@ -10,6 +10,8 @@ class UserRead(BaseModel):
     name: str | None
     avatar_url: str | None
     created_at: datetime
+    fcm_token: str | None 
+
 
     model_config = {"from_attributes": True}
 
@@ -17,6 +19,7 @@ class UserRead(BaseModel):
 class UserUpdate(BaseModel):
     name: str | None = None
     avatar_url: str | None = None
+    fcm_token: str | None = None  
 
 
 class UserIdsRequest(BaseModel):

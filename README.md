@@ -1,6 +1,12 @@
 # Первый запуск (сборка)
 docker compose up --build
 
+docker compose up api-gateway prometheus grafana kafka postgres-activity activity-service
+
+docker compose up --build api-gateway activity-service postgres-activity prometheus grafana
+
+docker compose up --no-deps api-gateway activity-service postgres-activity kafka prometheus grafana
+
 # Обычный запуск после изменений
 docker compose up -d && docker compose logs -f media-service activity-service chat-service auth-service api-gateway user-service
 
@@ -124,6 +130,7 @@ Grafana визуализирует метрики из Prometheus в виде д
 
 ```
 ```
+```
 app5
 ├──infra
 │   ├──grafana
@@ -181,7 +188,8 @@ app5
 │   │   │   │   │   └──AndroidManifest.xml
 │   │   │   │   └──profile
 │   │   │   │   │   └──AndroidManifest.xml
-│   │   │   └──build.gradle.kts
+│   │   │   ├──build.gradle.kts
+│   │   │   └──google-services.json
 │   │   ├──gradle
 │   │   │   └──wrapper
 │   │   │   │   ├──gradle-wrapper.jar
@@ -264,13 +272,17 @@ app5
 │   │   │   ├──otp_screen.dart
 │   │   │   └──setup_profile_screen.dart
 │   │   ├──chat
+│   │   │   ├──chat_screen.dart
 │   │   │   ├──comment_service.dart
+│   │   │   ├──comment_widget.dart
 │   │   │   └──comment.dart
 │   │   ├──core
-│   │   │   └──api_client.dart
+│   │   │   ├──api_client.dart
+│   │   │   └──media_service.dart
 │   │   ├──feed
 │   │   │   └──feed_screen.dart
 │   │   ├──map
+│   │   │   ├──address_search_sheet.dart
 │   │   │   ├──create_activity_sheet.dart
 │   │   │   └──map_screen.dart
 │   │   ├──meetings
@@ -279,6 +291,9 @@ app5
 │   │   │   └──meeting_sheet.dart
 │   │   ├──profile
 │   │   │   └──profile_screen.dart
+│   │   ├──user
+│   │   │   ├──user_service.dart
+│   │   │   └──user.dart
 │   │   └──main.dart
 │   ├──linux
 │   │   ├──flutter
@@ -363,6 +378,8 @@ app5
 │   │   ├──CMakeLists.txt
 │   │   └──.gitignore
 │   ├──analysis_options.yaml
+│   ├──devtools_options.yaml
+│   ├──output.txt
 │   ├──pubspec.lock
 │   ├──pubspec.yaml
 │   ├──README.md
@@ -407,7 +424,6 @@ app5
 │   │   │   │   ├──geo_search.py
 │   │   │   │   ├──meeting.py
 │   │   │   │   └──ttl.py
-│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
@@ -431,7 +447,6 @@ app5
 │   │   │   │   ├──media.py
 │   │   │   │   ├──meetings.py
 │   │   │   │   └──users.py
-│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   ├──dependencies.py
@@ -466,7 +481,6 @@ app5
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──jwt.py
 │   │   │   │   └──otp.py
-│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
@@ -503,7 +517,6 @@ app5
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   └──chat.py
-│   │   │   ├──shared
 │   │   │   ├──websocket
 │   │   │   │   ├──__init__.py
 │   │   │   │   ├──handlers.py
@@ -527,7 +540,6 @@ app5
 │   │   │   ├──services
 │   │   │   │   ├──__init__.py
 │   │   │   │   └──minio.py
-│   │   │   ├──shared
 │   │   │   ├──__init__.py
 │   │   │   ├──config.py
 │   │   │   └──main.py
@@ -571,7 +583,6 @@ app5
 │   │   │   └──__init__.py
 │   │   ├──Dockerfile
 │   │   └──requirements.txt
-│   ├──shared
 │   ├──user-service
 │   │   ├──alembic
 │   │   │   ├──versions

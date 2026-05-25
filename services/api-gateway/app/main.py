@@ -7,9 +7,12 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app.proxy import lifespan
 from app.middleware.jwt_validator import jwt_validator_middleware
 from app.routers import activities, auth, chat, media, users, meetings
+from prometheus_fastapi_instrumentator import Instrumentator  # 
 
 
 app = FastAPI(title="API Gateway", lifespan=lifespan)
+
+Instrumentator().instrument(app).expose(app)  
 
 app.add_middleware(
     CORSMiddleware,
