@@ -1,6 +1,8 @@
 # Первый запуск (сборка)
 docker compose up --build
 
+docker compose up media-service activity-service chat-service auth-service api-gateway user-service
+
 docker compose up api-gateway prometheus grafana kafka postgres-activity activity-service
 
 docker compose up --build api-gateway activity-service postgres-activity prometheus grafana

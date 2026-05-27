@@ -271,7 +271,7 @@ services:
     container_name: notification-service
     volumes:
       - ./services/notification-service/app:/app/app
-      - ./firebase-credentials.json:/app/firebase-credentials.json:ro
+      - ./infra/firebase-credentials.json:/app/firebase-credentials.json:ro
     env_file:
       - .env
     depends_on:
@@ -286,7 +286,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     restart: unless-stopped
 

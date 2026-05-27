@@ -3,8 +3,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../activity/activity.dart';
-import '../activity/activity_service.dart';
 import '../activity/activity_widgets.dart';
 import '../core/media_service.dart';
 import 'package:video_player/video_player.dart';
