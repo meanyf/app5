@@ -32,6 +32,8 @@ class UserService:
             user.name = data.name
         if data.avatar_url is not None:
             user.avatar_url = data.avatar_url
+        if data.description is not None:
+            user.description = data.description
         if data.fcm_token is not None:  # добавить
             user.fcm_token = data.fcm_token
         await self.db.commit()

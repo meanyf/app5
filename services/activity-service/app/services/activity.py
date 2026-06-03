@@ -31,6 +31,7 @@ class ActivityService:
             title=data.title,
             description=data.description,
             location=location,
+            address=data.address,  
             starts_at=data.starts_at,
             expires_at=data.expires_at,
             max_participants=data.max_participants,

@@ -16,7 +16,7 @@ docker compose up -d
 docker compose logs -f media-service activity-service chat-service auth-service
 
 docker compose exec chat-service alembic upgrade head
-docker compose exeс activity-service alembic revision --autogenerate -m "creator_id to string"
+docker compose exec activity-service alembic revision --autogenerate -m "creator_id to string"
 
 docker compose exec postgres-activity psql -U postgres -d activity_db -c "UPDATE activities SET status = 'published';"
 

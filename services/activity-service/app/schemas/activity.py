@@ -36,6 +36,7 @@ class ActivityCreate(BaseModel):
     description: Optional[str] = None
     latitude: float
     longitude: float
+    address: Optional[str] = None
     starts_at: datetime
     expires_at: datetime
     max_participants: Optional[int] = None
@@ -52,6 +53,7 @@ class ActivityUpdate(BaseModel):
     description: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+    address: Optional[str] = None
     starts_at: Optional[datetime] = None
     expires_at: Optional[datetime] = None
     max_participants: Optional[int] = None
@@ -78,6 +80,7 @@ class ActivityRead(BaseModel):
     creator_id: str
     title: str
     description: Optional[str] = None
+    address: Optional[str] = None
     latitude: float
     longitude: float
     starts_at: datetime

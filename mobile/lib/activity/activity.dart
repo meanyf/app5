@@ -7,6 +7,7 @@ class Activity {
   final String type;
   final String creatorId; // новое
   final String authorName; // новое
+  final String? address; // 1. поле
   final String? authorAvatarUrl;
   final String title;
   final String? description;
@@ -22,6 +23,7 @@ class Activity {
     required this.type,
     required this.creatorId, // новое
     this.authorName = '', // новое
+    this.address, // 2. конструктор
     this.authorAvatarUrl,
     required this.title,
     this.description,
@@ -39,6 +41,7 @@ class Activity {
     creatorId: creatorId,
     authorName: authorName ?? this.authorName,
     authorAvatarUrl: authorAvatarUrl ?? this.authorAvatarUrl,
+    address: address ?? this.address, // 3. copyWith
     title: title,
     description: description,
     latitude: latitude,
@@ -53,6 +56,7 @@ class Activity {
     id: json['id'] as String,
     type: json['type'] as String,
     creatorId: json['creator_id'] as String, // новое
+    address: json['address'] as String?, // 4. fromJson
     title: json['title'] as String,
     description: json['description'] as String?,
     latitude: (json['latitude'] as num).toDouble(),

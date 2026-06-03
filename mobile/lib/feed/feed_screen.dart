@@ -218,7 +218,6 @@ class _ActivityCard extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-
                   // Описание
                   if (activity.description != null &&
                       activity.description!.isNotEmpty) ...[
@@ -232,6 +231,16 @@ class _ActivityCard extends StatelessWidget {
                         color: scheme.onSurfaceVariant,
                         height: 1.4,
                       ),
+                    ),
+                  ],
+                  // Адрес
+                  if (activity.address != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      activity.address!,
+                      style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
 

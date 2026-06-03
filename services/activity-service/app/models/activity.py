@@ -21,6 +21,7 @@ class Activity(Base):
     title = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     location = Column(Geography("POINT", srid=4326), nullable=False)
+    address = Column(String, nullable=True)
     starts_at = Column(DateTime, nullable=False)
     expires_at = Column(DateTime, nullable=False)
     max_participants = Column(Integer, nullable=True)

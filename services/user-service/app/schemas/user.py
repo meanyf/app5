@@ -9,6 +9,7 @@ class UserRead(BaseModel):
     phone: str
     name: str | None
     avatar_url: str | None
+    description: str | None
     created_at: datetime
     fcm_token: str | None 
 
@@ -19,6 +20,7 @@ class UserRead(BaseModel):
 class UserUpdate(BaseModel):
     name: str | None = None
     avatar_url: str | None = None
+    description: str | None
     fcm_token: str | None = None  
 
 

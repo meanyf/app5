@@ -21,6 +21,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _client = ApiClient();
   final _nameController = TextEditingController();
+  final _descriptionController = TextEditingController();
+
 
   bool _isLoading = true;
   bool _isSaving = false;
@@ -79,6 +81,7 @@ Future<void> _pickAndUploadAvatar() async {
         setState(() {
           _profile = UserProfile.fromJson(jsonDecode(response.body));
           _nameController.text = _profile?.name ?? '';
+          _descriptionController.text = _profile?.description ?? '';
           _isLoading = false;
         });
       }
@@ -87,22 +90,25 @@ Future<void> _pickAndUploadAvatar() async {
     }
   }
 
-  Future<void> _saveName() async {
+Future<void> _saveProfile() async {
     final newName = _nameController.text.trim();
     if (newName.length < 2) return;
     setState(() => _isSaving = true);
 
     try {
-      final response = await _client.patch('/users/me', {'name': newName});
+      final response = await _client.patch('/users/me', {
+        'name': newName,
+        'description': _descriptionController.text.trim(),
+      });
       if (!mounted) return;
       if (response.statusCode == 200) {
         setState(
           () => _profile = UserProfile.fromJson(jsonDecode(response.body)),
         );
-        UserService.invalidate(_profile!.id); // сбрасываем кэш
+        UserService.invalidate(_profile!.id);
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Имя обновлено')));
+        ).showSnackBar(const SnackBar(content: Text('Профиль обновлён')));
       }
     } catch (_) {
       if (!mounted) return;
@@ -142,7 +148,8 @@ Future<void> _pickAndUploadAvatar() async {
           : SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
+                child: SingleChildScrollView(
+                  child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 24),
@@ -218,11 +225,31 @@ Future<void> _pickAndUploadAvatar() async {
                       ),
                     ),
                     const SizedBox(height: 16),
+                    Text(
+                      'О себе',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    TextField(
+                      controller: _descriptionController,
+                      maxLines: 3,
+                      maxLength: 1000,
+                      decoration: InputDecoration(
+                        hintText: 'Расскажите о себе',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
                       height: 52,
                       child: FilledButton(
-                        onPressed: _isSaving ? null : _saveName,
+                        onPressed: _isSaving ? null : _saveProfile,
                         style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),
@@ -237,16 +264,18 @@ Future<void> _pickAndUploadAvatar() async {
                                   color: Colors.white,
                                 ),
                               )
-                            : const Text(
-                                'Сохранить',
-                                style: TextStyle(fontSize: 16),
-                              ),
+                           : const Text(
+                                  'Сохранить',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
     );
   }
 }
+ 

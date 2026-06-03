@@ -182,6 +182,7 @@ void _removeMedia(int index) {
             : _descController.text.trim(),
         'latitude': widget.latitude,
         'longitude': widget.longitude,
+        'address': widget.address,
         'starts_at': _startsAt.toUtc().toIso8601String(),
         'expires_at': _expiresAt.toUtc().toIso8601String(),
         'media': _uploadedMedia.map((m) => m.toJson()).toList(),

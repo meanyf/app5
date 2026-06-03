@@ -179,7 +179,7 @@ Widget _buildMeetingBlock() {
       'rejected' => ('Заявка отклонена', Colors.red),
       _ => ('', Colors.grey),
     };
-
+ 
     return Column(
       children: [
         Padding(
@@ -311,7 +311,7 @@ Widget _buildMeetingBlock() {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
-                                  label,
+                                  label, 
                                   style: TextStyle(
                                     color: color,
                                     fontWeight: FontWeight.w600,
@@ -408,6 +408,32 @@ Widget _buildMeetingBlock() {
                             icon: Icons.timer_off_outlined,
                             text: 'До ${_fmt(widget.activity.expiresAt)}',
                           ),
+
+                        // Адрес
+                        if (widget.activity.address != null) ...[
+                            const SizedBox(height: 2),
+                            Row(
+                              children: [  
+                                Icon( 
+                                  Icons.map_outlined,
+                                  size: 12,
+                                  color: Colors.grey[500],
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    widget.activity.address!,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey[500],
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
 
                           if (!isEvent &&
                               widget.activity.maxParticipants != null) ...[
